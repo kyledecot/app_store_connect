@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "app_store_connect"
+require "pry"
+
+Pry.start
