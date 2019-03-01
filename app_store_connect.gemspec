@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Write a short summary, because RubyGems requires one.}
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  # spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/kyledecot/app_store_connect"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "httparty"
-  spec.add_runtime_dependency "jwt"
+  spec.add_runtime_dependency "httparty", "~> 0.16"
+  spec.add_runtime_dependency "jwt", "~> 2.1"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
