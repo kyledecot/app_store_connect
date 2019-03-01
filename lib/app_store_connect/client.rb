@@ -7,31 +7,27 @@ module AppStoreConnect
     end
 
     def apps
-      binding.pry
-
       response = HTTParty.get('https://api.appstoreconnect.apple.com/v1/apps', headers: headers)
-
-      puts response.body, response.code, response.message, response.headers.inspect
+      binding.pry
+      # json = JSON.parse(response.body["data"])
+      #
+      # puts response.body, response.code, response.message, response.headers.inspect
     end
 
     private
 
     def payload
-      exp = Time.now.to_i + 4 * 3600
+      exp = Time.now.to_i + 20 * 60
 
       {
         exp: exp,
         iss: @issuer_id,
-        aud: ["appstoreconnect-v1"],
-        kid: @key_id,
-        typ: 'JWT'
+        aud: "appstoreconnect-v1"
       }
     end
 
     def token
-      JWT.encode(payload, private_key, 'ES256').tap do |t|
-        binding.pry
-      end
+      JWT.encode(payload, private_key, 'ES256', kid: @key_id )
     end
 
     def private_key
