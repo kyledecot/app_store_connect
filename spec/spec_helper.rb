@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "app/store/connect"
+require "app_store_connect"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
