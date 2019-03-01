@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "app_store_connect"
   spec.version       = AppStoreConnect::VERSION
   spec.authors       = ["Kyle Decot"]
-  spec.email         = ["kyle@joinroot.com"]
+  spec.email         = ["kyle.decot@icloud.com"]
 
   spec.summary       = %q{Write a short summary, because RubyGems requires one.}
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
