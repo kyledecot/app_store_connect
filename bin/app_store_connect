@@ -1,0 +1,5 @@
+#! /usr/bin/env ruby
+
+require 'app_store_connect'
+
+puts "Hello world"
