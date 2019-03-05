@@ -1,5 +1,7 @@
 require "gli"
 
+require "app_store_connect/version"
+
 module AppStoreConnect
   class CLI
     extend GLI::App
