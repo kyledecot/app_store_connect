@@ -9,13 +9,20 @@ module AppStoreConnect
     program_desc "Here is my program description"
     version AppStoreConnect::VERSION
 
-    flag [:i, :issuer_id], :default_value => ENV["ISSUER_ID"]
-    flag [:p, :private_key_path], :default_value => ENV["PRIVATE_KEY_PATH"]
-    flag [:k, :key_id], :default_value => ENV["KEY_ID"]
+    flag [:i, 'issuer-id'],
+      :default_value => ENV["APP_STORE_CONNECT_ISSUER_ID"]
+
+    flag [:p, 'private-key-path'],
+      :default_value => ENV["APP_STORE_CONNECT_PRIVATE_KEY_PATH"]
+
+    flag [:k, 'key-id'],
+      :default_value => ENV["APP_STORE_CONNECT_KEY_ID"]
 
     command "app" do |c|
-      c.action do |_, _, args|
-        app_id = args.first
+      c.flag [:a, :app_id], :required => true
+
+      c.action do |_, options|
+        app_id = options[:app_id]
        puts client.app(app_id).to_json
       end
     end
@@ -30,7 +37,7 @@ module AppStoreConnect
     end
 
     command "builds" do |c|
-      c.flag [:a, :app_id]
+      c.flag [:a, :app_id], :required => true
 
       c.action do |global_options, options|
         app_id = options[:app_id]
@@ -40,8 +47,8 @@ module AppStoreConnect
     end
 
     command "build" do |c|
-      c.switch [:a, :app_id]
-      c.switch [:b, :build_id]
+      c.flag [:a, :app_id], :required => true
+      c.switch [:b, :build_id], :required => true
 
       c.action do |global_options, options|
         app_id = options[:app_id]

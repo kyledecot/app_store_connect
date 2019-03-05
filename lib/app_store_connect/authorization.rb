@@ -1,5 +1,7 @@
 module AppStoreConnect
   class Authorization
+    AUDIENCE = "appstoreconnect-v1"
+
     def initialize(key_id:, issuer_id:, private_key_path:)
       @key_id = key_id
       @issuer_id = issuer_id
@@ -10,7 +12,7 @@ module AppStoreConnect
       {
         exp: Time.now.to_i + 20 * 60,
         iss: @issuer_id,
-        aud: "appstoreconnect-v1"
+        aud: AUDIENCE
       }
     end
 
