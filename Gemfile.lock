@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     app_store_connect (0.1.0)
-      gli
+      gli (~> 2.17)
       httparty (~> 0.16)
       jwt (~> 2.1)
 
