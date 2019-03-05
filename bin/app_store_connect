@@ -2,4 +2,4 @@
 
 require 'app_store_connect'
 
-puts "Hello world"
+AppStoreConnect::CLI.run(ARGV)
