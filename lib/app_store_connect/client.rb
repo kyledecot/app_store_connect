@@ -26,6 +26,14 @@ module AppStoreConnect
       get("apps/#{app_id}/builds/#{build_id}")
     end
 
+    def users
+      get("users")
+    end 
+
+    def user_invitations
+      get("userInvitations")
+    end 
+
     private
 
     def get(path)
