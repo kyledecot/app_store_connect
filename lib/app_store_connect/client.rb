@@ -26,13 +26,24 @@ module AppStoreConnect
       get("apps/#{app_id}/builds/#{build_id}")
     end
 
+    def invite_user(first_name:, last_name:, email:, roles:)
+      invitation = UserInvitationCreateRequest.new(
+        :first_name => first_name,
+        :last_name => last_name,
+        :email => email,
+        :roles => roles
+      )
+
+      post("userInvitations", invitation.body.to_json)
+    end
+
     def users
       get("users")
-    end 
+    end
 
     def user_invitations
       get("userInvitations")
-    end 
+    end
 
     private
 
@@ -42,8 +53,14 @@ module AppStoreConnect
       response["data"]
     end
 
+    def post(path, body)
+      response = HTTParty.post("#{ENDPOINT}/#{path}", headers: headers, body: body)
+
+      response
+    end
+
     def headers
-      { "Authorization" => "Bearer #{@authorization.token}" }
+      { "Authorization" => "Bearer #{@authorization.token}", "Content-Type" => "application/json" }
     end
   end
 end
