@@ -42,8 +42,8 @@ module AppStoreConnect
       post('bundleIds', body(request))
     end
 
-    def users
-      get('users')
+    def users(limit: 200)
+      get('users', query_params: { 'limit' => limit })
     end
 
     def user_invitations
@@ -59,8 +59,8 @@ module AppStoreConnect
         .to_json
     end
 
-    def get(path)
-      response = HTTParty.get("#{ENDPOINT}/#{path}", headers: headers)
+    def get(path, query_params: {})
+      response = HTTParty.get("#{ENDPOINT}/#{path}", headers: headers, query: query_params)
 
       response['data']
     end
