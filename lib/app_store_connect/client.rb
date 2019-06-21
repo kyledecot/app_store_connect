@@ -6,9 +6,9 @@ module AppStoreConnect
   class Client
     ENDPOINT = 'https://api.appstoreconnect.apple.com/v1'
 
-    def initialize(key_id:, issuer_id:, private_key_path:)
+    def initialize(key_id:, issuer_id:, private_key:)
       @authorization = Authorization.new(
-        private_key_path: private_key_path,
+        private_key: private_key,
         key_id: key_id,
         issuer_id: issuer_id
       )

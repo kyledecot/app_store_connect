@@ -14,8 +14,8 @@ module AppStoreConnect
     flag [:i, 'issuer-id'],
          default_value: ENV['APP_STORE_CONNECT_ISSUER_ID']
 
-    flag [:p, 'private-key-path'],
-         default_value: ENV['APP_STORE_CONNECT_PRIVATE_KEY_PATH']
+    flag [:p, 'private-key'],
+         default_value: ENV['APP_STORE_CONNECT_PRIVATE_KEY']
 
     flag [:k, 'key-id'],
          default_value: ENV['APP_STORE_CONNECT_KEY_ID']
@@ -62,7 +62,7 @@ module AppStoreConnect
 
     def self.client(global_options)
       AppStoreConnect::Client.new(
-        private_key_path: global_options[:private_key_path],
+        private_key: global_options[:private_key],
         issuer_id: global_options[:issuer_id],
         key_id: global_options[:key_id]
       )
