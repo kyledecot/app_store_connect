@@ -1,3 +1,5 @@
+require "active_support/all"
+
 module AppStoreConnect
   class Client
     ENDPOINT = "https://api.appstoreconnect.apple.com/v1"
@@ -37,6 +39,12 @@ module AppStoreConnect
       post("userInvitations", invitation.body.to_json)
     end
 
+    def create_bundle_id(*args)
+      request = BundleIdCreateRequest.new(*args)
+
+      post("bundleIds", body(request))
+    end 
+
     def users
       get("users")
     end
@@ -46,6 +54,13 @@ module AppStoreConnect
     end
 
     private
+
+    def body(request)
+      request
+        .to_hash
+        .deep_transform_keys { |k| k.to_s.camelize(:lower) }
+        .to_json
+    end 
 
     def get(path)
       response = HTTParty.get("#{ENDPOINT}/#{path}", headers: headers)

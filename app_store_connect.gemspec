@@ -25,9 +25,11 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "httparty", "~> 0.16"
   spec.add_runtime_dependency "jwt", "~> 2.1"
   spec.add_runtime_dependency "gli", "~> 2.17"
+  spec.add_runtime_dependency "activesupport", "~> 5.2.3"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry", "~> 0.12"
+  spec.add_development_dependency "factory_bot", "~> 5.0.2"
 end
