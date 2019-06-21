@@ -1,4 +1,4 @@
-# AppStoreConnect
+# AppStoreConnect [![Build Status](https://travis-ci.com/kyledecot/app_store_connect.svg?branch=master)](https://travis-ci.com/kyledecot/app_store_connect)
 
 TODO
 
