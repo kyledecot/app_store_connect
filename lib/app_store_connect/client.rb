@@ -49,6 +49,12 @@ module AppStoreConnect
     def user_invitations
       get('userInvitations')
     end
+   
+    def create_policy(*args)
+      request = PolicyCreateRequest.new(*args)
+
+      post('profiles', body(request))
+    end 
 
     private
 

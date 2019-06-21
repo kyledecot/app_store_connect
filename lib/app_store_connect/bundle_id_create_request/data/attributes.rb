@@ -6,7 +6,7 @@ module AppStoreConnect
       class Attributes
         attr_accessor :identifier, :name, :platform, :seed_id
 
-        def initialize(identifier:, name:, platform:, seed_id:)
+        def initialize(identifier:, name:, platform:, seed_id: nil)
           self.identifier = identifier
           self.name = name
           self.platform = platform
@@ -17,9 +17,10 @@ module AppStoreConnect
           {
             identifier: identifier,
             name: name,
-            platform: platform,
-            seed_id: seed_id
-          }
+            platform: platform
+          }.tap do |hash|
+            hash[:seed_id] = seed_id unless seed_id.nil?
+          end 
         end
       end
     end
