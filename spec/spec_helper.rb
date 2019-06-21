@@ -1,9 +1,11 @@
-require "bundler/setup"
-require "app_store_connect"
-require "factory_bot"
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'app_store_connect'
+require 'factory_bot'
 
 RSpec.configure do |config|
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.example_status_persistence_file_path = '.rspec_status'
   config.disable_monkey_patching!
 
   config.include FactoryBot::Syntax::Methods

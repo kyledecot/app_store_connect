@@ -1,4 +1,6 @@
-require_relative "./bundle_id_create_request/data"
+# frozen_string_literal: true
+
+require_relative './bundle_id_create_request/data'
 
 module AppStoreConnect
   class BundleIdCreateRequest
@@ -6,12 +8,12 @@ module AppStoreConnect
 
     def initialize(*args)
       @data = Data.new(*args)
-    end 
+    end
 
-    def to_hash 
+    def to_hash
       {
         data: data.to_hash
       }
-    end 
-  end 
-end 
+    end
+  end
+end

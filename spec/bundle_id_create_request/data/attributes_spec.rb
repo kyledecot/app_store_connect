@@ -1,4 +1,6 @@
-require "spec_helper"
+# frozen_string_literal: true
 
-RSpec.describe AppStoreConnect::BundleIdCreateRequest::Data::Attributes do 
-end 
+require 'spec_helper'
+
+RSpec.describe AppStoreConnect::BundleIdCreateRequest::Data::Attributes do
+end

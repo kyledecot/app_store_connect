@@ -1,26 +1,28 @@
-require_relative "./data/attributes"
+# frozen_string_literal: true
+
+require_relative './data/attributes'
 
 module AppStoreConnect
   class BundleIdCreateRequest
-    class Data 
-      TYPE = "bundleIds" 
+    class Data
+      TYPE = 'bundleIds'
 
       attr_reader :attributes
 
       def initialize(*args)
         @attributes = Attributes.new(*args)
-      end 
+      end
 
-      def type 
+      def type
         TYPE
-      end 
+      end
 
       def to_hash
-        { 
-          attributes: attributes.to_hash, 
-          type: type 
-        } 
-      end 
+        {
+          attributes: attributes.to_hash,
+          type: type
+        }
+      end
     end
   end
-end 
+end
