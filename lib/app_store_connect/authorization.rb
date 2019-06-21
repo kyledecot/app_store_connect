@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module AppStoreConnect
   class Authorization
-    AUDIENCE = "appstoreconnect-v1"
+    AUDIENCE = 'appstoreconnect-v1'
 
     def initialize(key_id:, issuer_id:, private_key_path:)
       @key_id = key_id
@@ -17,7 +19,7 @@ module AppStoreConnect
     end
 
     def token
-      JWT.encode(payload, private_key, "ES256", kid: @key_id)
+      JWT.encode(payload, private_key, 'ES256', kid: @key_id)
     end
 
     def private_key
