@@ -5,7 +5,7 @@ module AppStoreConnect
   class BetaGroupCreateRequest
     class Data 
       TYPE = "betaGroups"
-
+      
       attr_reader :attributes, :relationships
       
       def initialize(*args)
