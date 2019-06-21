@@ -4,10 +4,10 @@ module AppStoreConnect
   class Authorization
     AUDIENCE = 'appstoreconnect-v1'
 
-    def initialize(key_id:, issuer_id:, private_key_path:)
+    def initialize(key_id:, issuer_id:, private_key:)
       @key_id = key_id
       @issuer_id = issuer_id
-      @private_key_path = private_key_path
+      @private_key = OpenSSL::PKey.read(private_key)
     end
 
     def payload
@@ -19,14 +19,7 @@ module AppStoreConnect
     end
 
     def token
-      JWT.encode(payload, private_key, 'ES256', kid: @key_id)
-    end
-
-    def private_key
-      @private_key ||= begin
-        path = File.expand_path(@private_key_path)
-        OpenSSL::PKey.read(File.read(path))
-      end
+      JWT.encode(payload, @private_key, 'ES256', kid: @key_id)
     end
   end
 end
