@@ -10,8 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Kyle Decot']
   spec.email         = ['kyle.decot@icloud.com']
 
-  spec.summary       = 'Write a short summary, because RubyGems requires one.'
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = 'A Ruby interface to the App Store Connect API'
   spec.homepage      = 'https://github.com/kyledecot/app_store_connect'
   spec.license       = 'MIT'
 
