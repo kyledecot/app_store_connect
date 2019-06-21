@@ -31,12 +31,7 @@ module AppStoreConnect
     end
 
     def invite_user(first_name:, last_name:, email:, roles:)
-      invitation = UserInvitationCreateRequest.new(
-        first_name: first_name,
-        last_name: last_name,
-        email: email,
-        roles: roles
-      )
+      invitation = UserInvitationCreateRequest.new(first_name, last_name, email, roles)
 
       post('userInvitations', invitation.body.to_json)
     end

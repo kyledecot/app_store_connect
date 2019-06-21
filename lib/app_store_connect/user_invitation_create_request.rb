@@ -5,7 +5,7 @@ module AppStoreConnect
     def body
       { 'data' =>
         { 'type' => 'userInvitations', 'attributes' =>
-          { 'firstName' => @first_name, 'lastName' => @last_name, 'email' => @email, 'roles' => @roles, 'allAppsVisible' => true, 'provisioningAllowed' => true } } }
+          { 'firstName' => first_name, 'lastName' => last_name, 'email' => email, 'roles' => roles, 'allAppsVisible' => true, 'provisioningAllowed' => true } } }
     end
 
     def to_s
