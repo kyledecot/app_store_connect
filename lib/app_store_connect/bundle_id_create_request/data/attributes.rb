@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class BundleIdCreateRequest
+  class BundleIdCreateRequest < CreateRequest
     class Data
       class Attributes
         attr_accessor :identifier, :name, :platform, :seed_id
@@ -13,7 +13,7 @@ module AppStoreConnect
           self.seed_id = seed_id
         end
 
-        def to_hash
+        def to_h
           {
             identifier: identifier,
             name: name,
