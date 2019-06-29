@@ -15,7 +15,7 @@ RSpec.describe AppStoreConnect::Authorization do
 
   describe '#payload' do
     around do |example|
-      Timecop.freeze(Time.local(2019)) do
+      Timecop.freeze(Time.parse('2019-01-01 00:00:00 UTC')) do
         example.call
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe AppStoreConnect::Authorization do
     it 'returns correctly' do
       expect(authorization.payload).to eq(
         aud: described_class::AUDIENCE,
-        exp: 1_546_320_000,
+        exp: 1_546_302_000,
         iss: issuer_id
       )
     end
