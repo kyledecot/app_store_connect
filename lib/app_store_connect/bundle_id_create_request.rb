@@ -10,9 +10,9 @@ module AppStoreConnect
       @data = Data.new(*args)
     end
 
-    def to_hash
+    def to_h
       {
-        data: data.to_hash
+        data: data.to_h
       }
     end
   end
