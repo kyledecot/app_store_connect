@@ -1,4 +1,4 @@
-# AppStoreConnect [![Build Status](https://travis-ci.com/kyledecot/app_store_connect.svg?branch=master)](https://travis-ci.com/kyledecot/app_store_connect) [![Gem Version](https://badge.fury.io/rb/app_store_connect.svg)](https://badge.fury.io/rb/app_store_connect)
+# App Store Connect [![Build Status](https://travis-ci.com/kyledecot/app_store_connect.svg?branch=master)](https://travis-ci.com/kyledecot/app_store_connect) [![Gem Version](https://badge.fury.io/rb/app_store_connect.svg)](https://badge.fury.io/rb/app_store_connect)
 
 A Ruby interface to the App Store Connect API
 
