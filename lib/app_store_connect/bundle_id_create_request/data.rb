@@ -17,9 +17,9 @@ module AppStoreConnect
         TYPE
       end
 
-      def to_hash
+      def to_h
         {
-          attributes: attributes.to_hash,
+          attributes: attributes.to_h,
           type: type
         }
       end
