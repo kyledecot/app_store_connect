@@ -18,6 +18,20 @@ Or install it yourself as:
 
     $ gem install app_store_connect
 
+## Usage
+
+```ruby 
+client = AppStoreConnect::Client.new(
+  issuer_id: issuer_id,
+  key_id: key_id,
+  private_key: private_key
+)
+
+client.apps 
+client.app('1234')
+client.builds('1234')
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
