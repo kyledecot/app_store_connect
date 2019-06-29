@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'app_store_connect'
-require 'factory_bot'
 require 'webmock/rspec'
+require 'factory_bot'
+require 'simplecov'
 require 'timecop'
 require 'pry'
+
+SimpleCov.start do
+  add_filter('/spec/')
+end
+
+require 'app_store_connect'
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
