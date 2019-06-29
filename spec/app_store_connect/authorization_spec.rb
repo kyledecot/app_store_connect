@@ -1,4 +1,6 @@
-RSpec.describe AppStoreConnect::Authorization do 
+# frozen_string_literal: true
+
+RSpec.describe AppStoreConnect::Authorization do
   let(:private_key) { File.read(File.join(__dir__, '../fixtures/private_key.pem')) }
   let(:key_id) { 'M3225B466N' }
   let(:issuer_id) { '69a6de70-03db-47e3-e053-5b8c7c11a4d1' }
@@ -11,19 +13,19 @@ RSpec.describe AppStoreConnect::Authorization do
     )
   end
 
-  describe "#payload" do
+  describe '#payload' do
     around do |example|
-      Timecop.freeze(Time.local(2019)) do 
+      Timecop.freeze(Time.local(2019)) do
         example.call
-      end 
-    end 
+      end
+    end
 
-    it "returns correctly" do 
+    it 'returns correctly' do
       expect(authorization.payload).to eq(
         aud: described_class::AUDIENCE,
-        exp: 1546320000,
-        iss: issuer_id 
+        exp: 1_546_320_000,
+        iss: issuer_id
       )
-    end 
-  end 
-end 
+    end
+  end
+end
