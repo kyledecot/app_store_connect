@@ -4,16 +4,16 @@ FactoryBot.define do
   factory :bundle_id_create_request, class: AppStoreConnect::BundleIdCreateRequest do
     skip_create
 
-    transient do 
+    transient do
       identifier { 'com.kyledecot.app' }
       platform { 'IOS' }
       name { 'Kyle Decot' }
       seed_id { nil }
-    end 
+    end
 
-    trait :with_seed_id do 
-      seed_id { '1234' } 
-    end 
+    trait :with_seed_id do
+      seed_id { '1234' }
+    end
 
     initialize_with do
       AppStoreConnect::BundleIdCreateRequest.new(
