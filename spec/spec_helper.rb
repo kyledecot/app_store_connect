@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'app_store_connect'
 require 'factory_bot'
 require 'webmock/rspec'
+require 'timecop'
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
