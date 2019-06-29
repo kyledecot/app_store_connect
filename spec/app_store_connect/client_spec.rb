@@ -18,6 +18,6 @@ RSpec.describe AppStoreConnect::Client do
       subject.apps
     end
 
-    it { expect(WebMock).to have_requested(:get, 'https://api.appstoreconnect.apple.com/v1/apps') }
+    it_behaves_like :get_request, path: 'apps'
   end
 end
