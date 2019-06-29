@@ -13,6 +13,12 @@ RSpec.describe AppStoreConnect::Client do
     )
   end
 
+  describe '#users' do
+    before { client.users }
+
+    it_behaves_like :get_request, path: 'users', query_params: { limit: 200 }
+  end 
+
   describe '.app' do
     let(:id) { '1234' }
 
