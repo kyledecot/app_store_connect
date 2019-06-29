@@ -3,6 +3,7 @@
 module AppStoreConnect
   class Authorization
     AUDIENCE = 'appstoreconnect-v1'
+    ALGORITHM = 'ES256'
 
     attr_reader :key_id, :issuer_id, :private_key
 
@@ -21,7 +22,7 @@ module AppStoreConnect
     end
 
     def token
-      JWT.encode(payload, private_key, 'ES256', kid: key_id)
+      JWT.encode(payload, private_key, ALGORITHM, kid: key_id)
     end
   end
 end
