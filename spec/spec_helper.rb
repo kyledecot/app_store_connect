@@ -7,9 +7,9 @@ require 'simplecov'
 require 'timecop'
 require 'pry'
 
-SimpleCov.start do 
+SimpleCov.start do
   add_filter('/spec/')
-end 
+end
 
 require 'app_store_connect'
 
