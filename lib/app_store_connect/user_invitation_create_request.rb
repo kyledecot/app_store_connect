@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './user_invitation_create_request/data'
+
 module AppStoreConnect
   class UserInvitationCreateRequest
     attr_reader :data
