@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class UserInvitationCreateRequest < Struct.new(:first_name, :last_name, :email, :roles)
+  class UserInvitationCreateRequest
     attr_reader :data
 
     def initialize(*args)
@@ -14,8 +14,8 @@ module AppStoreConnect
           { 'firstName' => first_name, 'lastName' => last_name, 'email' => email, 'roles' => roles, 'allAppsVisible' => true, 'provisioningAllowed' => true } } }
     end
 
-    def to_s
-      body.to_json
+    def to_h
+      { data: data.to_h }
     end
   end
 end
