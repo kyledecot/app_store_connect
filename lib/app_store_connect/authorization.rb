@@ -21,8 +21,12 @@ module AppStoreConnect
       }
     end
 
+    def header_fields
+      { kid: key_id }
+    end
+
     def token
-      JWT.encode(payload, private_key, ALGORITHM, kid: key_id)
+      JWT.encode(payload, private_key, ALGORITHM, header_fields)
     end
   end
 end
