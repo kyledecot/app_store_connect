@@ -2,6 +2,12 @@
 
 module AppStoreConnect
   class UserInvitationCreateRequest < Struct.new(:first_name, :last_name, :email, :roles)
+    attr_reader :data
+
+    def initialize(*args)
+      @data = Data.new(*args)
+    end
+
     def body
       { 'data' =>
         { 'type' => 'userInvitations', 'attributes' =>
