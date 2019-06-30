@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe AppStoreConnect::Client do
-  let(:private_key) { File.read(File.join(__dir__, '../fixtures/private_key.pem')) }
+  let(:private_key) { File.read(File.join(__dir__, '../support/fixtures/private_key.pem')) }
   let(:key_id) { 'M3225B466N' }
   let(:issuer_id) { '69a6de70-03db-47e3-e053-5b8c7c11a4d1' }
 
