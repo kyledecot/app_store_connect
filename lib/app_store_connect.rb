@@ -16,5 +16,13 @@ require 'app_store_connect/type'
 require 'app_store_connect/type/enum'
 
 module AppStoreConnect
-  Parser.parse!
+  module Config
+    API = JSON.parse(
+      File.read(
+        File.join(__dir__, 'config/api.json')
+      )
+    )
+  end
+
+  Parser.parse!(Config::API)
 end
