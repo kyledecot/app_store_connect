@@ -1,7 +1,8 @@
 RSpec.describe AppStoreConnect::Config do 
   describe 'API' do 
-    it 'should return a hash' do 
-      expect(described_class::API).to be_an_instance_of(Hash)
-    end 
+    subject { described_class::API }
+
+    it { is_expected.to be_an_instance_of(Hash) } 
+    it { is_expected.to have_key('Type') }
   end 
 end
