@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 RSpec.describe AppStoreConnect::Factory do
-  describe '.type' do
-    context 'when the type is not supported' do
-      it 'should raise UnsupportedType' do
+  describe '.build' do
+    context 'when the builder is not registered' do
+      it 'should raise BuilderNotRegistered' do
         expect do
-          described_class.type(type: 'Foobar')
-        end.to raise_error(described_class::UnsupportedType)
+          described_class.build('foo')
+        end.to raise_error(described_class::BuilderNotRegistered)
       end
     end
 
-    context 'when the type is "enum"' do
+    context 'when "enum"' do
       it 'should return a class that inherits from AppStoreConnect::Type::Enum' do
-        klass = described_class.type(type: 'enum', values: [])
+        klass = described_class.build('enum', values: [])
 
         expect(klass).to be < AppStoreConnect::Type::Enum
       end

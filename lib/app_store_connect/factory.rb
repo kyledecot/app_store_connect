@@ -2,6 +2,8 @@
 
 module AppStoreConnect
   class Factory
+    BuilderNotRegistered = Class.new(StandardError)
+
     def self.register(name, builder)
       builders[name] = builder
     end
@@ -9,10 +11,13 @@ module AppStoreConnect
     def self.builders
       @builders ||= {}
     end
-    private_class_method :builders
 
     def self.build(name, options = {})
-      builders[name].call(options)
+      builder = builders[name]
+
+      raise BuilderNotRegistered, "Builder not registered: #{name}" if builder.nil?
+
+      builder.call(options)
     end
   end
 end
