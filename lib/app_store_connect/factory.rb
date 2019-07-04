@@ -2,7 +2,11 @@
 
 module AppStoreConnect
   class Factory
-    BuilderNotRegistered = Class.new(StandardError)
+    class BuilderNotRegistered < StandardError
+      def initialize(name)
+        super("Builder not registered: #{name}")
+      end
+    end
 
     def self.register(name, builder)
       builders[name] = builder
@@ -13,11 +17,9 @@ module AppStoreConnect
     end
 
     def self.build(name, options = {})
-      builder = builders[name]
-
-      raise BuilderNotRegistered, "Builder not registered: #{name}" if builder.nil?
-
-      builder.call(options)
+      builders.fetch(name) do
+        raise BuilderNotRegistered, name
+      end.call(options)
     end
   end
 end
