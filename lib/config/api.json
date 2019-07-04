@@ -6,6 +6,22 @@
         "IOS", 
         "MAC_OS"
       ]
-    }
+    },
+    "UserRole": {
+      "type": "enum",
+      "values": [
+        "ADMIN",
+        "FINANCE",
+        "TECHNICAL",
+        "SALES",
+        "MARKETING", 
+        "DEVELOPER",
+        "ACCOUNT_HOLDER",
+        "READ_ONLY", 
+        "APP_MANAGER",
+        "ACCESS_TO_REPORTS",
+        "CUSTOMER_REPORTS"
+      ]
+    } 
   } 
 }
