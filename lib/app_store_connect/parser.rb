@@ -2,10 +2,8 @@
 
 module AppStoreConnect
   class Parser
-    def self.parse!
-      json = JSON.parse(File.read(File.join(__dir__, '../config/api.json')))
-
-      parse_types(json['Type'])
+    def self.parse!(config)
+      parse_types(config['Type'])
     end
 
     def self.parse_types(types)
@@ -15,5 +13,6 @@ module AppStoreConnect
         AppStoreConnect::Type.const_set(name, klass)
       end
     end
+    private_class_method :parse_types
   end
 end
