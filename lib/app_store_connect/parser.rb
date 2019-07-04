@@ -9,7 +9,7 @@ module AppStoreConnect
 
     def self.parse_objects(objects)
       objects.each do |name, object|
-        klass = Factory.object(object["properties"])
+        klass = Factory.object(object['properties'])
 
         AppStoreConnect::Object.const_set(name, klass)
       end
