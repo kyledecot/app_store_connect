@@ -1,5 +1,17 @@
 {
   "Type": {
+    "CertificateType": {
+      "type": "enum",
+      "values": [
+        "OS_DEVELOPMENT",
+        "IOS_DISTRIBUTION",
+        "MAC_APP_DISTRIBUTION",
+        "MAC_INSTALLER_DISTRIBUTION",
+        "MAC_APP_DEVELOPMENT",
+        "DEVELOPER_ID_KEXT",
+        "DEVELOPER_ID_APPLICATION"
+      ]
+    },
     "BundleIdPlatform": {
       "type": "enum",
       "values": [
