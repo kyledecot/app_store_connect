@@ -8,6 +8,10 @@ module AppStoreConnect
       'enum' => 'Enum'
     }.freeze
 
+    def self.object
+      Class.new(AppStoreConnect::Object)
+    end
+
     def self.type(type:, **options)
       case type
       when *TYPES.keys

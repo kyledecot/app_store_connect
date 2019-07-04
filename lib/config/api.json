@@ -1,6 +1,10 @@
 {
+  "Object": {
+    "BundleId": {
+      "type": "bundleIds"
+    } 
+  },
   "Type": {
-
     "CapabilityType": {
       "type": "enum",
       "values": [

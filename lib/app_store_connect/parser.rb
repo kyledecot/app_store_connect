@@ -4,7 +4,17 @@ module AppStoreConnect
   class Parser
     def self.parse!(config)
       parse_types(config['Type'])
+      parse_objects(config['Object'])
     end
+
+    def self.parse_objects(objects)
+      objects.each do |name, _object|
+        klass = Factory.object
+
+        AppStoreConnect::Object.const_set(name, klass)
+      end
+    end
+    private_class_method :parse_objects
 
     def self.parse_types(types)
       types.each do |name, type|
