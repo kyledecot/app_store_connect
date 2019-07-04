@@ -13,8 +13,10 @@ require 'app_store_connect/version'
 require 'app_store_connect/factory'
 require 'app_store_connect/config'
 require 'app_store_connect/type'
-require 'app_store_connect/type/enum'
+require 'app_store_connect/factory/builder/enum'
 
 module AppStoreConnect
+  Factory.register('enum', Factory::Builder::Enum)
+
   Parser.parse!(Config::API)
 end
