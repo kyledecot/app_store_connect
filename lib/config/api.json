@@ -1,7 +1,12 @@
 {
   "Object": {
     "BundleId": {
-      "type": "bundleIds"
+      "properties" : {
+        "type": {
+          "type": "string",
+          "value": "bundleIds"
+        }
+      }
     } 
   },
   "Type": {
