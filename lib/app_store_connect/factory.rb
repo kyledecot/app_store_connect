@@ -2,27 +2,22 @@
 
 module AppStoreConnect
   class Factory
-    UnsupportedType = Class.new(StandardError)
+    BuilderNotRegistered = Class.new(StandardError)
 
-    TYPES = {
-      'enum' => 'Enum'
-    }.freeze
-
-    def self.type(type:, **options)
-      case type
-      when *TYPES.keys
-        klass = "AppStoreConnect::Type::#{TYPES[type]}".constantize
-        Class.new(klass, &send(type, options))
-      else
-        raise UnsupportedType, "Unsupported Type: #{type}"
-      end
+    def self.register(name, builder)
+      builders[name] = builder
     end
 
-    def self.enum(options)
-      proc do |base|
-        base.const_set('VALUES', options.fetch(:values))
-      end
+    def self.builders
+      @builders ||= {}
     end
-    private_class_method :enum
+
+    def self.build(name, options = {})
+      builder = builders[name]
+
+      raise BuilderNotRegistered, "Builder not registered: #{name}" if builder.nil?
+
+      builder.call(options)
+    end
   end
 end
