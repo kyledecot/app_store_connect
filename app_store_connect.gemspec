@@ -18,12 +18,9 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
 
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'activesupport', '~> 5.2.3'
-  spec.add_runtime_dependency 'gli', '~> 2.17'
   spec.add_runtime_dependency 'httparty', '~> 0.16'
   spec.add_runtime_dependency 'jwt', '~> 2.1'
 
