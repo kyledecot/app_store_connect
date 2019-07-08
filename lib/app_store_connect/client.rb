@@ -30,7 +30,7 @@ module AppStoreConnect
       get("apps/#{app_id}/builds/#{build_id}")
     end
 
-    def invite_user(**kwargs)
+    def create_user_invitation(**kwargs)
       request = UserInvitationCreateRequest.new(kwargs)
 
       post('userInvitations', body(request))
