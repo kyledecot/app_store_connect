@@ -4,22 +4,30 @@ module AppStoreConnect
   class BundleIdCreateRequest
     class Data
       class Attributes
-        attr_accessor :identifier, :name, :platform, :seed_id
+        include Object::Properties
 
-        def initialize(identifier:, name:, platform:, seed_id: nil)
-          self.identifier = identifier
-          self.name = name
-          self.platform = platform
-          self.seed_id = seed_id
+        property :identifier, required: true
+        property :name, required: true
+        property :platform, required: true, type: 'BundleIdPlatform'
+        property :seed_id
+
+        def initialize(**kwargs)
+          self.class.properties.each do |name, options|
+            raise ArgumentError, "#{name} required" if options[:required] && !kwargs[name]
+
+            value = kwargs.fetch(name, options[:default])
+
+            instance_variable_set("@#{name}", value)
+          end
         end
 
         def to_h
-          {
-            identifier: identifier,
-            name: name,
-            platform: platform
-          }.tap do |hash|
-            hash[:seed_id] = seed_id unless seed_id.nil?
+          {}.tap do |hash|
+            self.class.properties.keys.each do |name|
+              value = instance_variable_get("@#{name}")
+
+              hash[name] = value unless value.nil?
+            end
           end
         end
       end
