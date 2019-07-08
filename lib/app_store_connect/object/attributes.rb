@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module AppStoreConnect
-  module Object 
-    module Attributes 
+  module Object
+    module Attributes
       def self.included(base)
-        base.include Properties 
-      end 
-      
+        base.include Properties
+      end
+
       def initialize(**kwargs)
         self.class.properties.each do |name, options|
           raise ArgumentError, "#{name} required" if options[:required] && !kwargs[name]
@@ -24,6 +26,6 @@ module AppStoreConnect
           end
         end
       end
-    end 
-  end 
-end 
+    end
+  end
+end
