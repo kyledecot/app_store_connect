@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require "active_support/concern"
+require 'active_support/concern'
 
 module AppStoreConnect
   module Object
     module Attributes
-      extend ActiveSupport::Concern 
+      extend ActiveSupport::Concern
 
-      class_methods do 
+      class_methods do
         def attributes(&block)
           self::Attributes.class_eval(&block)
-        end 
-      end 
-      
-      included do 
+        end
+      end
+
+      included do
         attr_reader :attributes
 
         klass = Class.new do |attributes|
@@ -27,9 +27,9 @@ module AppStoreConnect
 
               instance_variable_set("@#{name}", value)
             end
-          end 
+          end
 
-          def to_h 
+          def to_h
             {}.tap do |hash|
               self.class.properties.keys.each do |name|
                 value = instance_variable_get("@#{name}")
@@ -37,11 +37,11 @@ module AppStoreConnect
                 hash[name] = value unless value.nil?
               end
             end
-          end 
-        end 
+          end
+        end
 
-        const_set("Attributes", klass)
-      end 
+        const_set('Attributes', klass)
+      end
     end
   end
 end

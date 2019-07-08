@@ -2,10 +2,10 @@
 
 module AppStoreConnect
   class BundleIdCreateRequest < CreateRequest
-    include Object::Data 
-    
-    data do 
-      type "bundleIds"
+    include Object::Data
+
+    data do
+      type 'bundleIds'
 
       attributes do
         property :identifier, required: true
@@ -13,6 +13,6 @@ module AppStoreConnect
         property :platform, required: true, type: 'BundleIdPlatform'
         property :seed_id
       end
-    end 
+    end
   end
 end
