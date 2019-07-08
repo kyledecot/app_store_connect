@@ -11,7 +11,7 @@ module AppStoreConnect
         def type(type)
           @type = type
 
-          const_set("TYPE", type)
+          const_set('TYPE', type)
         end
       end
 
