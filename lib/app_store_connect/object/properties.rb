@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+require "active_support/concern"
+
 module AppStoreConnect
   module Object
     module Properties
-      module ClassMethods
+      extend ActiveSupport::Concern
+
+      class_methods do 
         def properties
           @properties ||= {}
         end
@@ -13,11 +17,7 @@ module AppStoreConnect
 
           attr_accessor name.to_sym
         end
-      end
-
-      def self.included(base)
-        base.extend(ClassMethods)
-      end
+      end 
     end
   end
 end

@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
-require_relative './bundle_id_create_request/data'
-
 module AppStoreConnect
-  class BundleIdCreateRequest
-    attr_reader :data
+  class BundleIdCreateRequest < CreateRequest
+    include Object::Data 
+    
+    data do 
+      type "bundleIds"
 
-    def initialize(*args)
-      @data = Data.new(*args)
-    end
-
-    def to_h
-      {
-        data: data.to_h
-      }
-    end
+      attributes do
+        property :identifier, required: true
+        property :name, required: true
+        property :platform, required: true, type: 'BundleIdPlatform'
+        property :seed_id
+      end
+    end 
   end
 end
