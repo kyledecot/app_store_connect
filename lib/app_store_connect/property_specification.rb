@@ -34,14 +34,18 @@ module AppStoreConnect
         array? ? [*rich.map(&:to_h)] : rich.to_h
       end
 
+      def constantize
+        "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize
+      end
+
       def rich(**plain)
         if object?
           if array?
             [*plain[name]].map do |sub|
-              "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize.new(**sub)
+              constantize.new(**sub)
             end
           else
-            "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize.new(**plain)
+            constantize.new(**plain)
           end
         else
           options['value'] || plain[name.to_sym]
