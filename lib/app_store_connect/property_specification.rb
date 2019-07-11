@@ -29,16 +29,9 @@ module AppStoreConnect
       end
 
       def plain(rich)
-        value = if object?
-                  if array?
-                    rich.map(&:to_h)
-                  else
-                    rich.to_h
-                  end
-                else
-                  rich
-        end
-        array? ? [*value] : value
+        return rich unless object?
+
+        array? ? [*rich.map(&:to_h)] : rich.to_h
       end
 
       def rich(**plain)
