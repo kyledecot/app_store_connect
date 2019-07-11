@@ -52,6 +52,14 @@ RSpec.describe AppStoreConnect::Client do
     it_behaves_like :get_request, path: 'apps'
   end
 
+  describe '#user_invitations' do
+    before do
+      subject.user_invitations
+    end
+
+    it_behaves_like :get_request, path: 'userInvitations'
+  end
+
   describe '#create_bundle_id' do
     before do
       subject.create_bundle_id(
