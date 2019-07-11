@@ -30,7 +30,7 @@ module AppStoreConnect
       get("apps/#{app_id}/builds/#{build_id}")
     end
 
-    def invite_user(*args)
+    def create_user_invitation(*args)
       request = UserInvitationCreateRequest.new(*args)
 
       post('userInvitations', request)
@@ -54,7 +54,7 @@ module AppStoreConnect
 
     def body(request)
       request
-        .to_hash
+        .to_h
         .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_json
     end

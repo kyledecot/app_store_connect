@@ -18,7 +18,12 @@
       }
     },
     "BundleIdCreateRequest.Data.Attributes": {
-      "Properties": {}
+      "Properties": {
+        "identifier": {},
+        "name": {},
+        "platform": {},
+        "seedId": {}
+      }
     },
     "UserInvitationCreateRequest": {
       "Properties": {
