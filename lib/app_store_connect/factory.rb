@@ -16,10 +16,10 @@ module AppStoreConnect
       @builders ||= {}
     end
 
-    def self.build(name, options = {})
+    def self.build(name, specification)
       builders.fetch(name) do
         raise BuilderNotRegistered, name
-      end.call(options)
+      end.call(specification)
     end
   end
 end

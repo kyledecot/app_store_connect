@@ -5,26 +5,16 @@ require 'httparty'
 
 require 'app_store_connect/authorization'
 require 'app_store_connect/parser'
-
-require 'app_store_connect/object/type'
-require 'app_store_connect/object/attributes'
-require 'app_store_connect/object/properties'
-require 'app_store_connect/object/data'
-require 'app_store_connect/create_request'
+require 'app_store_connect/object_specification'
+require 'app_store_connect/dependency_graph'
 require 'app_store_connect/client'
-require 'app_store_connect/bundle_id_create_request'
-require 'app_store_connect/user_invitation_create_request'
 require 'app_store_connect/version'
 require 'app_store_connect/config'
-
-require 'app_store_connect/type'
-require 'app_store_connect/type/enum'
-
 require 'app_store_connect/factory'
-require 'app_store_connect/factory/builder/enum'
+require 'app_store_connect/factory/builder/object'
 
 module AppStoreConnect
-  Factory.register('enum', Factory::Builder::Enum)
+  Factory.register(:object, Factory::Builder::Object)
 
   Parser.parse!(Config::API)
 end
