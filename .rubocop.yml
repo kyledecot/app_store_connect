@@ -9,9 +9,6 @@
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 #
-Metrics/AbcSize:
-  Enabled: false
-
 Metrics/MethodLength:
   Enabled: false
 
