@@ -3,6 +3,7 @@
 require 'jwt'
 require 'httparty'
 
+require 'app_store_connect/object'
 require 'app_store_connect/authorization'
 require 'app_store_connect/parser'
 require 'app_store_connect/object_specification'

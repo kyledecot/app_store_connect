@@ -11,6 +11,9 @@
       "Properties": {
         "attributes": {
           "object": "BundleIdCreateRequest.Data.Attributes"
+        },
+        "type": {
+          "value": "bundleIds"
         }
       }
     },
@@ -28,6 +31,9 @@
       "Properties": {
         "attributes": {
           "object": "UserInvitationCreateRequest.Data.Attributes"
+        },
+        "type": {
+          "value": "userInvitations"
         }
       }
     },
@@ -37,7 +43,10 @@
         "last_name": {},
         "email": {},
         "allAppsVisible": {},
-        "provisioningAllowed": {}
+        "provisioningAllowed": {},
+        "roles": {
+          "array": true   
+        }
       }
     }
   }
