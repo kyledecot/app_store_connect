@@ -1,24 +1,16 @@
 # frozen_string_literal: true
 
+require 'app_store_connect/object/properties'
+
 module AppStoreConnect
   class Object
-    def self.properties
-      @properties ||= []
-    end
-
-    def self.property(name, options)
-      properties << Property.new(name, options)
-      attr_reader name
-    end
-
-    def self.property_names
-      properties.map(&:name)
-    end
+    include Properties
 
     def initialize(**args)
+      @properties = {}
       self.class.properties.each do |property|
-        value = if property.options['object']
-                  if property.options['array']
+        value = if property.object?
+                  if property.array?
                     [*args[property.name]].map do |sub|
                       "AppStoreConnect::#{property.options['object'].gsub('.', '::')}".constantize.new(**sub)
                     end
@@ -28,7 +20,8 @@ module AppStoreConnect
                 else
                   property.options['value'] || args[property.name.to_sym]
                 end
-        instance_variable_set("@#{property.name}", value)
+
+        @properties[property.name] = value
       end
     end
 
@@ -44,10 +37,9 @@ module AppStoreConnect
 
     def property_to_h(property)
       name = property.name
-      options = property.options
 
-      value = if options['object']
-                if options['array']
+      value = if property.object?
+                if property.array?
                   instance_variable_get("@#{name}").map(&:to_h)
                 else
                   instance_variable_get("@#{name}").to_h
@@ -55,7 +47,7 @@ module AppStoreConnect
               else
                 instance_variable_get("@#{name}")
               end
-      options['array'] ? [*value] : value
+      property.array? ? [*value] : value
     end
   end
 end
