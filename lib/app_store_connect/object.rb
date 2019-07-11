@@ -8,7 +8,7 @@ module AppStoreConnect
 
     def initialize(**kwargs)
       property_specifications
-        .each { |ps| self.properties[ps.name] = ps.rich(**kwargs) }
+        .each { |ps| properties[ps.name] = ps.rich(**kwargs) }
     end
 
     def to_h

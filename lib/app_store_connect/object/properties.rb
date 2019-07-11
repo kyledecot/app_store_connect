@@ -1,38 +1,40 @@
-require "active_support/concern"
-require "active_support/core_ext/class/attribute_accessors"
+# frozen_string_literal: true
+
+require 'active_support/concern'
+require 'active_support/core_ext/class/attribute_accessors'
 
 module AppStoreConnect
   class Object
-    module Properties   
+    module Properties
       extend ActiveSupport::Concern
-    
-      included do 
+
+      included do
         def property_specifications
           self.class.property_specifications
-        end 
+        end
 
         def properties
           @properties ||= {}
-        end 
-      end 
+        end
+      end
 
-      class_methods do 
+      class_methods do
         def property_specifications
           @property_specifications ||= []
-        end 
+        end
 
         def property(name, options)
           property_specifications << PropertySpecification.new(name, options)
 
-          define_method name do 
+          define_method name do
             @properties[name]
-          end 
+          end
         end
 
         def property_names
           property_specifications.map(&:name)
         end
-      end 
-    end 
-  end 
-end 
+      end
+    end
+  end
+end

@@ -27,20 +27,20 @@ module AppStoreConnect
       def object?
         options.key?('object')
       end
-    
+
       def plain(rich)
         value = if object?
-          if array?
-            rich.map(&:to_h)
-          else
-            rich.to_h
-          end
-        else
-          rich
+                  if array?
+                    rich.map(&:to_h)
+                  else
+                    rich.to_h
+                  end
+                else
+                  rich
         end
         array? ? [*value] : value
-      end 
-      
+      end
+
       def rich(**plain)
         if object?
           if array?
@@ -53,7 +53,7 @@ module AppStoreConnect
         else
           options['value'] || plain[name.to_sym]
         end
-      end 
+      end
     end
   end
 end
