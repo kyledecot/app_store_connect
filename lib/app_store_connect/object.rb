@@ -28,16 +28,21 @@ module AppStoreConnect
 
     def to_h
       {}.tap do |hash|
-        properties.each do |name, options|
-          value = if options['object']
-                    instance_variable_get("@#{name.underscore}").to_h
-                  else
-                    instance_variable_get("@#{name.underscore}")
-                  end
-
-          hash[name.underscore.to_sym] = options['array'] ? [*value] : value
+        self.class.properties.each do |name, options|
+          hash[name] = property_to_h(name, options)
         end
       end
+    end
+
+    private
+
+    def property_to_h(name, options)
+      value = if options['object']
+                instance_variable_get("@#{name}").to_h
+              else
+                instance_variable_get("@#{name}")
+              end
+      options['array'] ? [*value] : value
     end
   end
 end
