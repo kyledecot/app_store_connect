@@ -53,6 +53,30 @@
           "array": true   
         }
       }
+    },
+    "CapabilityOption": {
+      "Properties": {
+        "description": {},
+        "enabled": {},
+        "enabledByDefault": {},
+        "key": {},
+        "name": {},
+        "supportsWildcard": {}
+      }
+    },
+    "CapabilitySetting": {
+      "Properties": {
+        "allowedInstances": {},
+        "description": {},
+        "enabledByDefault": {},
+        "key": {},
+        "name": {},
+        "options": {
+          "array": true,
+          "object": "CapabilityOption"
+        },
+        "minInstances": {}
+      }
     }
   }
 }

@@ -18,7 +18,13 @@ module AppStoreConnect
     def initialize(**args)
       self.class.properties.each do |name, options|
         value = if options['object']
-                  "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize.new(**args)
+                  if options['array']
+                    [*args[name]].map do |sub|
+                      "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize.new(**sub)
+                    end
+                  else
+                    "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize.new(**args)
+                  end
                 else
                   options['value'] || args[name.to_sym]
                 end
@@ -38,7 +44,11 @@ module AppStoreConnect
 
     def property_to_h(name, options)
       value = if options['object']
-                instance_variable_get("@#{name}").to_h
+                if options['array']
+                  instance_variable_get("@#{name}").map(&:to_h)
+                else
+                  instance_variable_get("@#{name}").to_h
+                end
               else
                 instance_variable_get("@#{name}")
               end
