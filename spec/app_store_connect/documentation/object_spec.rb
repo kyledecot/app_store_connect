@@ -28,4 +28,10 @@ RSpec.describe AppStoreConnect::Documentation::Object do
       expect(documentation.to_specification).to be_a(AppStoreConnect::ObjectSpecification)
     end
   end
+
+  describe '#properties' do
+    it 'should return an Array' do
+      expect(documentation.properties).to be_an(Array)
+    end
+  end
 end
