@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/module/delegation'
-
 module AppStoreConnect
-  class ObjectSpecification
+  class TypeSpecification
     attr_reader :name, :options
 
     def initialize(name:, options: {})
@@ -17,9 +15,9 @@ module AppStoreConnect
 
     alias eql? ==
 
-		def properties 
-			options['Properties']
-		end 
+    def properties 
+      {}
+    end 
 
     def hash
       name.hash

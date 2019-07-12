@@ -1,5 +1,14 @@
 {
+  "Type": {
+		"CapabilityType": {},
+    "CertificateType": {},
+    "BundleIdPlatform": {},
+    "UserRole": {}
+  },
   "Object": {
+    "ResourceLinks": {
+      "Properties": {}
+    },
     "BundleIdCreateRequest": {
       "Properties": {
         "data": {
@@ -37,6 +46,9 @@
         "attributes": {
           "object": "UserInvitationCreateRequest.Data.Attributes"
         },
+        "relationships": {
+          "object": "UserInvitationCreateRequest.Data.Relationships"
+        },
         "type": {
           "value": "userInvitations"
         }
@@ -50,9 +62,29 @@
         "allAppsVisible": {},
         "provisioningAllowed": {},
         "roles": {
-          "array": true   
+          "array": true,
+					"type": "UserRole"
         }
       }
+    },
+    "UserInvitationCreateRequest.Data.Relationships": {
+      "Properties": {
+        "visibleApps": {
+          "array": true,
+          "object": "UserInvitationCreateRequest.Data.Relationships.VisibleApps"
+        }
+      }
+    },
+    "UserInvitationCreateRequest.Data.Relationships.VisibleApps": {
+      "Properties": {
+        "data": {
+          "array": true,
+          "object": "UserInvitationCreateRequest.Data.Relationships.VisibleApps.Data"
+        }
+      }
+    },
+    "UserInvitationCreateRequest.Data.Relationships.VisibleApps.Data": {
+      "Properties": {}
     },
     "CapabilityOption": {
       "Properties": {
