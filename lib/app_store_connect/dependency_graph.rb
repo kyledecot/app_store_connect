@@ -12,8 +12,8 @@ module AppStoreConnect
       end
     end
 
-    def initialize(specifications:)
-      @specifications_by_name = specifications
+    def initialize(object_specifications:)
+      @specifications_by_name = object_specifications
                                 .map { |s| [s.name, s] }
                                 .to_h
     end
@@ -42,5 +42,28 @@ module AppStoreConnect
         object_specification_by!(name: property[:object])
       end.each(&block)
     end
+
+    def debug!
+      puts "done!"
+      require 'ruby-graphviz'
+      g = GraphViz.new( :G, :type => :digraph )
+
+      nodes = {}
+
+      tsort.each do |node|
+        nodes[node.name] ||= g.add_node(node.name)
+      end 
+
+      tsort.each do |node|
+        node.properties.each do |_, p|
+          object = p["object"]
+
+          next unless object
+          g.add_edge(nodes[node.name], nodes[object])
+        end 
+      end 
+
+      g.output( :png => "/Users/kyledecot/Desktop/hello_world.png" )
+    end 
   end
 end

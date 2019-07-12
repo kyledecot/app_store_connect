@@ -15,8 +15,10 @@ module AppStoreConnect
       end
 
       dependency_graph = AppStoreConnect::DependencyGraph.new(
-        specifications: object_specifications
+        object_specifications: object_specifications
       )
+
+      dependency_graph.debug!
 
       build(dependency_graph.tsort)
     end

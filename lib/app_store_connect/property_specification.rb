@@ -38,17 +38,17 @@ module AppStoreConnect
         "AppStoreConnect::#{options['object'].gsub('.', '::')}".constantize
       end
 
-      def rich(**plain)
+      def rich(**kwargs)
         if object?
           if array?
-            [*plain[name]].map do |sub|
+            [*kwargs[name]].map do |sub|
               constantize.new(**sub)
             end
           else
-            constantize.new(**plain)
+            constantize.new(**kwargs)
           end
         else
-          options['value'] || plain[name.to_sym]
+          options['value'] || kwargs[name.to_sym]
         end
       end
     end
