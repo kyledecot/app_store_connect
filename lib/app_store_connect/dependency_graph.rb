@@ -80,16 +80,11 @@ module AppStoreConnect
 
       tsort.each do |node|
         node.properties.each do |_, p|
-          object = p['object'] || p['type']
+          object_or_type = p['object'] || p['type']
 
-          next unless object
+          next unless object_or_type
 
-          begin 
-            g.add_edge(nodes[node.name], nodes[object])
-          rescue => e 
-            require "pry"
-            binding.pry
-          end 
+          g.add_edge(nodes[node.name], nodes[object_or_type])
         end
       end
 

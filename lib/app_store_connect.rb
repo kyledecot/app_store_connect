@@ -9,6 +9,9 @@ require 'app_store_connect/object_specification'
 require 'app_store_connect/property_specification'
 require 'app_store_connect/type_specification'
 
+require 'app_store_connect/documentation_page'
+require 'app_store_connect/documentation/object'
+
 require 'app_store_connect/authorization'
 require 'app_store_connect/parser'
 require 'app_store_connect/dependency_graph'
