@@ -12,9 +12,16 @@ OptionParser.new do |parser|
   end
 end.parse!(ARGV)
 
-print 'Generating..'
+on_object = proc { |d| puts d.to_terminal_table }
+on_type = proc { |d| puts d.to_terminal_table }
+on_web_service_endpoint = proc { |d| puts d.to_terminal_table }
 
-documentation = AppStoreConnect::Documentation.new
+documentation = AppStoreConnect::Documentation.new(
+  on_object: on_object,
+  on_type: on_type,
+  on_web_service_endpoint: on_web_service_endpoint
+)
+
 documentation.load!
 
 object_specifications = documentation.objects.map(&:to_specification)
@@ -26,5 +33,3 @@ dependency_graph = AppStoreConnect::DependencyGraph.new(
 )
 
 dependency_graph.to_png(**options)
-
-print "done!\n"

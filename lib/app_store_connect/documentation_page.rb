@@ -2,6 +2,8 @@
 
 module AppStoreConnect
   class DocumentationPage
+    attr_reader :page
+
     def initialize(page:)
       @page = page
     end

@@ -10,7 +10,11 @@ module AppStoreConnect
   class Documentation
     attr_accessor :objects, :types, :web_service_endpoints
 
-    def initialize
+    def initialize(on_object: nil, on_type: nil, on_web_service_endpoint: nil)
+      @on_web_service_endpoint = on_web_service_endpoint
+      @on_object = on_object
+      @on_type = on_type
+
       @seen = []
       @objects = []
       @types = []
@@ -25,25 +29,43 @@ module AppStoreConnect
     private
 
     def add_object(page)
-      @objects << Object.new(page: page)
+      documentation = Object.new(page: page)
+
+      @on_object&.call(documentation)
+
+      @objects << documentation
     end
 
     def add_web_service_endpoint(page)
-      @web_service_endpoints << WebServiceEndpoint.new(page: page)
+      documentation = WebServiceEndpoint.new(page: page)
+
+      @on_web_service_endpoint&.call(documentation)
+
+      @web_service_endpoints << documentation
     end
 
     def add_type(page)
-      @types << Type.new(page: page)
+      documentation = Type.new(page: page)
+
+      @on_type&.call(documentation)
+
+      @types << documentation
     end
 
     def seen?(path)
       @seen.include?(path)
     end
 
-    def load(current)
+    def get(_path, &block)
       @agent.get(current) do |page|
         documentation_page = DocumentationPage.new(page: page)
 
+        block.call(documentation_page) if block_given?
+      end
+    end
+
+    def load(current)
+      get(current) do |documentation_page|
         page.links.each do |link|
           uri = URI.parse(link.href)
 
