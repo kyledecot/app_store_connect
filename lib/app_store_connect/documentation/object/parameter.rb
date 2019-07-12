@@ -1,29 +1,31 @@
-module AppStoreConnect 
+# frozen_string_literal: true
+
+module AppStoreConnect
   module Documentation
-    class Object 
-      class Parameter 
+    class Object
+      class Parameter
         def initialize(element:)
           @element = element
         end
-        
+
         def name
           @element.at('.parametertable-name').text.tap do |name|
-            name.gsub!(/(\[|\])/, "") if array?
-          end 
-        end 
+            name.gsub!(/(\[|\])/, '') if array?
+          end
+        end
 
         def type
           @element.at('.parametertable-type').text.chomp("\n")
-        end 
+        end
 
         def array?
           !!@element.at('.parametertable-type').text.match(/\[.+\]/)
-        end 
-        
+        end
+
         def required?
           !!@element.at('.parametertable-requirement')&.text&.match(/Required/)
-        end 
-      end 
-    end 
-  end 
-end 
+        end
+      end
+    end
+  end
+end

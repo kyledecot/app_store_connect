@@ -7,47 +7,46 @@ require 'app_store_connect'
 require 'colorize'
 require 'terminal-table'
 
-AGENT = Mechanize.new { |agent|
+AGENT = Mechanize.new do |agent|
   agent.user_agent_alias = 'Mac Safari'
-}
-SEEN_PATHS = []
+end
+SEEN_PATHS = [].freeze
 
 def follow(path)
   paths = []
 
   puts "\n--------------------------------------\nPage--#{path}\n--------------------------------------\n\n"
   AGENT.get(path) do |page|
-
-   documentation_page = AppStoreConnect::DocumentationPage.new(
-     page: page
-   )
-   if documentation_page.object?
+    documentation_page = AppStoreConnect::DocumentationPage.new(
+      page: page
+    )
+    if documentation_page.object?
       documentation = AppStoreConnect::Documentation::Object.new(page: page)
 
       puts documentation.to_terminal_table
 
       puts "\n"
-    end 
+     end
 
     page.links.each do |link|
-       uri = URI.parse(link.href)
-       
-      if link.href.match?(/\/documentation\/appstoreconnect/) && !SEEN_PATHS.include?(uri.path)
-        puts "Link: #{link.href}\n"
-        paths << uri.path
-        SEEN_PATHS << uri.path
+      uri = URI.parse(link.href)
 
-        sleep(1.0)
-        follow(uri.path)
-        
-        break if SEEN_PATHS.size > 10
-      end 
+      next unless link.href.match?(%r{/documentation/appstoreconnect}) && !SEEN_PATHS.include?(uri.path)
+
+      puts "Link: #{link.href}\n"
+      paths << uri.path
+      SEEN_PATHS << uri.path
+
+      sleep(1.0)
+      follow(uri.path)
+
+      break if SEEN_PATHS.size > 10
     end
   end
 
   paths
-end 
+end
 
 follow('https://developer.apple.com/documentation/appstoreconnectapi')
 
-puts "Done!"
+puts 'Done!'

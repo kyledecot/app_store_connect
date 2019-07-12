@@ -3,17 +3,17 @@
 module AppStoreConnect
   class Parser
     def self.parse!(config)
-			objects = config['Object']
-			types = config['Type']
-      
-			type_specifications = types.map do |name, options|
+      objects = config['Object']
+      types = config['Type']
+
+      type_specifications = types.map do |name, options|
         TypeSpecification.new(
           name: name,
-					options: options
+          options: options
         )
       end
 
-			object_specifications = objects.map do |name, options|
+      object_specifications = objects.map do |name, options|
         ObjectSpecification.new(
           name: name,
           options: options
@@ -22,7 +22,7 @@ module AppStoreConnect
 
       dependency_graph = AppStoreConnect::DependencyGraph.new(
         object_specifications: object_specifications,
-				type_specifications: type_specifications
+        type_specifications: type_specifications
       )
 
       dependency_graph.debug!

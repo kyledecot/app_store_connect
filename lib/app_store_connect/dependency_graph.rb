@@ -30,7 +30,7 @@ module AppStoreConnect
 
     def type_specification_by(name:)
       @type_specifications_by_name[name]
-    end 
+    end
 
     def object_specification_by(name:)
       @object_specifications_by_name[name]

@@ -15,9 +15,9 @@ module AppStoreConnect
 
     alias eql? ==
 
-    def properties 
+    def properties
       {}
-    end 
+    end
 
     def hash
       name.hash

@@ -1,8 +1,10 @@
-module AppStoreConnect 
-  class DocumentationPage 
+# frozen_string_literal: true
+
+module AppStoreConnect
+  class DocumentationPage
     def initialize(page:)
       @page = page
-    end 
+    end
 
     def type?
       @page.at('.topic-title .eyebrow')&.text == 'Type'
@@ -10,6 +12,6 @@ module AppStoreConnect
 
     def object?
       @page.at('.topic-title .eyebrow')&.text == 'Object'
-    end 
-  end 
-end 
+    end
+  end
+end
