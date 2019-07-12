@@ -24,5 +24,5 @@ require 'app_store_connect/factory/builder/object'
 module AppStoreConnect
   Factory.register(:object, Factory::Builder::Object)
 
-  # Parser.parse!(Config::API)
+  Parser.parse!(Config::API)
 end

@@ -64,7 +64,7 @@ RSpec.describe AppStoreConnect::DependencyGraph do
 
     context 'when the object specification does not exist' do
       let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(specifications: []) }
+      let(:dependency_graph) { described_class.new(object_specifications: []) }
 
       it 'should return nil' do
         expect(dependency_graph.object_specification_by(name: object_specification.name))
@@ -76,7 +76,7 @@ RSpec.describe AppStoreConnect::DependencyGraph do
   describe '#object_specification_by!' do
     context 'when object specification exists' do
       let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(specifications: [object_specification]) }
+      let(:dependency_graph) { described_class.new(object_specifications: [object_specification]) }
 
       it 'should return the object specification' do
         expect(dependency_graph.object_specification_by!(name: object_specification.name))
@@ -86,7 +86,7 @@ RSpec.describe AppStoreConnect::DependencyGraph do
 
     context 'when the object specification does not exist' do
       let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(specifications: []) }
+      let(:dependency_graph) { described_class.new(object_specifications: []) }
 
       it 'should raise ObjectSpecificationNotFound' do
         expect do

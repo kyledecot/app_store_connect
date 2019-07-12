@@ -5,10 +5,10 @@ FactoryBot.define do
     skip_create
 
     name { 'BundleIdPlatform' }
-    properties { {} }
+    options { { 'Properties' => {} } }
 
     initialize_with do
-      new(name: name, properties: properties)
+      new(name: name, options: options)
     end
   end
 end
