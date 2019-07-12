@@ -88,7 +88,8 @@ module AppStoreConnect
           begin
             g.add_edge(nodes[node.name], nodes[object_or_type])
           rescue StandardError
-            puts "Unable to add edge for #{node.name} -> #{object_or_type}"
+            next
+            # puts "Unable to add edge for #{node.name} -> #{object_or_type}"
           end
         end
       end

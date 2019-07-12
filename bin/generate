@@ -5,12 +5,14 @@ require 'bundler/setup'
 require 'optparse'
 require 'app_store_connect'
 
-filename = nil
+options = {}
 OptionParser.new do |parser|
-  parser.on('-f', '--filename') do |value|
-    filename = value
+  parser.on('-fFILENAME', '--filename=FILENAME') do |filename|
+    options[:filename] = filename
   end
-end.parse!
+end.parse!(ARGV)
+
+print 'Generating..'
 
 documentation = AppStoreConnect::Documentation.new
 documentation.load!
@@ -23,8 +25,6 @@ dependency_graph = AppStoreConnect::DependencyGraph.new(
   type_specifications: type_specifications
 )
 
-dependency_graph.to_png(
-  filename: filename
-)
+dependency_graph.to_png(**options)
 
-puts 'Done!'
+print "done!\n"
