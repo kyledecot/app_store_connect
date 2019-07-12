@@ -2,21 +2,29 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'optparse'
 require 'app_store_connect'
+
+filename = nil
+OptionParser.new do |parser|
+  parser.on('-f', '--filename') do |value|
+    filename = value
+  end
+end.parse!
 
 documentation = AppStoreConnect::Documentation.new
 documentation.load!
 
 object_specifications = documentation.objects.map(&:to_specification)
 type_specifications = documentation.types.map(&:to_specification)
-web_service_endpoint_specifications = documentation.web_service_endpoints.map(&:to_specification)
 
 dependency_graph = AppStoreConnect::DependencyGraph.new(
   object_specifications: object_specifications,
-  type_specifications: type_specifications,
-  web_service_endpoint_specifications: web_service_endpoint_specifications
+  type_specifications: type_specifications
 )
 
-dependency_graph.debug!
+dependency_graph.to_png(
+  filename: filename
+)
 
 puts 'Done!'

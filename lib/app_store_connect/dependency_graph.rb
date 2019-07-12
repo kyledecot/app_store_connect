@@ -18,8 +18,7 @@ module AppStoreConnect
       end
     end
 
-    def initialize(object_specifications:, type_specifications: {}, web_service_endpoint_specifications: {})
-      # TODO: web_service_endpoint_specifications
+    def initialize(object_specifications:, type_specifications: {})
       @object_specifications_by_name = object_specifications
                                        .map { |s| [s.name, s] }
                                        .to_h
@@ -68,7 +67,7 @@ module AppStoreConnect
         end.each(&block)
     end
 
-    def debug!
+    def to_png(filename:)
       require 'ruby-graphviz'
       g = GraphViz.new(:G, type: :digraph)
 
@@ -94,7 +93,7 @@ module AppStoreConnect
         end
       end
 
-      g.output(png: '/Users/kyledecot/Desktop/hello_world.png')
+      g.output(png: filename)
     end
   end
 end

@@ -25,8 +25,6 @@ module AppStoreConnect
         type_specifications: type_specifications
       )
 
-      dependency_graph.debug!
-
       build(dependency_graph.tsort)
     end
 
