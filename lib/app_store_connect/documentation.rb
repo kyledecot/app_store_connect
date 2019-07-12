@@ -77,7 +77,7 @@ module AppStoreConnect
       return if @seen.size > 20
 
       get(current) do |documentation_page|
-        page.links.each do |link|
+        documentation_page.page.links.each do |link|
           uri = URI.parse(link.href)
 
           next if seen?(link)
@@ -86,11 +86,11 @@ module AppStoreConnect
           @seen << uri.path
 
           if documentation_page.object?
-            add_object(page)
+            add_object(documentation_page.page)
           elsif documentation_page.type?
-            add_type(page)
+            add_type(documentation_page.page)
           elsif documentation_page.web_service_endpoint?
-            add_web_service_endpoint(page)
+            add_web_service_endpoint(documentation_page.page)
           end
 
           load(uri.path)
