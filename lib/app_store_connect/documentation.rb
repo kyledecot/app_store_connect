@@ -8,13 +8,14 @@ require 'app_store_connect/documentation/web_service_endpoint'
 
 module AppStoreConnect
   class Documentation
+    ROOT_URL = 'https://developer.apple.com/documentation/appstoreconnectapi'
+
     attr_accessor :objects, :types, :web_service_endpoints
 
     def initialize(on_object: nil, on_type: nil, on_web_service_endpoint: nil)
       @on_web_service_endpoint = on_web_service_endpoint
       @on_object = on_object
       @on_type = on_type
-
       @seen = []
       @objects = []
       @types = []
@@ -23,10 +24,16 @@ module AppStoreConnect
     end
 
     def load!
-      load('https://developer.apple.com/documentation/appstoreconnectapi')
+      load(ROOT_URL)
     end
 
     private
+
+    def applicable?(link)
+      path = URI.parse(link.href).path
+
+      path.match?(%r{/documentation/appstoreconnect})
+    end
 
     def add_object(page)
       documentation = Object.new(page: page)
@@ -52,12 +59,14 @@ module AppStoreConnect
       @types << documentation
     end
 
-    def seen?(path)
+    def seen?(link)
+      path = URI.parse(link.href).path
+
       @seen.include?(path)
     end
 
-    def get(_path, &block)
-      @agent.get(current) do |page|
+    def get(path, &block)
+      @agent.get(path) do |page|
         documentation_page = DocumentationPage.new(page: page)
 
         block.call(documentation_page) if block_given?
@@ -65,12 +74,14 @@ module AppStoreConnect
     end
 
     def load(current)
+      return if @seen.size > 20
+
       get(current) do |documentation_page|
         page.links.each do |link|
           uri = URI.parse(link.href)
 
-          next if seen?(uri.path)
-          next unless uri.path.match?(%r{/documentation/appstoreconnect})
+          next if seen?(link)
+          next unless applicable?(link)
 
           @seen << uri.path
 
@@ -83,8 +94,6 @@ module AppStoreConnect
           end
 
           load(uri.path)
-
-          break if @seen.size > 20
         end
       end
     end
