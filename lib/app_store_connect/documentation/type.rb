@@ -4,7 +4,7 @@ require 'terminal-table'
 require 'colorize'
 
 module AppStoreConnect
-  module Documentation
+  class Documentation
     class Type
       def initialize(page:)
         @page = page

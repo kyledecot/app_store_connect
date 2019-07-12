@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  module Documentation
+  class Documentation
     class Object
       class Parameter
         def initialize(element:)

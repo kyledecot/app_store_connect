@@ -6,7 +6,7 @@ require 'colorize'
 require 'app_store_connect/documentation/object/parameter'
 
 module AppStoreConnect
-  module Documentation
+  class Documentation
     class Object
       def initialize(page:)
         @page = page

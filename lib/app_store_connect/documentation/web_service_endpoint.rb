@@ -6,7 +6,7 @@ require 'colorize'
 require 'app_store_connect/web_service_endpoint_specification'
 
 module AppStoreConnect
-  module Documentation
+  class Documentation
     class WebServiceEndpoint
       def initialize(page:)
         @page = page
