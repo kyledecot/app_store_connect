@@ -9,13 +9,11 @@ module AppStoreConnect
         end
 
         def name
-          @element.at('.parametertable-name').text.tap do |name|
-            name.gsub!(/(\[|\])/, '') if array?
-          end
+          @element.at('.parametertable-name').text.gsub(/(\[|\])/, '')
         end
 
         def type
-          @element.at('.parametertable-type').text.chomp("\n")
+          @element.at('.parametertable-type').text.chomp("\n").gsub(/(\[|\])/, '')
         end
 
         def array?

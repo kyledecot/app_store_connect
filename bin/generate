@@ -11,6 +11,9 @@ AGENT = Mechanize.new do |agent|
   agent.user_agent_alias = 'Mac Safari'
 end
 SEEN_PATHS = [].freeze
+OBJECTS = [].freeze
+TYPES = [].freeze
+WEB_SERVICE_ENDPOINTS = [].freeze
 
 def follow(path)
   paths = []
@@ -23,9 +26,29 @@ def follow(path)
     if documentation_page.object?
       documentation = AppStoreConnect::Documentation::Object.new(page: page)
 
+      require 'pry'
+      # binding.pry
+      OBJECTS << documentation.to_specification
+
       puts documentation.to_terminal_table
 
       puts "\n"
+    elsif documentation_page.web_service_endpoint?
+      documentation = AppStoreConnect::Documentation::WebServiceEndpoint.new(
+        page: page
+      )
+
+      puts documentation.to_terminal_table
+      puts "\n"
+      WEB_SERVICE_ENDPOINTS << documentation.to_specification
+
+    elsif documentation_page.type?
+      documentation = AppStoreConnect::Documentation::Type.new(page: page)
+
+      puts documentation.to_terminal_table
+      puts "\n"
+
+      TYPES << documentation.to_specification
      end
 
     page.links.each do |link|
@@ -37,10 +60,10 @@ def follow(path)
       paths << uri.path
       SEEN_PATHS << uri.path
 
-      sleep(1.0)
+      # sleep(1.0)
       follow(uri.path)
 
-      break if SEEN_PATHS.size > 10
+      break if SEEN_PATHS.size > 20
     end
   end
 
@@ -48,5 +71,15 @@ def follow(path)
 end
 
 follow('https://developer.apple.com/documentation/appstoreconnectapi')
+
+dependency_graph = AppStoreConnect::DependencyGraph.new(
+  object_specifications: OBJECTS,
+  type_specifications: TYPES,
+  web_service_endpoint_specifications: WEB_SERVICE_ENDPOINTS
+)
+
+# binding.pry
+
+dependency_graph.debug!
 
 puts 'Done!'

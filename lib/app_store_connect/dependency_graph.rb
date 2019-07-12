@@ -18,7 +18,8 @@ module AppStoreConnect
       end
     end
 
-    def initialize(object_specifications:, type_specifications: {})
+    def initialize(object_specifications:, type_specifications: {}, web_service_endpoint_specifications: {})
+      # TODO: web_service_endpoint_specifications
       @object_specifications_by_name = object_specifications
                                        .map { |s| [s.name, s] }
                                        .to_h
@@ -83,8 +84,13 @@ module AppStoreConnect
           object_or_type = p['object'] || p['type']
 
           next unless object_or_type
+          next if object_or_type.in?(['string', 'email', '*'])
 
-          g.add_edge(nodes[node.name], nodes[object_or_type])
+          begin
+            g.add_edge(nodes[node.name], nodes[object_or_type])
+          rescue StandardError => e
+            puts "Unable to add edge for #{node.name} -> #{object_or_type}"
+          end
         end
       end
 

@@ -13,5 +13,9 @@ module AppStoreConnect
     def object?
       @page.at('.topic-title .eyebrow')&.text == 'Object'
     end
+
+    def web_service_endpoint?
+      @page.at('.topic-title .eyebrow')&.text == 'Web Service Endpoint'
+    end
   end
 end

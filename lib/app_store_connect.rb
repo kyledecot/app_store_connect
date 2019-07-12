@@ -11,6 +11,8 @@ require 'app_store_connect/type_specification'
 
 require 'app_store_connect/documentation_page'
 require 'app_store_connect/documentation/object'
+require 'app_store_connect/documentation/web_service_endpoint'
+require 'app_store_connect/documentation/type'
 
 require 'app_store_connect/authorization'
 require 'app_store_connect/parser'
@@ -24,5 +26,5 @@ require 'app_store_connect/factory/builder/object'
 module AppStoreConnect
   Factory.register(:object, Factory::Builder::Object)
 
-  Parser.parse!(Config::API)
+  # Parser.parse!(Config::API)
 end
