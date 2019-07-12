@@ -17,11 +17,14 @@ module AppStoreConnect
         end
 
         def array?
-          !!@element.at('.parametertable-type').text.match(/\[.+\]/)
+          !@element.at('.parametertable-type').text.match(/\[.+\]/).nil?
         end
 
         def required?
-          !!@element.at('.parametertable-requirement')&.text&.match(/Required/)
+          @element
+            .at('.parametertable-requirement')
+            &.text
+            &.match?(/Required/)
         end
       end
     end
