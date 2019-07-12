@@ -25,10 +25,10 @@ module AppStoreConnect
     private
 
     def add_object(page)
-      @object << Object.new(page: page)
+      @objects << Object.new(page: page)
     end
 
-    def add_web_service_endpoint?(page)
+    def add_web_service_endpoint(page)
       @web_service_endpoints << WebServiceEndpoint.new(page: page)
     end
 

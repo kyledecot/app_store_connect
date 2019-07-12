@@ -5,7 +5,6 @@ require 'bundler/setup'
 require 'app_store_connect'
 
 documentation = AppStoreConnect::Documentation.new
-
 documentation.load!
 
 object_specifications = documentation.objects.map(&:to_specification)
