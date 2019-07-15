@@ -3,6 +3,8 @@
 require 'active_support/concern'
 require 'active_support/core_ext/class/attribute_accessors'
 
+require 'app_store_connect/specification/object/property'
+
 module AppStoreConnect
   class Object
     module Properties
@@ -24,7 +26,7 @@ module AppStoreConnect
         end
 
         def property(name, options)
-          property_specifications << PropertySpecification.new(name, options)
+          property_specifications << Specification::Object::Property.new(name, options)
 
           define_method name do
             @properties[name]

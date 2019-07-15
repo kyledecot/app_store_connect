@@ -6,55 +6,41 @@ module AppStoreConnect
   class DependencyGraph
     include TSort
 
-    class TypeSpecificationNotFound < StandardError
-      def initialize(name)
-        super("Type specification not found: #{name}")
+    class SpecificationNotFound < StandardError
+      def initialize(type, name)
+        super("Type specification not found: #{type} - #{name}")
       end
     end
 
-    class ObjectSpecificationNotFound < StandardError
-      def initialize(name)
-        super("Object specification not found: #{name}")
-      end
+    def initialize(specifications: [])
+      @specifications_by_type = specifications.group_by(&:type)
     end
 
-    def initialize(object_specifications:, type_specifications: {})
-      @object_specifications_by_name = object_specifications
-                                       .map { |s| [s.name, s] }
-                                       .to_h
+    def self.write!
+      require 'pry'
+      binding.pry
+      json = JSON.pretty_generate(@types.values.flatten.to_json)
 
-      @type_specifications_by_name = type_specifications
-                                     .map { |s| [s.name, s] }
-                                     .to_h
+      File.write!('/Users/kyledecot/Desktop/api.json', json)
     end
 
-    def type_specification_by(name:)
-      @type_specifications_by_name[name]
+    def specification_by(type:, name:)
+      @specifications_by_type[type][name]
     end
 
-    def object_specification_by(name:)
-      @object_specifications_by_name[name]
+    def specification_by!(type:, name:)
+      specification = specifications[type][:name]
+
+      return specification unless specification.nil?
+
+      raise SpecificationNotFound, type, name
     end
 
-    def type_specification_by!(name:)
-      type_specification = type_specification_by(name: name)
-
-      return type_specification unless type_specification.nil?
-
-      raise TypeSpecificationNotFound, name
-    end
-
-    def object_specification_by!(name:)
-      object_specification = object_specification_by(name: name)
-
-      return object_specification unless object_specification.nil?
-
-      raise ObjectSpecificationNotFound, name
+    def specifications
+      @specifications_by_type.values.flatten
     end
 
     def tsort_each_node(&block)
-      specifications = @object_specifications_by_name.values + @type_specifications_by_name.values
-
       specifications.each(&block)
     end
 

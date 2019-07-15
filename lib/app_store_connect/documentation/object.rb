@@ -3,13 +3,17 @@
 require 'terminal-table'
 require 'colorize'
 
-require 'app_store_connect/documentation/object/parameter'
+require 'app_store_connect/documentation/object/property'
 
 module AppStoreConnect
   class Documentation
     class Object
       def initialize(page:)
         @page = page
+      end
+
+      def type
+        :object
       end
 
       def name
@@ -26,7 +30,7 @@ module AppStoreConnect
             [property.name, property_specification_options]
           end.to_h
 
-          ObjectSpecification.new(
+          Specification::Object.new(
             name: name,
             options: {
               'Properties' => property_specifications

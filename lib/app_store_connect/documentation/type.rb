@@ -10,6 +10,10 @@ module AppStoreConnect
         @page = page
       end
 
+      def type
+        :type
+      end
+
       def name
         type # TODO
       end

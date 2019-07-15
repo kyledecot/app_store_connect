@@ -8,93 +8,97 @@ require 'app_store_connect/documentation/web_service_endpoint'
 
 module AppStoreConnect
   class Documentation
-    ROOT_URL = 'https://developer.apple.com/documentation/appstoreconnectapi'
+    ROOT_URI = URI.parse('https://developer.apple.com/documentation/appstoreconnectapi')
 
-    attr_accessor :objects, :types, :web_service_endpoints
+    TYPES = {
+      type: {
+        class: Type,
+        regexp: /Type/
+      },
+      object: {
+        class: Object,
+        regexp: /Object/
+      },
+      web_service_endpoint: {
+        class: WebServiceEndpoint,
+        regexp: /Web Service Endpoint/
+      }
+    }.freeze
 
-    def initialize(on_object: nil, on_type: nil, on_web_service_endpoint: nil)
-      @on_web_service_endpoint = on_web_service_endpoint
-      @on_object = on_object
-      @on_type = on_type
-      @seen = []
-      @objects = []
-      @types = []
-      @web_service_endpoints = []
-      @agent = Mechanize.new { |a| a.user_agent_alias = 'Mac Safari' }
+    class NotLoaded < StandardError
     end
 
-    def load!
-      load(ROOT_URL)
+    def self.agent
+      @agent ||= Mechanize.new { |a| a.user_agent_alias = 'Mac Safari' }
     end
 
-    private
-
-    def applicable?(link)
-      path = URI.parse(link.href).path
-
-      path.match?(%r{/documentation/appstoreconnect})
+    def self.types
+      @types ||= Hash.new { |h, k| h[k] = [] }
     end
 
-    def add_object(page)
-      documentation = Object.new(page: page)
-
-      @on_object&.call(documentation)
-
-      @objects << documentation
+    def self.seen
+      @seen ||= []
     end
 
-    def add_web_service_endpoint(page)
-      documentation = WebServiceEndpoint.new(page: page)
-
-      @on_web_service_endpoint&.call(documentation)
-
-      @web_service_endpoints << documentation
+    def self.loaded?
+      @loaded ||= false
     end
 
-    def add_type(page)
-      documentation = Type.new(page: page)
+    def self.for(page:)
+      title = page.at('.topic-title .eyebrow')&.text.to_s
+      type, = TYPES.to_a.find { |_, v| title.match?(v[:regexp]) }
 
-      @on_type&.call(documentation)
+      return nil if type.nil?
 
-      @types << documentation
+      TYPES[type][:class].new(page: page)
     end
 
-    def seen?(link)
-      path = URI.parse(link.href).path
+    def self.load!(current = ROOT_URI, &block)
+      return if seen.size > 10
 
-      @seen.include?(path)
-    end
+      get(current) do |page|
+        documentation = self.for(page: page)
 
-    def get(path, &block)
-      @agent.get(path) do |page|
-        documentation_page = DocumentationPage.new(page: page)
+        if documentation
+          types[documentation.class.type] << documentation
+          block.call(documentation) if block_given?
+        end
 
-        block.call(documentation_page) if block_given?
-      end
-    end
-
-    def load(current)
-      return if @seen.size > 20
-
-      get(current) do |documentation_page|
-        documentation_page.page.links.each do |link|
+        page.links.each do |link|
           uri = URI.parse(link.href)
 
           next if seen?(link)
           next unless applicable?(link)
 
-          @seen << uri.path
-
-          if documentation_page.object?
-            add_object(documentation_page.page)
-          elsif documentation_page.type?
-            add_type(documentation_page.page)
-          elsif documentation_page.web_service_endpoint?
-            add_web_service_endpoint(documentation_page.page)
-          end
-
-          load(uri.path)
+          seen << page.uri.path
+          load!(uri.path, &block)
         end
+      end
+
+      @loaded = true
+    end
+
+    def self.of(type:)
+      types[type]
+    end
+
+    private
+
+    def self.applicable?(link)
+      path = URI.parse(link.href).path
+
+      path.match?(%r{/documentation/appstoreconnect})
+    end
+
+    def self.seen?(link)
+      path = URI.parse(link.href).path
+
+      seen.include?(path)
+    end
+
+    def self.get(path, &block)
+      agent.get(path) do |page|
+        block.call(page) if block_given?
       end
     end
   end

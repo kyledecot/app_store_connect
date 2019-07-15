@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'optparse'
+require 'app_store_connect'
+
+options = {}
+OptionParser.new do |parser|
+  parser.on('-fFILENAME', '--filename=FILENAME') do |filename|
+    options[:filename] = filename
+  end
+end.parse!(ARGV)
+
+AppStoreConnect::Documentation.load! do |documentation|
+  puts documentation.to_terminal_table
+end
+
+dependency_graph = AppStoreConnect::DependencyGraph.new(
+  specifications: AppStoreConnect::Documentation.types.map(&:to_specification)
+)
+
+dependency_graph.write!
+dependency_graph.to_png(**options)

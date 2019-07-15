@@ -3,13 +3,17 @@
 require 'terminal-table'
 require 'colorize'
 
-require 'app_store_connect/web_service_endpoint_specification'
+require 'app_store_connect/specification/web_service_endpoint'
 
 module AppStoreConnect
   class Documentation
     class WebServiceEndpoint
       def initialize(page:)
         @page = page
+      end
+
+      def type
+        :web_service_endpoint
       end
 
       def url
@@ -37,13 +41,17 @@ module AppStoreConnect
       end
 
       def response_codes
-        @page.search('#response-codes .parametertable-row').map do |element|
-          {
-            status_code: response_code_status_code(element),
-            status_phrase: response_code_status_reason_phrase(element),
-            type: response_code_status_type(element)
-          }
+        @page.search('#response-codes .parametertable-row').map do |_element|
+          {}
+          # {
+          # status_code: response_code_status_code(element),
+          # status_phrase: response_code_status_reason_phrase(element),
+          # type: response_code_status_type(element)
+          # }
         end
+      rescue StandardError => e
+        require 'pry'
+        binding.pry
       end
 
       def to_specification
