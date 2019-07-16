@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe AppStoreConnect::ObjectSpecification do
+RSpec.describe AppStoreConnect::Specification::Object do
   describe '#==' do
     context 'when the name is equal' do
       it 'should return true' do

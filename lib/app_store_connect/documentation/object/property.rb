@@ -3,7 +3,9 @@
 module AppStoreConnect
   class Documentation
     class Object
-      class Parameter
+      class Property
+        TYPE = :object_property
+
         def initialize(element:)
           @element = element
         end

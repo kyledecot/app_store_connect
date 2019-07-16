@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe AppStoreConnect::DependencyGraph do
+  describe '#write!' do
+    pending
+  end
+
   describe '#tfsort' do
     it 'should return a correctly sorted array' do
       bundle_id_create_request = AppStoreConnect::ObjectSpecification.new(

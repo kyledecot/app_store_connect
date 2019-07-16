@@ -16,12 +16,13 @@ module AppStoreConnect
       @specifications_by_type = specifications.group_by(&:type)
     end
 
-    def self.write!
-      require 'pry'
-      binding.pry
+    def self.write!(filename:)
+      # TODO: This doesn't produce the correct JSON
       json = JSON.pretty_generate(@types.values.flatten.to_json)
 
-      File.write!('/Users/kyledecot/Desktop/api.json', json)
+      File.open(filename) do |file|
+        file.write json
+      end
     end
 
     def specification_by(type:, name:)
@@ -29,11 +30,10 @@ module AppStoreConnect
     end
 
     def specification_by!(type:, name:)
-      specification = specifications[type][:name]
-
-      return specification unless specification.nil?
-
-      raise SpecificationNotFound, type, name
+      specification_by(
+        type: type,
+        name: name
+      ) || (raise SpecificationNotFound, type, name)
     end
 
     def specifications
@@ -45,12 +45,7 @@ module AppStoreConnect
     end
 
     def tsort_each_child(specification, &block)
-      specification
-        .properties
-        .select { |_v, p| p.key?(:object) || p.key?(:type) }
-        .values.map do |property|
-          object_specification_by(name: property[:object]) || type_specification_by(name: property[:object])
-        end.each(&block)
+      specification.specifications.each(&block)
     end
 
     def to_png(filename:)
