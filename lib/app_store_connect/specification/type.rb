@@ -3,15 +3,13 @@
 module AppStoreConnect
   module Specification
     class Type
+      TYPE = :type
+
       attr_reader :name, :options
 
       def initialize(name:, options: {})
         @name = name
         @options = options
-      end
-
-      def type
-        :type
       end
 
       def ==(other)
