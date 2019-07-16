@@ -26,9 +26,6 @@ module AppStoreConnect
         specifications: specifications
       )
 
-      require 'pry'
-      binding.pry
-
       build(dependency_graph.tsort)
     end
 

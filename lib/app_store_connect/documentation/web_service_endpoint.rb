@@ -7,13 +7,11 @@ require 'app_store_connect/specification/web_service_endpoint'
 
 module AppStoreConnect
   class Documentation
+    TYPE = :web_service_endpoint
+
     class WebServiceEndpoint
       def initialize(page:)
         @page = page
-      end
-
-      def type
-        :web_service_endpoint
       end
 
       def url
@@ -49,9 +47,6 @@ module AppStoreConnect
           # type: response_code_status_type(element)
           # }
         end
-      rescue StandardError => e
-        require 'pry'
-        binding.pry
       end
 
       def to_specification

@@ -6,12 +6,10 @@ require 'colorize'
 module AppStoreConnect
   class Documentation
     class Type
+      TYPE = :type
+
       def initialize(page:)
         @page = page
-      end
-
-      def type
-        :type
       end
 
       def name
