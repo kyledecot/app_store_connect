@@ -2,9 +2,13 @@
 
 module AppStoreConnect
   module Specification
-    TYPE = :web_service_endpoint
-
     class WebServiceEndpoint
+      TYPE = :web_service_endpoint
+
+      def related_type_names_by_type
+        {}
+      end
+
       def initialize(options:)
         @options = options
       end

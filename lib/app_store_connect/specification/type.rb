@@ -12,6 +12,10 @@ module AppStoreConnect
         @options = options
       end
 
+      def specifications
+        [] # TODO
+      end
+
       def ==(other)
         name == other.name
       end
@@ -19,6 +23,10 @@ module AppStoreConnect
       alias eql? ==
 
       def properties
+        {}
+      end
+
+      def related_type_names_by_type
         {}
       end
 

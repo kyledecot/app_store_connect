@@ -26,7 +26,7 @@ module AppStoreConnect
         specifications: specifications
       )
 
-      build(dependency_graph.tsort)
+      build(dependency_graph.tsort.reverse)
     end
 
     def self.build((current, *rest))

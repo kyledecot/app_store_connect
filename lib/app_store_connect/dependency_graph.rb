@@ -6,14 +6,40 @@ module AppStoreConnect
   class DependencyGraph
     include TSort
 
+    class Registry
+      def initialize
+        @store = {}
+      end
+
+      def []=(key, value)
+        @store[key] = value
+      end
+
+      def [](key)
+        @store[key]
+      end
+
+      def to_a
+        @store.values
+      end
+    end
+
     class SpecificationNotFound < StandardError
       def initialize(type, name)
         super("Type specification not found: #{type} - #{name}")
       end
+
+      def ==(other)
+        super(other) && other.type == type && other.name == name
+      end
     end
 
     def initialize(specifications: [])
-      @specifications_by_type = specifications.group_by(&:type)
+      @registries_by_type = {}.tap do |hash|
+        hash.default_proc = ->(h, k) { h[k] = Registry.new }
+
+        specifications.each { |s| hash[s.class::TYPE][s.name] = s }
+      end
     end
 
     def self.write!(filename:)
@@ -26,18 +52,22 @@ module AppStoreConnect
     end
 
     def specification_by(type:, name:)
-      @specifications_by_type[type][name]
+      @registries_by_type[type][name]
     end
 
     def specification_by!(type:, name:)
-      specification_by(
+      specification = specification_by(
         type: type,
         name: name
-      ) || (raise SpecificationNotFound, type, name)
+      )
+
+      return specification if specification.present?
+
+      raise SpecificationNotFound.new(type, name)
     end
 
     def specifications
-      @specifications_by_type.values.flatten
+      @specifications ||= @registries_by_type.values.flat_map(&:to_a)
     end
 
     def tsort_each_node(&block)
@@ -45,7 +75,11 @@ module AppStoreConnect
     end
 
     def tsort_each_child(specification, &block)
-      specification.specifications.each(&block)
+      specification.related_type_names_by_type.flat_map do |type, names|
+        names.map { |n| specification_by!(type: type, name: n) }
+      end.each(&block)
+    rescue StandardError => e
+      binding.pry
     end
 
     def to_png(filename:)

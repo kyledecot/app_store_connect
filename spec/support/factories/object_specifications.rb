@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :object_specification, class: AppStoreConnect::ObjectSpecification do
+  factory :object_specification, class: AppStoreConnect::Specification::Object do
     skip_create
 
     name { 'BundleIdPlatform' }

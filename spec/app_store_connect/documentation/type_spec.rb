@@ -21,7 +21,7 @@ RSpec.describe AppStoreConnect::Documentation::Type do
 
   describe '#to_specification' do
     it 'should return a TypeSpecification' do
-      expect(documentation.to_specification).to be_a(AppStoreConnect::TypeSpecification)
+      expect(documentation.to_specification).to be_a(AppStoreConnect::Specification::Type)
     end
   end
 

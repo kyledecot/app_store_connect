@@ -7,34 +7,42 @@ RSpec.describe AppStoreConnect::DependencyGraph do
 
   describe '#tfsort' do
     it 'should return a correctly sorted array' do
-      bundle_id_create_request = AppStoreConnect::ObjectSpecification.new(
+      bundle_id_create_request = AppStoreConnect::Specification::Object.new(
         name: 'BundleIdCreateRequest',
-        properties: {
-          data: {
-            object: 'BundleIdCreateRequest.Data'
+        options: {
+          properties: {
+            data: {
+              type: 'BundleIdCreateRequest.Data'
+            }
           }
         }
       )
-      bundle_id_create_request_data = AppStoreConnect::ObjectSpecification.new(
+      bundle_id_create_request_data = AppStoreConnect::Specification::Object.new(
         name: 'BundleIdCreateRequest.Data',
-        properties: {
-          attributes: {
-            object: 'BundleIdCreateRequest.Data.Attributes'
+        options: {
+          properties: {
+            attributes: {
+              type: 'BundleIdCreateRequest.Data.Attributes'
+            }
           }
         }
       )
-      bundle_id_create_request_data_attributes = AppStoreConnect::ObjectSpecification.new(
+      bundle_id_create_request_data_attributes = AppStoreConnect::Specification::Object.new(
         name: 'BundleIdCreateRequest.Data.Attributes',
-        properties: {
-          identifier: {},
-          platform: {
-            object: 'BundleIdPlatform'
+        options: {
+          properties: {
+            identifier: {},
+            platform: {
+              type: 'BundleIdPlatform'
+            }
           }
         }
       )
-      bundle_id_platform = AppStoreConnect::ObjectSpecification.new(
+      bundle_id_platform = AppStoreConnect::Specification::Object.new(
         name: 'BundleIdPlatform',
-        properties: {}
+        options: {
+          properties: {}
+        }
       )
 
       dependency_graph = described_class.new(
@@ -45,59 +53,63 @@ RSpec.describe AppStoreConnect::DependencyGraph do
           bundle_id_platform
         ]
       )
+      expected_specifications = [
+        bundle_id_create_request,
+        bundle_id_create_request_data,
+        bundle_id_create_request_data_attributes,
+        bundle_id_platform
+      ]
 
-      expect(dependency_graph.tsort).to eq([
-                                             bundle_id_platform,
-                                             bundle_id_create_request_data_attributes,
-                                             bundle_id_create_request_data,
-                                             bundle_id_create_request
-                                           ])
+      expect(dependency_graph.tsort).to eq(expected_specifications)
     end
   end
 
-  describe '#object_specification_by' do
+  describe '#specification_by' do
     context 'when object specification exists' do
-      let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(specifications: [object_specification]) }
+      let(:specification) { create(:object_specification) }
+      let(:dependency_graph) { described_class.new(specifications: [specification]) }
 
       it 'should return the object specification' do
-        expect(dependency_graph.object_specification_by(name: object_specification.name))
-          .to eq(object_specification)
+        expect(dependency_graph.specification_by(type: :object, name: specification.name))
+          .to eq(specification)
       end
     end
 
-    context 'when the object specification does not exist' do
-      let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(object_specifications: []) }
+    context 'when the specification does not exist' do
+      let(:type) { :object }
+      let(:specification) { create(:object_specification) }
+      let(:dependency_graph) { described_class.new(specifications: []) }
 
       it 'should return nil' do
-        expect(dependency_graph.object_specification_by(name: object_specification.name))
+        expect(dependency_graph.specification_by(type: type, name: specification.name))
           .to be_nil
       end
     end
   end
 
-  describe '#object_specification_by!' do
+  describe '#specification_by!' do
     context 'when object specification exists' do
-      let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(object_specifications: [object_specification]) }
+      let(:specification) { create(:object_specification) }
+      let(:dependency_graph) { described_class.new(specifications: [specification]) }
 
       it 'should return the object specification' do
-        expect(dependency_graph.object_specification_by!(name: object_specification.name))
-          .to eq(object_specification)
+        expect(dependency_graph.specification_by!(type: :object, name: specification.name))
+          .to eq(specification)
       end
     end
 
     context 'when the object specification does not exist' do
-      let(:object_specification) { create(:object_specification) }
-      let(:dependency_graph) { described_class.new(object_specifications: []) }
+      let(:specification) { create(:object_specification) }
+      let(:dependency_graph) { described_class.new(specifications: []) }
+      let(:expected_error) { described_class::SpecificationNotFound.new('TODO', specification.name) }
 
-      it 'should raise ObjectSpecificationNotFound' do
+      it 'should raise SpecificationNotFound' do
         expect do
-          dependency_graph.object_specification_by!(
-            name: object_specification.name
+          dependency_graph.specification_by!(
+            type: 'TODO',
+            name: specification.name
           )
-        end.to raise_error(described_class::ObjectSpecificationNotFound)
+        end.to raise_error(described_class::SpecificationNotFound)
       end
     end
   end

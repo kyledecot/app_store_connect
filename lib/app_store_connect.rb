@@ -18,7 +18,6 @@ require 'app_store_connect/client'
 require 'app_store_connect/version'
 require 'app_store_connect/config'
 require 'app_store_connect/factory'
-require 'app_store_connect/factory/builder/object'
 
 module AppStoreConnect
   Factory.register(:object, Factory::Builder::Object)

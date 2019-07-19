@@ -28,12 +28,17 @@ module AppStoreConnect
     class NotLoaded < StandardError
     end
 
-    def agent
-      @agent ||= Mechanize.new { |a| a.user_agent_alias = 'Mac Safari' }
+    def initialize(on_documentation: nil)
+      @documentation_by_type = Hash.new { |h, k| h[k] = [] }
+      @on_documentation = on_documentation
     end
 
-    def types
-      @types ||= Hash.new { |h, k| h[k] = [] }
+    def specifications
+      @documentation_by_type.values.flatten.map(&:to_specification)
+    end
+
+    def agent
+      @agent ||= Mechanize.new { |a| a.user_agent_alias = 'Mac Safari' }
     end
 
     def seen
@@ -53,15 +58,15 @@ module AppStoreConnect
       TYPES[type][:class].new(page: page)
     end
 
-    def load!(current = ROOT_URI, &block)
+    def load!(current = ROOT_URI)
       return if seen.size > 10
 
       agent.get(current) do |page|
         documentation = self.for(page: page)
 
         if documentation
-          types[documentation.class.type] << documentation
-          block.call(documentation) if block_given?
+          @documentation_by_type[documentation.class.type] << documentation
+          @on_documentation&.call(documentation)
         end
 
         page.links.each do |link|
@@ -71,7 +76,7 @@ module AppStoreConnect
           next unless applicable?(link)
 
           seen << page.uri.path
-          load!(uri.path, &block)
+          load!(uri.path)
         end
       end
 
@@ -79,7 +84,7 @@ module AppStoreConnect
     end
 
     def of(type:)
-      types[type]
+      @documentation_by_type[type]
     end
 
     private

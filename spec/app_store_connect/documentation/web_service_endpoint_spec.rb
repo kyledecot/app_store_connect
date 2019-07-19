@@ -37,13 +37,13 @@ RSpec.describe AppStoreConnect::Documentation::WebServiceEndpoint do
 
   describe '#http_method' do
     it 'should return "POST"' do
-      expect(documentation.http_method).to eq('GET')
+      expect(documentation.http_method).to eq('POST')
     end
   end
 
   describe '#to_specification' do
     it 'should return a WebServiceEndpointSpecification' do
-      expect(documentation.to_specification).to be_a(AppStoreConnect::WebServiceEndpointSpecification)
+      expect(documentation.to_specification).to be_a(AppStoreConnect::Specification::WebServiceEndpoint)
     end
   end
 

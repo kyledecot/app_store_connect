@@ -25,7 +25,7 @@ module AppStoreConnect
       end
 
       def to_specification
-        TypeSpecification.new(name: type)
+        Specification::Type.new(name: type)
       end
 
       def to_terminal_table

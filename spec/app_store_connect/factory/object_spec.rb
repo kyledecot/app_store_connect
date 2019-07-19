@@ -10,9 +10,9 @@ RSpec.describe AppStoreConnect::Factory::Builder::Object do
 
     context 'when specification properties include "data"' do
       let(:specification) do
-        create(:object_specification, properties: {
+        create(:object_specification, options: { properties: {
                  'data' => {}
-               })
+               } })
       end
 
       it 'should have a data accessor' do

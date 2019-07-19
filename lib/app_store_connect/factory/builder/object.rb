@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './object/property'
+
 module AppStoreConnect
   class Factory
     module Builder

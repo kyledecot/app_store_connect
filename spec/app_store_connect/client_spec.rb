@@ -108,6 +108,9 @@ RSpec.describe AppStoreConnect::Client do
                           'roles' => ['DEVELOPER'],
                           'provisioningAllowed' => true,
                           'allAppsVisible' => true
+                        },
+                        'relationships' => {
+                          'visibleApps' => []
                         }
                       }
                     }

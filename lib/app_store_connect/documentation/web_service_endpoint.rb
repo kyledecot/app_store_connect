@@ -50,7 +50,7 @@ module AppStoreConnect
       end
 
       def to_specification
-        WebServiceEndpointSpecification.new(options: {}) # TODO
+        Specification::WebServiceEndpoint.new(options: {}) # TODO
       end
 
       def to_terminal_table

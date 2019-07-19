@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require_relative './factory/builder/object'
+require_relative './factory/builder/web_service_endpoint'
+require_relative './factory/builder/type'
+
 module AppStoreConnect
   class Factory
     class BuilderNotRegistered < StandardError

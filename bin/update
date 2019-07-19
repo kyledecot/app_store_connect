@@ -12,12 +12,14 @@ OptionParser.new do |parser|
   end
 end.parse!(ARGV)
 
-AppStoreConnect::Documentation.load! do |documentation|
-  puts documentation.to_terminal_table
-end
+documentation = AppStoreConnect::Documentation.new(
+  on_documentation: ->(d) { puts d.to_terminal_table }
+)
+
+documentation.load!
 
 dependency_graph = AppStoreConnect::DependencyGraph.new(
-  specifications: AppStoreConnect::Documentation.types.map(&:to_specification)
+  specifications: documentation.specifications
 )
 
 dependency_graph.write!

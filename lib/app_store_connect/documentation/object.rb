@@ -59,7 +59,7 @@ module AppStoreConnect
       def properties
         @properties ||= begin
           @page.search('.parametertable-row').map do |element|
-            Parameter.new(element: element)
+            Property.new(element: element)
           end
         end
       end
