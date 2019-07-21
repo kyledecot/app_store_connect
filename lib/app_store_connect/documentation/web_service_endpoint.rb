@@ -7,9 +7,9 @@ require 'app_store_connect/specification/web_service_endpoint'
 
 module AppStoreConnect
   class Documentation
-    TYPE = :web_service_endpoint
-
     class WebServiceEndpoint
+      TYPE = :web_service_endpoint
+
       def initialize(page:)
         @page = page
       end
@@ -20,6 +20,18 @@ module AppStoreConnect
 
       def host
         @page.at('.endpointurl-host').text
+      end
+
+      def self.type
+        :web_service_endpoint
+      end
+
+      def name
+        "web-service-endpoint-#{SecureRandom.hex}"
+      end
+
+      def type
+        'foo'
       end
 
       def path

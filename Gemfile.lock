@@ -154,6 +154,7 @@ DEPENDENCIES
   app_store_connect!
   bundler (~> 2.0)
   colorize
+  concurrent-ruby
   factory_bot (~> 5.0.2)
   guard-rspec (~> 4.7.3)
   mechanize

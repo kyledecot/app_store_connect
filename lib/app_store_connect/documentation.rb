@@ -28,6 +28,20 @@ module AppStoreConnect
     class NotLoaded < StandardError
     end
 
+    class Crawler
+      def initialize
+        @agent = Mechanize.new do |a|
+          a.user_agent_alias = 'Mac Safari'
+        end
+      end
+
+      def get(uri)
+        @agent.get(uri) do |page|
+          return page
+        end
+      end
+    end
+
     def initialize(on_documentation: nil)
       @documentation_by_type = Hash.new { |h, k| h[k] = [] }
       @on_documentation = on_documentation
@@ -37,8 +51,8 @@ module AppStoreConnect
       @documentation_by_type.values.flatten.map(&:to_specification)
     end
 
-    def agent
-      @agent ||= Mechanize.new { |a| a.user_agent_alias = 'Mac Safari' }
+    def crawler
+      @crawler ||= Crawler.new
     end
 
     def seen
@@ -49,38 +63,33 @@ module AppStoreConnect
       @loaded ||= false
     end
 
-    def for(page:)
-      title = page.at('.topic-title .eyebrow')&.text.to_s
-      type, = TYPES.to_a.find { |_, v| title.match?(v[:regexp]) }
-
-      return nil if type.nil?
-
-      TYPES[type][:class].new(page: page)
+    def unseen(links)
+      links.reject { |l| seen?(l) }
     end
 
-    def load!(current = ROOT_URI)
-      return if seen.size > 10
+    def relavant(links)
+      links.select do |link|
+        path = URI.parse(link.href).path
 
-      agent.get(current) do |page|
-        documentation = self.for(page: page)
-
-        if documentation
-          @documentation_by_type[documentation.class.type] << documentation
-          @on_documentation&.call(documentation)
-        end
-
-        page.links.each do |link|
-          uri = URI.parse(link.href)
-
-          next if seen?(link)
-          next unless applicable?(link)
-
-          seen << page.uri.path
-          load!(uri.path)
-        end
+        path.match?(%r{/documentation/appstoreconnect})
       end
+    end
 
-      @loaded = true
+    def add(documentation)
+      @documentation_by_type[documentation.class::TYPE] << documentation
+      @on_documentation&.call(documentation)
+    end
+
+    def load!(uri = ROOT_URI)
+      seen << uri.path
+
+      page = crawler.get(uri)
+      documentation = to_documentation(page)
+      uris = unseen(relavant(page.links)).map(&:uri)
+
+      add(documentation) if documentation
+
+      uris.each { |u| load!(u) }
     end
 
     def of(type:)
@@ -89,16 +98,17 @@ module AppStoreConnect
 
     private
 
-    def applicable?(link)
-      path = URI.parse(link.href).path
+    def to_documentation(page)
+      title = page.at('.topic-title .eyebrow')&.text.to_s
+      type, = TYPES.to_a.find { |_, v| title.match?(v[:regexp]) }
 
-      path.match?(%r{/documentation/appstoreconnect})
+      return nil if type.nil?
+
+      TYPES[type][:class].new(page: page)
     end
 
     def seen?(link)
-      path = URI.parse(link.href).path
-
-      seen.include?(path)
+      seen.include?(link.uri.path)
     end
   end
 end

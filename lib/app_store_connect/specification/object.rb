@@ -27,6 +27,13 @@ module AppStoreConnect
         }
       end
 
+      def to_h
+        {
+          name: name,
+          options: options
+        }
+      end
+
       alias eql? ==
 
       def properties

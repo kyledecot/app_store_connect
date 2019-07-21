@@ -42,13 +42,11 @@ module AppStoreConnect
       end
     end
 
-    def self.write!(filename:)
+    def write!(filename:)
       # TODO: This doesn't produce the correct JSON
-      json = JSON.pretty_generate(@types.values.flatten.to_json)
+      json = JSON.pretty_generate(specifications.map(&:to_h))
 
-      File.open(filename) do |file|
-        file.write json
-      end
+      File.write(filename, json)
     end
 
     def specification_by(type:, name:)
@@ -78,8 +76,6 @@ module AppStoreConnect
       specification.related_type_names_by_type.flat_map do |type, names|
         names.map { |n| specification_by!(type: type, name: n) }
       end.each(&block)
-    rescue StandardError => e
-      binding.pry
     end
 
     def to_png(filename:)

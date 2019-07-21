@@ -22,5 +22,4 @@ dependency_graph = AppStoreConnect::DependencyGraph.new(
   specifications: documentation.specifications
 )
 
-dependency_graph.write!
-dependency_graph.to_png(**options)
+dependency_graph.write!(filename: options[:filename])

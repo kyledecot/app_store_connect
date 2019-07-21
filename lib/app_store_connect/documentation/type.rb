@@ -16,6 +16,10 @@ module AppStoreConnect
         type # TODO
       end
 
+      def self.type
+        :type
+      end
+
       def type
         @page.at('.topic-heading').text
       end

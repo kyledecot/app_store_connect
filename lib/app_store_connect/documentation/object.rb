@@ -8,11 +8,17 @@ require 'app_store_connect/documentation/object/property'
 module AppStoreConnect
   class Documentation
     class Object
+      TYPE = :object
+
       def initialize(page:)
         @page = page
       end
 
       def type
+        :object
+      end
+
+      def self.type
         :object
       end
 

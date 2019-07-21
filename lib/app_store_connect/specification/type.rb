@@ -26,6 +26,10 @@ module AppStoreConnect
         {}
       end
 
+      def to_h
+        {}
+      end
+
       def related_type_names_by_type
         {}
       end
