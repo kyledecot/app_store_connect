@@ -21,6 +21,9 @@ require 'app_store_connect/factory'
 
 module AppStoreConnect
   Factory.register(:object, Factory::Builder::Object)
+  Factory.register(:object_property, Factory::Builder::Object::Property)
+  Factory.register(:type, Factory::Builder::Type)
+  Factory.register(:web_service_endpoint, Factory::Builder::WebServiceEndpoint)
 
   Parser.parse!(Config::API)
 end

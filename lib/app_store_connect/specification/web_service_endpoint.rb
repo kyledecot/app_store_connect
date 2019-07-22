@@ -16,7 +16,14 @@ module AppStoreConnect
       end
 
       def to_h
-        {}
+        {
+          http_method: @options[:http_method],
+          description: @options[:description],
+          type: 'Web Service Endpoint',
+          name: name,
+          host: @options[:host],
+          path: @options[:path]
+        }
       end
 
       def initialize(options:)

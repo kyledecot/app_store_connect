@@ -43,7 +43,7 @@ module AppStoreConnect
       end
 
       def http_body
-        # TODO
+        # @http_body ||= HTTPBody.new
       end
 
       def description
@@ -62,7 +62,12 @@ module AppStoreConnect
       end
 
       def to_specification
-        Specification::WebServiceEndpoint.new(options: {}) # TODO
+        Specification::WebServiceEndpoint.new(options: {
+          http_method: http_method,
+          description: description,
+          path: path,
+          host: host
+        })
       end
 
       def to_terminal_table

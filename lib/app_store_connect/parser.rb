@@ -25,7 +25,7 @@ module AppStoreConnect
       dependency_graph = AppStoreConnect::DependencyGraph.new(
         specifications: specifications
       )
-
+      
       build(dependency_graph.tsort.reverse)
     end
 
