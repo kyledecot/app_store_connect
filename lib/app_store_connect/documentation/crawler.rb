@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mechanize'
 
 module AppStoreConnect
@@ -14,4 +16,4 @@ module AppStoreConnect
       end
     end
   end
-end 
+end

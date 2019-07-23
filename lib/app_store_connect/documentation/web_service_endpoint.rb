@@ -63,11 +63,11 @@ module AppStoreConnect
 
       def to_specification
         Specification::WebServiceEndpoint.new(options: {
-          http_method: http_method,
-          description: description,
-          path: path,
-          host: host
-        })
+                                                http_method: http_method,
+                                                description: description,
+                                                path: path,
+                                                host: host
+                                              })
       end
 
       def to_terminal_table

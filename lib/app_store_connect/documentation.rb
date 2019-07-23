@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
+# require'concurrent'
 
 require 'app_store_connect/documentation/object'
 require 'app_store_connect/documentation/type'
 require 'app_store_connect/documentation/web_service_endpoint'
 require 'app_store_connect/documentation/crawler'
+require 'app_store_connect/documentation/pool'
 
 module AppStoreConnect
   class Documentation
     ROOT_URI = URI.parse('https://developer.apple.com/documentation/appstoreconnectapi')
+
+    attr_reader :seen
 
     TYPES = {
       type: {
@@ -28,46 +32,80 @@ module AppStoreConnect
     def initialize(on_documentation: nil)
       @documentation_by_type = Hash.new { |h, k| h[k] = [] }
       @on_documentation = on_documentation
-      @seen = []
+      @pool = Pool.new(size: 10)
+      @semaphore = Mutex.new
     end
 
     def specifications
-      @documentation_by_type.values.flatten.map(&:to_specification)
+      @specifications ||= @documentation_by_type.values.flatten.map(&:to_specification)
     end
 
-    def load!(uri = ROOT_URI)
-      @seen << uri.path
+    def load!(base_uri = ROOT_URI)
+      load(base_uri) do |page, &block|
+        relevant(page.links).each do |link|
+          next if visited?(link.uri)
+          next if enqueued?(link.uri)
 
-      return if @seen.size > 50
+          load(link.uri, &block)
+        end
+      end
 
-      page = crawler.get(uri)
-      documentation = to_documentation(page)
-      uris = unseen(relavant(page.links)).map(&:uri)
+      loop do
+        sleep(5)
 
-      add(documentation) if documentation
+        break if @pool.jobs.size.zero?
+      end
 
-      uris.each { |u| load!(u) }
+      @pool.shutdown
+    end
+
+    def pages
+      @pages ||= Set.new
+    end
+
+    def uris
+      synchronize { pages.map(&:uri).to_set }
+    end
+
+    def paths
+      uris.map(&:path).to_set
     end
 
     private
 
-    def crawler
-      @crawler ||= Crawler.new
+    def enqueued_uris
+      @enqueued_uris ||= Set.new
     end
 
-    def unseen(links)
-      links.reject { |l| seen?(l) }
+    def load(uri, &block)
+      enqueued_uris << uri
+
+      @pool.schedule(uri, &block)
     end
 
-    def relavant(links)
+    def synchronize(&block)
+      @semaphore.synchronize(&block)
+    end
+
+    def add(page)
+      return page if visited?(page.uri)
+
+      pages << page
+
+      documentation = to_documentation(page)
+
+      if documentation
+        @documentation_by_type[documentation.class::TYPE] << documentation
+        @on_documentation&.call(documentation)
+      end
+
+      page
+    end
+
+    def relevant(links)
       links.select do |link|
         link.uri.path.match?(%r{/documentation/appstoreconnect})
       end
-    end
-
-    def add(documentation)
-      @documentation_by_type[documentation.class::TYPE] << documentation
-      @on_documentation&.call(documentation)
     end
 
     def to_documentation(page)
@@ -79,8 +117,12 @@ module AppStoreConnect
       TYPES[type][:class].new(page: page)
     end
 
-    def seen?(link)
-      @seen.include?(link.uri.path)
+    def visited?(uri)
+      paths.include?(uri.path)
+    end
+
+    def enqueued?(uri)
+      enqueued_uris.map(&:path).include?(uri.path)
     end
   end
 end

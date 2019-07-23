@@ -3,7 +3,7 @@
 require 'securerandom'
 
 module AppStoreConnect
-  module Specification
+  class Specification
     class WebServiceEndpoint
       TYPE = :web_service_endpoint
 

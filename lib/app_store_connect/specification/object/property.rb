@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  module Specification
+  class Specification
     class Object
       class Property
         attr_reader :name, :options

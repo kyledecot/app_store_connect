@@ -2,8 +2,12 @@
 
 require 'tsort'
 
+require 'app_store_connect/specification/web_service_endpoint'
+require 'app_store_connect/specification/object'
+require 'app_store_connect/specification/type'
+
 module AppStoreConnect
-  class DependencyGraph
+  class Specification
     include TSort
 
     class Registry
@@ -42,15 +46,45 @@ module AppStoreConnect
       end
     end
 
-    def write!(filename:)
-      # TODO: This doesn't produce the correct JSON
-      json = JSON.pretty_generate(specifications.map(&:to_h))
+    def to_json(*_args)
+      JSON.pretty_generate(
+        'Object' => Hash[specifications.map do |spec|
+          next unless spec.class::TYPE == :object
 
-      File.write(filename, json)
+          [spec.name, spec.options]
+        end],
+        'Type' => Hash[specifications.map do |spec|
+                         next unless spec.class::TYPE == :type
+
+                         [spec.name, spec.options]
+                       end]
+      )
     end
 
     def specification_by(type:, name:)
+      if polymorphic?(name)
+        return Class.new do
+          def related_type_names_by_type
+            {}
+          end
+        end.new
+      elsif basic?(name)
+        return Class.new do
+          def related_type_names_by_type
+            {}
+          end
+        end.new
+      end
+
       @registries_by_type[type][name]
+    end
+
+    def basic?(type)
+      type.in?(%w[string])
+    end
+
+    def polymorphic?(name)
+      name == '*'
     end
 
     def specification_by!(type:, name:)
@@ -107,5 +141,16 @@ module AppStoreConnect
 
       g.output(png: filename)
     end
+    # def initialize(documentation:)
+    # @specifications = documentation.specifications
+    #
+    # @dependency_graph = DependencyGraph.new(
+    # specifications: documentation.specifications
+    # )
+    # end
+    #
+    # def to_json
+    # @dependency_graph.to_json
+    # end
   end
 end

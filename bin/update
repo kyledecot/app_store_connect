@@ -13,13 +13,13 @@ OptionParser.new do |parser|
 end.parse!(ARGV)
 
 documentation = AppStoreConnect::Documentation.new(
-  on_documentation: ->(d) { puts d.to_terminal_table }
+  on_documentation: proc { print '.' }
 )
 
 documentation.load!
 
-dependency_graph = AppStoreConnect::DependencyGraph.new(
+specification = AppStoreConnect::Specification.new(
   specifications: documentation.specifications
 )
 
-dependency_graph.write!(filename: options[:filename])
+File.write(options[:filename], specification.to_json)
