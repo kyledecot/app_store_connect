@@ -1,33 +1,30 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class Pool
-    attr_reader :jobs
+  class Documentation
+    class Pool
+      attr_reader :jobs
 
-    def initialize(size:)
-      @size = size
-      @jobs = Queue.new
+      def initialize(size:)
+        @size = size
+        @jobs = Queue.new
 
-      @pool = Array.new(size) do |i|
-        Thread.new do
-          Thread.current[:id] = i
+        @pool = Array.new(size) do |i|
+          Thread.new do
+            Thread.current[:id] = i
 
-          catch(:exit) do
-            loop do
-              job, uri = @jobs.pop
-              page = crawler.get(uri)
-              job.call(page, &job)
+            catch(:exit) do
+              loop do
+                job, *args = @jobs.pop
+                job.call(*args)
+              end
             end
           end
         end
       end
 
-      def crawler
-        @crawler ||= Crawler.new
-      end
-
-      def schedule(uri, &block)
-        @jobs << [block, uri]
+      def schedule(*args, &block)
+        @jobs << [block, *args]
       end
 
       def shutdown

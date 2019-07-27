@@ -21,5 +21,9 @@ module AppStoreConnect
   Factory.register(:type, Factory::Builder::Type)
   Factory.register(:web_service_endpoint, Factory::Builder::WebServiceEndpoint)
 
+  Documentation.register(Documentation::Type)
+  Documentation.register(Documentation::Object)
+  Documentation.register(Documentation::WebServiceEndpoint)
+
   # Parser.parse!(Config::API)
 end

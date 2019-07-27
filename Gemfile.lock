@@ -158,6 +158,7 @@ DEPENDENCIES
   factory_bot (~> 5.0.2)
   guard-rspec (~> 4.7.3)
   mechanize
+  nokogiri
   pry (~> 0.12)
   rake (~> 10.0)
   rspec (~> 3.0)

@@ -8,8 +8,14 @@ module AppStoreConnect
     class Type
       TYPE = :type
 
-      def initialize(page:)
-        @page = page
+      def self.parsable?(document)
+        title = document.css('.topic-title .eyebrow')&.text.to_s
+
+        title == 'Type'
+      end
+
+      def initialize(document:)
+        @document = document
       end
 
       def name
@@ -21,7 +27,7 @@ module AppStoreConnect
       end
 
       def type
-        @page.at('.topic-heading').text
+        @document.css('.topic-heading').text
       end
 
       def possible_values

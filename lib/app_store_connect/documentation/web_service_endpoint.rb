@@ -10,8 +10,14 @@ module AppStoreConnect
     class WebServiceEndpoint
       TYPE = :web_service_endpoint
 
-      def initialize(page:)
-        @page = page
+      def self.parsable?(document)
+        title = document.css('.topic-title .eyebrow')&.text.to_s
+
+        title == 'Web Service Endpoint'
+      end
+
+      def initialize(document:)
+        @document = document
       end
 
       def url
@@ -19,7 +25,7 @@ module AppStoreConnect
       end
 
       def host
-        @page.at('.endpointurl-host').text
+        @document.at('.endpointurl-host').text
       end
 
       def self.type
@@ -35,11 +41,11 @@ module AppStoreConnect
       end
 
       def path
-        @page.at('.endpointurl-path').text
+        @document.at('.endpointurl-path').text
       end
 
       def http_method
-        @page.at('.endpointurl-method').text
+        @document.at('.endpointurl-method').text
       end
 
       def http_body
@@ -47,11 +53,11 @@ module AppStoreConnect
       end
 
       def description
-        @description ||= @page.at('.topic-description').text
+        @description ||= @document.at('.topic-description').text
       end
 
       def response_codes
-        @page.search('#response-codes .parametertable-row').map do |_element|
+        @document.search('#response-codes .parametertable-row').map do |_element|
           {}
           # {
           # status_code: response_code_status_code(element),

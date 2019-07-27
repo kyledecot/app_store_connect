@@ -26,10 +26,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'colorize'
-  spec.add_development_dependency 'concurrent-ruby'
   spec.add_development_dependency 'factory_bot', '~> 5.0.2'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
-  spec.add_development_dependency 'mechanize'
+  spec.add_development_dependency 'nokogiri'
   spec.add_development_dependency 'pry', '~> 0.12'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'

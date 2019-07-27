@@ -10,8 +10,14 @@ module AppStoreConnect
     class Object
       TYPE = :object
 
-      def initialize(page:)
-        @page = page
+      def self.parsable?(document)
+        title = document.css('.topic-title .eyebrow')&.text.to_s
+
+        title == 'Object'
+      end
+
+      def initialize(document:)
+        @document = document
       end
 
       def type
@@ -23,7 +29,7 @@ module AppStoreConnect
       end
 
       def name
-        @name ||= @page.at('.topic-heading').text
+        @name ||= @document.at('.topic-heading').text
       end
 
       def to_specification
@@ -64,9 +70,10 @@ module AppStoreConnect
 
       def properties
         @properties ||= begin
-          @page.search('.parametertable-row').map do |element|
-            Property.new(element: element)
-          end
+          []
+          # @document.css('.parametertable-row').map do |element|
+          # Property.new(element: element)
+          # end
         end
       end
     end
