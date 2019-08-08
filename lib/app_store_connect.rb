@@ -27,4 +27,12 @@ module AppStoreConnect
   Factory.register('enum', Factory::Builder::Enum)
 
   Parser.parse!(Config::API)
+
+  @config = {}
+
+  class << self
+    attr_reader :config
+
+    attr_writer :config
+  end
 end

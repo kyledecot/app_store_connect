@@ -6,11 +6,13 @@ module AppStoreConnect
   class Client
     ENDPOINT = 'https://api.appstoreconnect.apple.com/v1'
 
-    def initialize(key_id:, issuer_id:, private_key:)
+    def initialize(**kwargs)
+      @options = options(**kwargs)
+
       @authorization = Authorization.new(
-        private_key: private_key,
-        key_id: key_id,
-        issuer_id: issuer_id
+        private_key: @options[:private_key],
+        key_id: @options[:key_id],
+        issuer_id: @options[:issuer_id]
       )
     end
 
@@ -51,6 +53,14 @@ module AppStoreConnect
     end
 
     private
+
+    def options(**kwargs)
+      AppStoreConnect.config.merge(kwargs).tap do |options|
+        %i[key_id issuer_id private_key].each do |key|
+          raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
+        end
+      end
+    end
 
     def body(request)
       request
