@@ -23,15 +23,17 @@ Or install it yourself as:
 ## Usage
 
 ```ruby 
-client = AppStoreConnect::Client.new(
+AppStoreConnect.config = {
   issuer_id: issuer_id,
   key_id: key_id,
   private_key: private_key
-)
+}
 
-client.apps 
-client.app('1234')
-client.builds('1234')
+app_store_connect = AppStoreConnect::Client.new
+
+app_store_connect.apps 
+app_store_connect.app('1234')
+app_store_connect.builds('1234')
 ```
 
 ## Development
