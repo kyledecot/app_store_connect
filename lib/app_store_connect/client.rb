@@ -14,45 +14,68 @@ module AppStoreConnect
         key_id: @options[:key_id],
         issuer_id: @options[:issuer_id]
       )
+
+      @web_service_endpoints_by_name = web_service_endpoints_by_name
     end
 
-    def apps
-      get('apps')
+    def web_service_endpoint_names
+      @web_service_endpoints_by_name.keys
     end
 
-    def app(id)
-      get("apps/#{id}")
+    def respond_to_missing?(method_name, include_private = false)
+      web_service_endpoint_names.include?(method_name) || super
     end
 
-    def builds(app_id)
-      get("apps/#{app_id}/builds")
-    end
+    def method_missing(method_name, *args, &block)
+      super unless web_service_endpoint_names.include?(method_name)
 
-    def build(app_id, build_id)
-      get("apps/#{app_id}/builds/#{build_id}")
-    end
-
-    def invite_user(first_name:, last_name:, email:, roles:)
-      invitation = UserInvitationCreateRequest.new(first_name, last_name, email, roles)
-
-      post('userInvitations', invitation.body.to_json)
-    end
-
-    def create_bundle_id(*args)
-      request = BundleIdCreateRequest.new(*args)
-
-      post('bundleIds', body(request))
-    end
-
-    def users(limit: 200)
-      get('users', query_params: { 'limit' => limit })
-    end
-
-    def user_invitations
-      get('userInvitations')
+      web_service_endpoint_by(name: method_name)[:executor].call(*args, &block)
     end
 
     private
+
+    def web_service_endpoint_by(name:)
+      @web_service_endpoints_by_name[name]
+    end
+
+    def web_service_endpoints_by_name # rubocop:disable Metrics/AbcSize
+      {
+        apps: {
+          executor: -> { get('apps') }
+        },
+        app: {
+          executor: ->(id) { get("apps/#{id}") }
+        },
+        builds: {
+          executor: ->(app_id) { get("apps/#{app_id}/builds") }
+        },
+        build: {
+          executor: ->(app_id, build_id) { get("apps/#{app_id}/builds/#{build_id}") }
+        },
+        invite_user: {
+          executor: lambda do |first_name:, last_name:, email:, roles:|
+            invitation = UserInvitationCreateRequest.new(first_name, last_name, email, roles)
+
+            post('userInvitations', invitation.body.to_json)
+          end
+        },
+        create_bundle_id: {
+          executor: lambda do |*args|
+            request = BundleIdCreateRequest.new(*args)
+
+            post('bundleIds', body(request))
+          end
+        },
+        users: {
+          executor: lambda do |limit: 200|
+            get('users', query_params: { 'limit' => limit })
+          end
+        },
+        user_invitations: {
+          executor: -> { get('userInvitations') }
+        }
+      }
+    end
 
     def options(**kwargs)
       AppStoreConnect.config.merge(kwargs).tap do |options|
