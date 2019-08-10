@@ -39,7 +39,6 @@ module AppStoreConnect
       @web_service_endpoints_by_name.keys
     end
 
-
     def call(web_service_endpoint, **kwargs)
       case web_service_endpoint.http_method
       when :get
