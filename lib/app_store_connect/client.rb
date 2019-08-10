@@ -21,10 +21,6 @@ module AppStoreConnect
       end
     end
 
-    def web_service_endpoint_names
-      @web_service_endpoints_by_name.keys
-    end
-
     def respond_to_missing?(method_name, include_private = false)
       web_service_endpoint_names.include?(method_name) || super
     end
@@ -38,6 +34,11 @@ module AppStoreConnect
     end
 
     private
+
+    def web_service_endpoint_names
+      @web_service_endpoints_by_name.keys
+    end
+
 
     def call(web_service_endpoint, **kwargs)
       case web_service_endpoint.http_method
