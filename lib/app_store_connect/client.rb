@@ -77,7 +77,7 @@ module AppStoreConnect
 
     def build_body(request)
       request
-        .to_hash
+        .to_h
         .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_json
     end

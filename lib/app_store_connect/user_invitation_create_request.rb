@@ -12,7 +12,7 @@ module AppStoreConnect
           { 'firstName' => first_name, 'lastName' => last_name, 'email' => email, 'roles' => roles, 'allAppsVisible' => true, 'provisioningAllowed' => true } } }
     end
 
-    def to_hash
+    def to_h
       body
     end
 
