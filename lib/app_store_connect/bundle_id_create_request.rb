@@ -2,6 +2,10 @@
 
 module AppStoreConnect
   class BundleIdCreateRequest < CreateRequest
+    def to_hash
+      to_h
+    end
+
     data do
       type 'bundleIds'
 

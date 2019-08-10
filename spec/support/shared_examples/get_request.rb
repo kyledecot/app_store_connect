@@ -5,10 +5,8 @@ RSpec.shared_examples :get_request do |path:, query_params: nil|
     uri = "https://api.appstoreconnect.apple.com/v1/#{path}"
 
     if query_params
-      uri += '?'
-
-      uri += query_params.map { |k, v| "#{k}=#{v}" }.join('&')
-    end
+      uri += "?#{query_params.to_query}"
+    end 
 
     expect(WebMock).to have_requested(:get, uri)
   end
