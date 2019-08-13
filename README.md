@@ -32,8 +32,8 @@ AppStoreConnect.config = {
 app_store_connect = AppStoreConnect::Client.new
 
 app_store_connect.apps 
-app_store_connect.app('1234')
-app_store_connect.builds('1234')
+app_store_connect.app(id: '1234')
+app_store_connect.builds(id: '1234')
 ```
 
 ## Development
