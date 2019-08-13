@@ -3,6 +3,7 @@
 require 'active_support/all'
 
 require 'app_store_connect/web_service_endpoint'
+require 'app_store_connect/request'
 
 module AppStoreConnect
   class Client # rubocop:disable Metrics/ClassLength
@@ -108,9 +109,14 @@ module AppStoreConnect
       url = build_url(web_service_endpoint, **kwargs)
       query = build_query(web_service_endpoint, **kwargs)
 
-      response = execute(:get, url, headers: headers, query: query)
+      request = Request.new(
+        http_method: :get,
+        url: url,
+        headers: headers,
+        query: query
+      )
 
-      response['data']
+      request.execute
     end
 
     def post(web_service_endpoint, **kwargs)

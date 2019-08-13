@@ -26,7 +26,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    stub_request(:any, /api.appstoreconnect.apple.com/)
+    stub_request(:any, /api.appstoreconnect.apple.com/).to_return(body: '{}')
   end
 
   config.expect_with :rspec do |c|
