@@ -12,16 +12,25 @@ module AppStoreConnect
       @options.fetch(:http_method).to_sym
     end
 
-    def uri
-      URI(@options.fetch(:url))
-    end
-
     def execute
       response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
         http.request(request)
       end
 
       JSON.parse(response.body)
+    end
+
+    def query
+      return unless http_method == :get
+      return unless @options[:query]
+
+      @options[:query]
+    end
+
+    def uri
+      @url ||= URI(@options.fetch(:url)).tap do |uri|
+        uri.query = query
+      end
     end
 
     def request
