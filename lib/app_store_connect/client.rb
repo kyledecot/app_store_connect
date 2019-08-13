@@ -5,7 +5,7 @@ require 'active_support/all'
 require 'app_store_connect/web_service_endpoint'
 
 module AppStoreConnect
-  class Client
+  class Client # rubocop:disable Metrics/ClassLength
     def initialize(**kwargs)
       @options = options(**kwargs)
 
@@ -66,18 +66,18 @@ module AppStoreConnect
     def web_service_endpoint_by(name:)
       @web_service_endpoints_by_name[name]
     end
-    
+
     def env_options
       {}.tap do |hash|
         ENV.each do |key, value|
-          match = key.match(/APP_STORE_CONNECT_(?<name>[A-Z_]+)/) 
+          match = key.match(/APP_STORE_CONNECT_(?<name>[A-Z_]+)/)
 
           next unless match
 
-          hash[match[:name].downcase.to_sym] = value 
-        end 
-      end 
-    end 
+          hash[match[:name].downcase.to_sym] = value
+        end
+      end
+    end
 
     def options(**kwargs)
       AppStoreConnect.config.merge(kwargs.merge(env_options)).tap do |options|
