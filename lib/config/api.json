@@ -1,4 +1,48 @@
 {
+  "web_service_endpoints": [
+    {
+      "alias": "apps",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps"
+    },
+    {
+      "alias": "app",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}"
+    },
+    {
+      "alias": "builds",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/builds"
+    },
+    {
+      "alias": "build",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}"
+    },
+    {
+      "alias": "invite_user",
+      "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
+      "http_body_type": "UserInvitationCreateRequest",
+      "http_method": "post"
+    },
+    {
+      "alias": "create_bundle_id",
+      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds",
+      "http_body_type": "BundleIdCreateRequest",
+      "http_method": "post"
+    },
+    {
+      "alias": "users",
+      "url": "https://api.appstoreconnect.apple.com/v1/users",
+      "http_method": "get"
+    },
+    {
+      "alias": "user_invitations",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/userInvitations"
+    }
+  ],
   "Type": {
     "CapabilityType": {
       "type": "enum",

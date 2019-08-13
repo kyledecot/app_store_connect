@@ -2,10 +2,10 @@
 
 require 'active_support/all'
 
+require 'app_store_connect/web_service_endpoint'
+
 module AppStoreConnect
   class Client
-    ENDPOINT = 'https://api.appstoreconnect.apple.com/v1'
-
     def initialize(**kwargs)
       @options = options(**kwargs)
 
@@ -14,67 +14,57 @@ module AppStoreConnect
         key_id: @options[:key_id],
         issuer_id: @options[:issuer_id]
       )
-
-      @web_service_endpoints_by_name = web_service_endpoints_by_name
-    end
-
-    def web_service_endpoint_names
-      @web_service_endpoints_by_name.keys
+      @web_service_endpoints_by_name ||= begin
+        AppStoreConnect::Config::API['web_service_endpoints'].dup.map do |config|
+          [config.fetch('alias').to_sym, WebServiceEndpoint.new(**config.deep_symbolize_keys)]
+        end.to_h
+      end
     end
 
     def respond_to_missing?(method_name, include_private = false)
       web_service_endpoint_names.include?(method_name) || super
     end
 
-    def method_missing(method_name, *args, &block)
+    def method_missing(method_name, *kwargs)
       super unless web_service_endpoint_names.include?(method_name)
 
-      web_service_endpoint_by(name: method_name)[:executor].call(*args, &block)
+      web_service_endpoint = web_service_endpoint_by(name: method_name)
+
+      call(web_service_endpoint, *kwargs)
     end
 
     private
 
-    def web_service_endpoint_by(name:)
-      @web_service_endpoints_by_name[name]
+    def web_service_endpoint_names
+      @web_service_endpoints_by_name.keys
     end
 
-    def web_service_endpoints_by_name # rubocop:disable Metrics/AbcSize
-      {
-        apps: {
-          executor: -> { get('apps') }
-        },
-        app: {
-          executor: ->(id) { get("apps/#{id}") }
-        },
-        builds: {
-          executor: ->(app_id) { get("apps/#{app_id}/builds") }
-        },
-        build: {
-          executor: ->(app_id, build_id) { get("apps/#{app_id}/builds/#{build_id}") }
-        },
-        invite_user: {
-          executor: lambda do |first_name:, last_name:, email:, roles:|
-            invitation = UserInvitationCreateRequest.new(first_name, last_name, email, roles)
+    def call(web_service_endpoint, **kwargs)
+      case web_service_endpoint.http_method
+      when :get
+        get(web_service_endpoint, **kwargs)
+      when :post
+        post(web_service_endpoint, **kwargs)
+      else
+        raise "invalid http method: #{web_service_endpoint.http_method}"
+      end
+    end
 
-            post('userInvitations', invitation.body.to_json)
-          end
-        },
-        create_bundle_id: {
-          executor: lambda do |*args|
-            request = BundleIdCreateRequest.new(*args)
+    def build_url(web_service_endpoint, **kwargs)
+      web_service_endpoint
+        .url
+        .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) }
+    end
 
-            post('bundleIds', body(request))
-          end
-        },
-        users: {
-          executor: lambda do |limit: 200|
-            get('users', query_params: { 'limit' => limit })
-          end
-        },
-        user_invitations: {
-          executor: -> { get('userInvitations') }
-        }
-      }
+    def url_parameter_names(web_service_endpoint)
+      web_service_endpoint
+        .url
+        .scan(/(\{(\w+)\})/)
+        .map { |_, n| n.to_sym }
+    end
+
+    def web_service_endpoint_by(name:)
+      @web_service_endpoints_by_name[name]
     end
 
     def options(**kwargs)
@@ -85,23 +75,44 @@ module AppStoreConnect
       end
     end
 
-    def body(request)
+    def build_body(request)
       request
-        .to_hash
+        .to_h
         .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_json
     end
 
-    def get(path, query_params: {})
-      response = HTTParty.get("#{ENDPOINT}/#{path}", headers: headers, query: query_params)
+    def build_query(web_service_endpoint, **kwargs)
+      query_parameters = kwargs.dup.tap do |hash|
+        url_parameter_names(web_service_endpoint).each do |name|
+          hash.delete(name.to_sym)
+        end
+      end
+
+      query_parameters.to_query
+    end
+
+    def get(web_service_endpoint, **kwargs)
+      url = build_url(web_service_endpoint, **kwargs)
+      query = build_query(web_service_endpoint, **kwargs)
+
+      response = execute(:get, url, headers: headers, query: query)
 
       response['data']
     end
 
-    def post(path, body)
-      response = HTTParty.post("#{ENDPOINT}/#{path}", headers: headers, body: body)
+    def post(web_service_endpoint, **kwargs)
+      url = build_url(web_service_endpoint, **kwargs)
+      request = "AppStoreConnect::#{web_service_endpoint.http_body_type}".constantize.new(**kwargs)
+      body = build_body(request)
+
+      response = execute(:post, url, headers: headers, body: body)
 
       response
+    end
+
+    def execute(http_method, url, **options)
+      HTTParty.send(http_method, url, options)
     end
 
     def headers

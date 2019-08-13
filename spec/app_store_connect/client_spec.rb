@@ -14,37 +14,36 @@ RSpec.describe AppStoreConnect::Client do
   end
 
   describe '#users' do
-    before { client.users }
+    before { client.users(limit: 200) }
 
     it_behaves_like :get_request, path: 'users', query_params: { limit: 200 }
   end
 
-  describe '.app' do
+  describe '#app' do
     let(:id) { '1234' }
 
-    before { subject.app(id) }
+    before { subject.app(id: id) }
 
     it_behaves_like :get_request, path: 'apps/1234'
   end
 
-  describe '.builds' do
+  describe '#builds' do
     let(:id) { '1234' }
 
-    before { subject.builds(id) }
+    before { subject.builds(id: id) }
 
     it_behaves_like :get_request, path: 'apps/1234/builds'
   end
 
-  describe '.build' do
-    let(:app_id) { '1234' }
-    let(:build_id) { '5678' }
+  describe '#build' do
+    let(:id) { '1234' }
 
-    before { subject.build(app_id, build_id) }
+    before { subject.build(id: id) }
 
-    it_behaves_like :get_request, path: 'apps/1234/builds/5678'
+    it_behaves_like :get_request, path: 'builds/1234'
   end
 
-  describe '.apps' do
+  describe '#apps' do
     before do
       subject.apps
     end
