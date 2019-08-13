@@ -39,14 +39,20 @@ module AppStoreConnect
       end
     end
 
+    def headers
+      @options.fetch(:headers, {})
+    end
+
     def request
       case http_method
       when :get
         Net::HTTP::Get.new(uri).tap do |request|
-          @options[:headers].each do |key, value|
+          headers.each do |key, value|
             request[key] = value
           end
         end
+      when :post
+        Net::HTTP::Post.new(uri, headers)
       else
         raise "unsupported http method: #{http_method}"
       end
