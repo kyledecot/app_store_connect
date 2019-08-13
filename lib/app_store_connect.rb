@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'jwt'
-require 'httparty'
 
 require 'app_store_connect/authorization'
 require 'app_store_connect/parser'
