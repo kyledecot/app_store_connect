@@ -5,6 +5,12 @@ require 'net/http'
 module AppStoreConnect
   attr_reader :uri
 
+  class UnsupportedHTTPMethod < ArgumentError
+    def initialize(http_method)
+      super "Unsupported HTTP Method: #{http_method}"
+    end
+  end
+
   class Request
     def initialize(**options)
       @uri = options.fetch(:uri)
@@ -70,17 +76,21 @@ module AppStoreConnect
         .map { |_, n| n.to_sym }
     end
 
-    def request
+    def net_http_request_class
       case http_method
-      when :get
-        Net::HTTP::Get.new(uri, headers)
-      when :post
-        Net::HTTP::Post.new(uri, headers).tap do |request|
-          request.body = body
-        end
+      when :get then Net::HTTP::Get
+      when :post then Net::HTTP::Post
+      when :delete then Net::HTTP::Delete
+      when :patch then Net::HTTP::Patch
       else
-        raise "unsupported http method: #{http_method}"
+        raise UnsupportedHTTPMethod, http_method
       end
+    end
+
+    def request
+      net_http_request_class
+        .new(uri, headers)
+        .tap { |r| r.body = body if r.request_body_permitted? }
     end
   end
 end

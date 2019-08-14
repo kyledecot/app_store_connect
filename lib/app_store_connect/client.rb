@@ -50,6 +50,8 @@ module AppStoreConnect
         get(web_service_endpoint, **kwargs, &parser)
       when :post
         post(web_service_endpoint, **kwargs, &parser)
+      when :delete
+        delete(web_service_endpoint, **kwargs)
       else
         raise "invalid http method: #{web_service_endpoint.http_method}"
       end
@@ -104,6 +106,20 @@ module AppStoreConnect
         .to_h
         .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_json
+    end
+
+    def delete(web_service_endpoint, **kwargs)
+      request = Request.new(
+        web_service_endpoint: web_service_endpoint,
+        kwargs: kwargs,
+        http_method: :delete,
+        uri: build_uri(web_service_endpoint, **kwargs),
+        headers: headers
+      )
+
+      request.execute
+
+      true
     end
 
     def post(web_service_endpoint, **kwargs, &block)
