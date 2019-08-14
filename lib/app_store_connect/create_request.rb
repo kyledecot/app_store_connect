@@ -2,10 +2,12 @@
 
 module AppStoreConnect
   class CreateRequest
-    include Object::Data
+    def self.inherited(klass)
+      klass.include(Object::Data)
+    end
 
     def initialize(**kwargs)
-      @data = Data.new(kwargs)
+      @data = self.class::Data.new(kwargs)
     end
   end
 end

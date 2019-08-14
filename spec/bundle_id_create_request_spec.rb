@@ -11,7 +11,7 @@ RSpec.describe AppStoreConnect::BundleIdCreateRequest do
       it 'should return a hash' do
         expect(bundle_id_create_request.to_h).to eq(
           data: {
-            type: described_class::Data::TYPE,
+            type: 'bundleIds',
             attributes: {
               identifier: attributes.identifier,
               name: attributes.name,
@@ -29,7 +29,7 @@ RSpec.describe AppStoreConnect::BundleIdCreateRequest do
       it 'should return a hash' do
         expect(bundle_id_create_request.to_h).to eq(
           data: {
-            type: described_class::Data::TYPE,
+            type: 'bundleIds',
             attributes: {
               identifier: attributes.identifier,
               name: attributes.name,

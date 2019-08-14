@@ -10,8 +10,6 @@ module AppStoreConnect
       class_methods do
         def type(type)
           @type = type
-
-          const_set('TYPE', type)
         end
       end
 
