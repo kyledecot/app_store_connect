@@ -21,5 +21,6 @@ Style/Documentation:
 Metrics/LineLength:
   Enabled: false
 
-Style/StructInheritance:
+Metrics/ClassLength: 
   Enabled: false
+
