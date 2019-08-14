@@ -6,7 +6,7 @@ require 'app_store_connect/web_service_endpoint'
 require 'app_store_connect/request'
 
 module AppStoreConnect
-  class Client # rubocop:disable Metrics/ClassLength
+  class Client
     def initialize(**kwargs)
       @options = options(**kwargs)
 
@@ -41,27 +41,24 @@ module AppStoreConnect
     end
 
     def call(web_service_endpoint, **kwargs)
+      parser = proc do |response|
+        JSON.parse(response.body)
+      end
+
       case web_service_endpoint.http_method
       when :get
-        get(web_service_endpoint, **kwargs)
+        get(web_service_endpoint, **kwargs, &parser)
       when :post
-        post(web_service_endpoint, **kwargs)
+        post(web_service_endpoint, **kwargs, &parser)
       else
         raise "invalid http method: #{web_service_endpoint.http_method}"
       end
     end
 
-    def build_url(web_service_endpoint, **kwargs)
-      web_service_endpoint
+    def build_uri(web_service_endpoint, **kwargs)
+      URI(web_service_endpoint
         .url
-        .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) }
-    end
-
-    def url_parameter_names(web_service_endpoint)
-      web_service_endpoint
-        .url
-        .scan(/(\{(\w+)\})/)
-        .map { |_, n| n.to_sym }
+        .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) })
     end
 
     def web_service_endpoint_by(name:)
@@ -88,49 +85,36 @@ module AppStoreConnect
       end
     end
 
-    def build_body(request)
-      request
-        .to_h
-        .deep_transform_keys { |k| k.to_s.camelize(:lower) }
+    def get(web_service_endpoint, **kwargs, &block)
+      request = Request.new(
+        kwargs: kwargs,
+        web_service_endpoint: web_service_endpoint,
+        http_method: :get,
+        uri: build_uri(web_service_endpoint, **kwargs),
+        headers: headers
+      )
+
+      request.execute(&block)
+    end
+
+    def http_body(web_service_endpoint, **kwargs)
+      "AppStoreConnect::#{web_service_endpoint.http_body_type}"
+        .constantize
+        .new(**kwargs)
         .to_json
     end
 
-    def build_query(web_service_endpoint, **kwargs)
-      query_parameters = kwargs.dup.tap do |hash|
-        url_parameter_names(web_service_endpoint).each do |name|
-          hash.delete(name.to_sym)
-        end
-      end
-
-      query_parameters.to_query
-    end
-
-    def get(web_service_endpoint, **kwargs)
-      url = build_url(web_service_endpoint, **kwargs)
-      query = build_query(web_service_endpoint, **kwargs)
-
-      request = Request.new(
-        http_method: :get,
-        url: url,
+    def post(web_service_endpoint, **kwargs, &block)
+      Request.new(
+        web_service_endpoint: web_service_endpoint,
+        kwargs: kwargs,
+        http_method: :post,
+        uri: build_uri(web_service_endpoint, **kwargs),
         headers: headers,
-        query: query
+        http_body: http_body(web_service_endpoint, **kwargs)
       )
 
-      request.execute
-    end
-
-    def post(web_service_endpoint, **kwargs)
-      url = build_url(web_service_endpoint, **kwargs)
-      request = "AppStoreConnect::#{web_service_endpoint.http_body_type}".constantize.new(**kwargs)
-      body = build_body(request)
-
-      response = execute(:post, url, headers: headers, body: body)
-
-      response
-    end
-
-    def execute(http_method, url, **options)
-      HTTParty.send(http_method, url, options)
+      request.execute(&block)
     end
 
     def headers
