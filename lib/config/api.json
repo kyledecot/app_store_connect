@@ -6,6 +6,16 @@
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations/{id}"
     },
     {
+      "alias": "delete_bundle_id",
+      "http_method": "delete",
+      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds"
+    },
+    {
+      "alias": "bundle_ids",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds"
+    },
+    {
       "alias": "apps",
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/apps"

@@ -42,7 +42,7 @@ module AppStoreConnect
 
     def call(web_service_endpoint, **kwargs)
       parser = proc do |response|
-        JSON.parse(response.body)
+        JSON.parse(response.body) if response.body
       end
 
       case web_service_endpoint.http_method
@@ -51,7 +51,7 @@ module AppStoreConnect
       when :post
         post(web_service_endpoint, **kwargs, &parser)
       when :delete
-        delete(web_service_endpoint, **kwargs)
+        delete(web_service_endpoint, **kwargs, &parser)
       else
         raise "invalid http method: #{web_service_endpoint.http_method}"
       end
@@ -108,7 +108,7 @@ module AppStoreConnect
         .to_json
     end
 
-    def delete(web_service_endpoint, **kwargs)
+    def delete(web_service_endpoint, **kwargs, &block)
       request = Request.new(
         web_service_endpoint: web_service_endpoint,
         kwargs: kwargs,
@@ -117,9 +117,7 @@ module AppStoreConnect
         headers: headers
       )
 
-      request.execute
-
-      true
+      request.execute(&block) || true
     end
 
     def post(web_service_endpoint, **kwargs, &block)
