@@ -101,11 +101,13 @@ module AppStoreConnect
       "AppStoreConnect::#{web_service_endpoint.http_body_type}"
         .constantize
         .new(**kwargs)
+        .to_h
+        .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_json
     end
 
     def post(web_service_endpoint, **kwargs, &block)
-      Request.new(
+      request = Request.new(
         web_service_endpoint: web_service_endpoint,
         kwargs: kwargs,
         http_method: :post,

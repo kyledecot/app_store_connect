@@ -1,23 +1,20 @@
 # frozen_string_literal: true
 
+require 'app_store_connect/create_request'
+
 module AppStoreConnect
-  class UserInvitationCreateRequest < Struct.new(:first_name, :last_name, :email, :roles)
-    def initialize(kwargs)
-      super(kwargs[:first_name], kwargs[:last_name], kwargs[:email], kwargs[:roles])
-    end
+  class UserInvitationCreateRequest < CreateRequest
+    data do
+      type 'userInvitations'
 
-    def body
-      { 'data' =>
-        { 'type' => 'userInvitations', 'attributes' =>
-          { 'firstName' => first_name, 'lastName' => last_name, 'email' => email, 'roles' => roles, 'allAppsVisible' => true, 'provisioningAllowed' => true } } }
-    end
-
-    def to_h
-      body
-    end
-
-    def to_s
-      body.to_json
+      attributes do
+        property :first_name, required: true
+        property :last_name, required: true
+        property :email, required: true
+        property :roles, required: true
+        property :all_apps_visible
+        property :provisioning_allowed
+      end
     end
   end
 end

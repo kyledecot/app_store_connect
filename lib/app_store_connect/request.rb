@@ -60,11 +60,7 @@ module AppStoreConnect
     def body
       return if http_method == :get
 
-      @options
-        .fetch(:request)
-        .to_h
-        .deep_transform_keys { |k| k.to_s.camelize(:lower) }
-        .to_json
+      @options.fetch(:http_body)
     end
 
     def url_parameter_names(web_service_endpoint)
