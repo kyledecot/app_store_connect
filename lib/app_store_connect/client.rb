@@ -16,7 +16,7 @@ module AppStoreConnect
         issuer_id: @options[:issuer_id]
       )
       @web_service_endpoints_by_name ||= begin
-        AppStoreConnect::Config::API['web_service_endpoints'].dup.map do |config|
+        AppStoreConnect::SCHEMA.web_service_endpoints.map do |config|
           [config.fetch('alias').to_sym, WebServiceEndpoint.new(**config.deep_symbolize_keys)]
         end.to_h
       end

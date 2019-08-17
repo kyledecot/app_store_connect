@@ -2,8 +2,8 @@
 
 module AppStoreConnect
   class Parser
-    def self.parse!(config)
-      parse_types(config['Type'])
+    def self.parse!(schema)
+      parse_types(schema.types)
     end
 
     def self.parse_types(types)
