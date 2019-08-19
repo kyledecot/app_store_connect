@@ -1,6 +1,44 @@
 {
    "web_service_endpoints": [
     {
+      "alias": "create_certificate",
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/certificates",
+      "http_body_type": "CertificateCreateRequest"
+    },
+    {
+      "alias": "certificate",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/certificates/{id}"
+    },
+    {
+      "alias": "certificates",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/certificates"
+    },
+    {
+      "alias": "create_profile",
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/profiles",
+      "http_body_type": "ProfileCreateRequest"
+    },
+    {
+      "alias": "profile",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/profiles/{id}"
+    },
+    {
+      "alias": "profiles",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/profiles"
+    },
+    {
+      "alias": "create_device",
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/devices",
+      "http_body_type": "DeviceCreateRequest"
+    },
+    {
       "alias": "device",
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/devices/{id}"
