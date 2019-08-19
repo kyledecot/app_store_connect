@@ -15,11 +15,13 @@ module AppStoreConnect
           include Object::Type
 
           data.define_method :initialize do |**kwargs|
+            instance_variable_set('@relationships', kwargs.delete(:relationships).to_h)
             instance_variable_set('@attributes', data::Attributes.new(kwargs))
           end
 
           def to_h
             {
+              relationships: @relationships,
               attributes: attributes.to_h,
               type: type
             }
