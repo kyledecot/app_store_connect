@@ -19,9 +19,7 @@ module AppStoreConnect
 
     def execute
       Net::HTTP.start(uri.host, uri.port, net_http_options) do |http|
-        response = http.request(request)
-
-        yield response if block_given?
+        http.request(request)
       end
     end
 

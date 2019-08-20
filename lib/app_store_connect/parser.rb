@@ -3,16 +3,13 @@
 module AppStoreConnect
   class Parser
     def self.parse!(schema)
-      parse_types(schema.types)
-    end
-
-    def self.parse_types(types)
-      types.each do |name, schema|
-        klass = Factory.build(schema.type, schema.options)
+      schema.types.each do |type_schema|
+        options = type_schema.options
+        klass = Factory.build('enum', type_schema.options) # TODO
+        name = options[:type]
 
         AppStoreConnect::Type.const_set(name, klass)
       end
     end
-    private_class_method :parse_types
   end
 end

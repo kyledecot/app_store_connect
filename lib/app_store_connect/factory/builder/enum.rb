@@ -4,10 +4,8 @@ module AppStoreConnect
   class Factory
     module Builder
       class Enum
-        def self.call(values:)
-          Class.new(Type::Enum) do |base|
-            base.const_set('VALUES', values)
-          end
+        def self.call(**_kwargs)
+          Class.new(Type::Enum)
         end
       end
     end
