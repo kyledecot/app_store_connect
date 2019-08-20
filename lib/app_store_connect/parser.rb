@@ -7,10 +7,8 @@ module AppStoreConnect
     end
 
     def self.parse_types(types)
-      types.each do |name, options|
-        type = options.delete('type')
-
-        klass = Factory.build(type, options.deep_symbolize_keys)
+      types.each do |name, schema|
+        klass = Factory.build(schema.type, schema.options)
 
         AppStoreConnect::Type.const_set(name, klass)
       end
