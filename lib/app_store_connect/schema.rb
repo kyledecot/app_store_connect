@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'app_store_connect/schema/type'
+
 module AppStoreConnect
   class Schema
     def initialize(path)
@@ -7,7 +9,9 @@ module AppStoreConnect
     end
 
     def types
-      @schema['Type']
+      @schema['Type'].map do |name, options|
+        [name, Type.new(**options.deep_symbolize_keys)]
+      end.to_h
     end
 
     def web_service_endpoints
