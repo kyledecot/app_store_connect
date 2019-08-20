@@ -84,7 +84,7 @@
       "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}"
     },
     {
-      "alias": "invite_user",
+      "alias": "create_user_invitation", 
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
       "http_body_type": "UserInvitationCreateRequest",
       "http_method": "post"
