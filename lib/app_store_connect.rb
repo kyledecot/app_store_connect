@@ -23,11 +23,8 @@ require 'app_store_connect/type'
 require 'app_store_connect/type/enum'
 
 require 'app_store_connect/factory'
-require 'app_store_connect/factory/builder/enum'
 
 module AppStoreConnect
-  Factory.register('enum', Factory::Builder::Enum)
-
   @config = {}
 
   SCHEMA = Schema.new(File.join(__dir__, './config/schema.json'))

@@ -5,7 +5,7 @@ module AppStoreConnect
     def self.parse!(schema)
       schema.types.each do |type_schema|
         options = type_schema.options
-        klass = Factory.build('enum', type_schema.options) # TODO
+        klass = Factory.type(type_schema)
         name = options[:type]
 
         AppStoreConnect::Type.const_set(name, klass)

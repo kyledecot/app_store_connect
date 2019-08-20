@@ -9,6 +9,10 @@ module AppStoreConnect
         @type = options[:type]
         @options = options
       end
+
+      def values
+        @options[:values]
+      end
     end
   end
 end
