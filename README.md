@@ -41,7 +41,7 @@ app_store_connect.builds(id: '1234')
 ```ruby 
 app_store_connect.create_device(
   name: 'Kyle Decot\'s iPhone',
-  uuid: '...'
+  udid: '...'
 )
 ```
 
