@@ -35,7 +35,7 @@ module AppStoreConnect
       names = url_parameter_names(web_service_endpoint)
 
       kwargs
-        .reject { |n| names.include?(n.to_sym) }
+        .reject { |n| names.include?(n) }
         .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_query
     end
