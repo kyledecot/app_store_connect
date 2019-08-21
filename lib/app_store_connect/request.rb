@@ -32,11 +32,12 @@ module AppStoreConnect
     def query
       return unless http_method == :get
 
-      kwargs.dup.tap do |hash|
-        url_parameter_names(web_service_endpoint).each do |name|
-          hash.delete(name.to_sym)
-        end
-      end.to_query
+      names = url_parameter_names(web_service_endpoint)
+
+      kwargs
+        .reject { |n| names.include?(n.to_sym) }
+        .deep_transform_keys { |k| k.to_s.camelize(:lower) }
+        .to_query
     end
 
     def http_method
