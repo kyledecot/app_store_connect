@@ -2,8 +2,8 @@
 
 require 'active_support/all'
 
-require 'app_store_connect/web_service_endpoint'
 require 'app_store_connect/request'
+require 'app_store_connect/authorization'
 
 module AppStoreConnect
   class Client
@@ -15,46 +15,37 @@ module AppStoreConnect
         key_id: @options[:key_id],
         issuer_id: @options[:issuer_id]
       )
-      @web_service_endpoints_by_name ||= begin
-        AppStoreConnect::SCHEMA.web_service_endpoints.map do |config|
-          [config.fetch('alias').to_sym, WebServiceEndpoint.new(**config.deep_symbolize_keys)]
-        end.to_h
-      end
+      @web_service_endpoints_by_alias ||= AppStoreConnect::SCHEMA
+                                          .web_service_endpoints
+                                          .map { |s| [s.alias, s] }
+                                          .to_h
     end
 
     def respond_to_missing?(method_name, include_private = false)
-      web_service_endpoint_names.include?(method_name) || super
+      web_service_endpoint_aliases.include?(method_name) || super
     end
 
     def method_missing(method_name, *kwargs)
-      super unless web_service_endpoint_names.include?(method_name)
+      super unless web_service_endpoint_aliases.include?(method_name)
 
-      web_service_endpoint = web_service_endpoint_by(name: method_name)
+      web_service_endpoint = web_service_endpoint_by(method_name)
 
       call(web_service_endpoint, *kwargs)
     end
 
     private
 
-    def web_service_endpoint_names
-      @web_service_endpoints_by_name.keys
+    def web_service_endpoint_aliases
+      @web_service_endpoints_by_alias.keys
     end
 
     def call(web_service_endpoint, **kwargs)
-      parser = proc do |response|
-        JSON.parse(response.body) if response.body
-      end
+      raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post].include?(web_service_endpoint.http_method)
 
-      case web_service_endpoint.http_method
-      when :get
-        get(web_service_endpoint, **kwargs, &parser)
-      when :post
-        post(web_service_endpoint, **kwargs, &parser)
-      when :delete
-        delete(web_service_endpoint, **kwargs, &parser)
-      else
-        raise "invalid http method: #{web_service_endpoint.http_method}"
-      end
+      request = build_request(web_service_endpoint, **kwargs)
+      response = request.execute
+
+      JSON.parse(response.body) if response.body
     end
 
     def build_uri(web_service_endpoint, **kwargs)
@@ -63,8 +54,8 @@ module AppStoreConnect
         .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) })
     end
 
-    def web_service_endpoint_by(name:)
-      @web_service_endpoints_by_name[name]
+    def web_service_endpoint_by(alias_sym)
+      @web_service_endpoints_by_alias[alias_sym]
     end
 
     def env_options
@@ -87,18 +78,6 @@ module AppStoreConnect
       end
     end
 
-    def get(web_service_endpoint, **kwargs, &block)
-      request = Request.new(
-        kwargs: kwargs,
-        web_service_endpoint: web_service_endpoint,
-        http_method: :get,
-        uri: build_uri(web_service_endpoint, **kwargs),
-        headers: headers
-      )
-
-      request.execute(&block)
-    end
-
     def http_body(web_service_endpoint, **kwargs)
       "AppStoreConnect::#{web_service_endpoint.http_body_type}"
         .constantize
@@ -108,29 +87,18 @@ module AppStoreConnect
         .to_json
     end
 
-    def delete(web_service_endpoint, **kwargs, &block)
-      request = Request.new(
-        web_service_endpoint: web_service_endpoint,
+    def build_request(web_service_endpoint, **kwargs)
+      options = {
         kwargs: kwargs,
-        http_method: :delete,
+        web_service_endpoint: web_service_endpoint,
+        http_method: web_service_endpoint.http_method,
         uri: build_uri(web_service_endpoint, **kwargs),
         headers: headers
-      )
+      }
 
-      request.execute(&block) || true
-    end
+      options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_method == :post
 
-    def post(web_service_endpoint, **kwargs, &block)
-      request = Request.new(
-        web_service_endpoint: web_service_endpoint,
-        kwargs: kwargs,
-        http_method: :post,
-        uri: build_uri(web_service_endpoint, **kwargs),
-        headers: headers,
-        http_body: http_body(web_service_endpoint, **kwargs)
-      )
-
-      request.execute(&block)
+      Request.new(options)
     end
 
     def headers

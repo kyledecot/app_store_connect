@@ -106,37 +106,37 @@
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations"
     }
   ],
-  "Type": {
-    "CapabilityType": {
-      "type": "enum",
-      "values": [
-        "ICLOUD",
-        "IN_APP_PURCHASE",
-        "GAME_CENTER",
-        "PUSH_NOTIFICATIONS",
-        "WALLET",
-        "INTER_APP_AUDIO",
-        "MAPS",
-        "ASSOCIATED_DOMAINS",
-        "PERSONAL_VPN",
-        "APP_GROUPS",
-        "HEALTHKIT",
-        "HOMEKIT",
-        "WIRELESS_ACCESSORY_CONFIGURATION",
-        "APPLE_PAY",
-        "DATA_PROTECTION",
-        "SIRIKIT",
-        "NETWORK_EXTENSIONS",
-        "MULTIPATH",
-        "HOT_SPOT",
-        "NFC_TAG_READING",
-        "CLASSKIT",
-        "AUTOFILL_CREDENTIAL_PROVIDER",
-        "ACCESS_WIFI_INFORMATION"
-        ]
+  "types": [
+    {
+    "type": "CapabilityType",
+    "values": [
+      "ICLOUD",
+      "IN_APP_PURCHASE",
+      "GAME_CENTER",
+      "PUSH_NOTIFICATIONS",
+      "WALLET",
+      "INTER_APP_AUDIO",
+      "MAPS",
+      "ASSOCIATED_DOMAINS",
+      "PERSONAL_VPN",
+      "APP_GROUPS",
+      "HEALTHKIT",
+      "HOMEKIT",
+      "WIRELESS_ACCESSORY_CONFIGURATION",
+      "APPLE_PAY",
+      "DATA_PROTECTION",
+      "SIRIKIT",
+      "NETWORK_EXTENSIONS",
+      "MULTIPATH",
+      "HOT_SPOT",
+      "NFC_TAG_READING",
+      "CLASSKIT",
+      "AUTOFILL_CREDENTIAL_PROVIDER",
+      "ACCESS_WIFI_INFORMATION"
+      ]
     },
-    "CertificateType": {
-      "type": "enum",
+    {
+      "type": "CertificateType",
       "values": [
         "OS_DEVELOPMENT",
         "IOS_DISTRIBUTION",
@@ -147,15 +147,15 @@
         "DEVELOPER_ID_APPLICATION"
       ]
     },
-    "BundleIdPlatform": {
-      "type": "enum",
+    {
+      "type": "BundleIdPlatform",
       "values": [
         "IOS", 
         "MAC_OS"
       ]
     },
-    "UserRole": {
-      "type": "enum",
+    {
+      "type": "UserRole",
       "values": [
         "ADMIN",
         "FINANCE",
@@ -170,5 +170,5 @@
         "CUSTOMER_REPORTS"
       ]
     } 
-  } 
+  ]
 }

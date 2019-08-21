@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'jwt'
+
 module AppStoreConnect
   class Authorization
     AUDIENCE = 'appstoreconnect-v1'

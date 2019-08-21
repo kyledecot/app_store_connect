@@ -6,8 +6,12 @@ module AppStoreConnect
       attr_reader :type, :options
 
       def initialize(**options)
-        @type = options.delete(:type)
+        @type = options[:type]
         @options = options
+      end
+
+      def values
+        @options[:values]
       end
     end
   end
