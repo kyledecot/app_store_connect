@@ -2,7 +2,6 @@
 
 require 'active_support/all'
 
-require 'app_store_connect/web_service_endpoint'
 require 'app_store_connect/request'
 require 'app_store_connect/authorization'
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'app_store_connect/schema/type'
+require 'app_store_connect/schema/web_service_endpoint'
 
 module AppStoreConnect
   class Schema
