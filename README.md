@@ -36,6 +36,15 @@ app_store_connect.app(id: '1234')
 app_store_connect.builds(id: '1234')
 ```
 
+### Register Device 
+
+```ruby 
+app_store_connect.create_device(
+  name: 'Kyle Decot\'s iPhone',
+  uuid: '...'
+)
+```
+
 ### Create Bundle ID
 
 ```ruby
