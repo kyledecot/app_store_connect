@@ -55,6 +55,19 @@ app_store_connect.create_bundle_id(
 ) 
 ```
 
+### Sales Reports
+
+```ruby
+app_store_connect.sales_reports(
+  filter: {
+    report_type: 'SALES',
+    report_sub_type: 'SUMMARY',
+    frequency: 'DAILY',
+    vendor_number: '123456'
+  }
+)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
