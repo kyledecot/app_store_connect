@@ -36,6 +36,27 @@ app_store_connect.app(id: '1234')
 app_store_connect.builds(id: '1234')
 ```
 
+## Endpoints
+
+#### Users and Roles
+
+##### Users
+
+- [x] List Invited Users
+- [x] Read User Invitation Information
+- [x] Invite a User
+- [ ] Cancel a User Invitation
+
+##### User Invitations
+
+
+#### Reporting
+
+##### Sales and Finance Reports
+
+- [x] Finance Reports
+- [x] Sales Reports
+
 ### Register Device 
 
 ```ruby 
