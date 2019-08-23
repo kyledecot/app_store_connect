@@ -1,6 +1,11 @@
 {
    "web_service_endpoints": [
     {
+      "alias": "finance_reports",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/financeReports"
+    },
+    {
       "alias": "sales_reports",
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/salesReports"
