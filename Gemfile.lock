@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    app_store_connect (0.10.0)
-      activesupport (~> 5.2.3)
-      jwt (~> 2.1)
+    app_store_connect (0.11.0)
+      activesupport (>= 5.1.7)
+      jwt (>= 1.4)
 
 GEM
   remote: https://rubygems.org/
