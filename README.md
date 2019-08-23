@@ -45,7 +45,7 @@ app_store_connect.builds(id: '1234')
 - [x] List Invited Users
 - [x] Read User Invitation Information
 - [x] Invite a User
-- [ ] Cancel a User Invitation
+- [x] Cancel a User Invitation
 
 ##### User Invitations
 
