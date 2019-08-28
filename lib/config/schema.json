@@ -1,5 +1,100 @@
 {
    "web_service_endpoints": [
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/users/{id}",
+			"alias": "delete_user"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps",
+			"alias": "delete_visible_app"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities/{id}",
+			"alias": "delete_bundle_id_capability"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/userInvitations/{id}",
+			"alias": "delete_user_invitation"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/certificates/{id}",
+			"alias": "delete_certificate"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/bundleIds/{id}",
+			"alias": "delete_bundle_id"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/profiles/{id}",
+			"alias": "delete_profile"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaTesters/{id}",
+			"alias": "delete_beta_tester"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/betaGroups",
+			"alias": "delete_beta_tester_beta"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/builds",
+			"alias": "delete_beta_tester_builds"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/apps",
+			"alias": "delete_beta_tester_apps"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaGroups/{id}",
+			"alias": "delete_beta_group"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/betaTesters",
+			"alias": "delete_beta_group_beta_testers"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/builds",
+			"alias": "delete_beta_group_builds"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/betaTesters",
+			"alias": "delete_app_beta_testers"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaAppLocalizations/{id}",
+			"alias": "delete_beta_app_localization"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaGroups",
+			"alias": "delete_build_beta_group"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/individualTesters",
+			"alias": "delete_build_individual_testers"
+		},
+		{
+			"http_method": "delete",
+			"url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}",
+			"alias": "delete_beta_build_localizations"
+		},
     {
       "alias": "finance_reports",
       "http_method": "get",
@@ -57,21 +152,6 @@
       "alias": "devices",
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/devices"
-    },
-    {
-      "alias": "delete_user_invitation",
-      "http_method": "delete",
-      "url": "https://api.appstoreconnect.apple.com/v1/userInvitations/{id}"
-    },
-    {
-      "alias": "delete_user",
-      "http_method": "delete",
-      "url": "https://api.appstoreconnect.apple.com/v1/users/{id}"
-    },
-    {
-      "alias": "delete_bundle_id",
-      "http_method": "delete",
-      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds"
     },
     {
       "alias": "bundle_ids",
