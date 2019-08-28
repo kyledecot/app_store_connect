@@ -30,7 +30,7 @@ RSpec.describe AppStoreConnect::Client do
   describe '#builds' do
     let(:id) { '1234' }
 
-    before { subject.builds(id: id) }
+    before { subject.app_builds(id: id) }
 
     it_behaves_like :get_request, path: 'apps/1234/builds'
   end
