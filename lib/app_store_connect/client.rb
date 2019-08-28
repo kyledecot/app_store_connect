@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'active_support/all'
+require 'mixpanel-ruby'
+require 'securerandom'
 
 require 'app_store_connect/request'
 require 'app_store_connect/authorization'
@@ -19,6 +21,8 @@ module AppStoreConnect
                                           .web_service_endpoints
                                           .map { |s| [s.alias, s] }
                                           .to_h
+      @distinct_id = SecureRandom.uuid
+      @tracker = Mixpanel::Tracker.new('1213f2b88b9b10b13d321f4c67a55ca8')
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -43,6 +47,8 @@ module AppStoreConnect
       raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post].include?(web_service_endpoint.http_method)
 
       request = build_request(web_service_endpoint, **kwargs)
+
+      @tracker.track(@distinct_id, web_service_endpoint.alias) if @options[:analytics_enabled]
       response = request.execute
 
       JSON.parse(response.body) if response.body
@@ -71,7 +77,10 @@ module AppStoreConnect
     end
 
     def options(**kwargs)
-      AppStoreConnect.config.merge(kwargs.merge(env_options)).tap do |options|
+      defaults = {
+        analytics_enabled: true
+      }
+      AppStoreConnect.config.merge(kwargs.merge(env_options.merge(defaults))).tap do |options|
         %i[key_id issuer_id private_key].each do |key|
           raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
         end

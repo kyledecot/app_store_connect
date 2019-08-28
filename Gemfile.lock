@@ -1,9 +1,10 @@
 PATH
   remote: .
   specs:
-    app_store_connect (0.11.0)
+    app_store_connect (0.12.0)
       activesupport (>= 5.1.7)
       jwt (>= 1.4)
+      mixpanel-ruby
 
 GEM
   remote: https://rubygems.org/
@@ -53,6 +54,7 @@ GEM
     lumberjack (1.0.13)
     method_source (0.9.2)
     minitest (5.11.3)
+    mixpanel-ruby (2.2.1)
     nenv (0.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
