@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 require 'app_store_connect/object/properties'
 
 module AppStoreConnect
   class Object
+    extend Forwardable
+
     attr_reader :properties
+
+    def_delegators :@properties, :[], :[]=
 
     def initialize(**options)
       @properties = Properties.new(**options.delete(:properties))
@@ -19,14 +25,6 @@ module AppStoreConnect
 
     def respond_to_missing?(method_name)
       @properties.key?(method_name)
-    end
-
-    def []=(key, value)
-      @properties[key] = value
-    end
-
-    def [](key)
-      @properties[key]
     end
 
     def value
