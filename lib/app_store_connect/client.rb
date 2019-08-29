@@ -6,9 +6,13 @@ require 'securerandom'
 
 require 'app_store_connect/request'
 require 'app_store_connect/authorization'
+require 'app_store_connect/object'
 
 module AppStoreConnect
   class Client
+    MIXPANEL_TOKEN = '1213f2b88b9b10b13d321f4c67a55ca8'
+    private_constant :MIXPANEL_TOKEN
+
     def initialize(**kwargs)
       @options = options(**kwargs)
 
@@ -22,7 +26,7 @@ module AppStoreConnect
                                           .map { |s| [s.alias, s] }
                                           .to_h
       @distinct_id = SecureRandom.uuid
-      @tracker = Mixpanel::Tracker.new('1213f2b88b9b10b13d321f4c67a55ca8')
+      @tracker = Mixpanel::Tracker.new(MIXPANEL_TOKEN)
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -47,11 +51,21 @@ module AppStoreConnect
       raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post].include?(web_service_endpoint.http_method)
 
       request = build_request(web_service_endpoint, **kwargs)
-
-      @tracker.track(@distinct_id, web_service_endpoint.alias) if @options[:analytics_enabled]
       response = request.execute
 
-      JSON.parse(response.body) if response.body
+      track(web_service_endpoint)
+
+      return unless response.body
+
+      JSON.parse(response.body).deep_transform_keys do |key|
+        key.underscore.to_sym
+      end
+    end
+
+    def track(web_service_endpoint)
+      return unless @options[:analytics_enabled]
+
+      @tracker.track(@distinct_id, web_service_endpoint.alias)
     end
 
     def build_uri(web_service_endpoint, **kwargs)
@@ -88,9 +102,10 @@ module AppStoreConnect
     end
 
     def http_body(web_service_endpoint, **kwargs)
-      "AppStoreConnect::#{web_service_endpoint.http_body_type}"
-        .constantize
-        .new(**kwargs)
+      schema = SCHEMA.object!(type: web_service_endpoint.http_body_type)
+      object = Object.new(**schema.options, kwargs: kwargs)
+
+      object
         .to_h
         .deep_transform_keys { |k| k.to_s.camelize(:lower) }
         .to_json

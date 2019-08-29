@@ -1,4 +1,26 @@
 {
+	"objects": [
+		{
+			"type": "UserInvitationCreateRequest",
+			"properties": {
+				"data": {
+          "type": "UserInvitationCreateRequest.Data"
+				}
+			}
+		},
+		{
+			"type": "UserInvitationCreateRequest.Data",
+			"properties": {
+        "attributes": {
+          "type": "UserInvitationCreateRequest.Data.Attributes"   
+        } 
+      }
+		},
+		{
+			"type": "UserInvitationCreateRequest.Data.Attributes",
+			"properties": {}
+		}
+	],
    "web_service_endpoints": [
 		{
 			"http_method": "delete",
@@ -659,70 +681,5 @@
 		"url": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/{id}/build",
 		"alias": "beta_app_review_submission_build"
 		}
-  ],
-  "types": [
-    {
-    "type": "CapabilityType",
-    "values": [
-      "ICLOUD",
-      "IN_APP_PURCHASE",
-      "GAME_CENTER",
-      "PUSH_NOTIFICATIONS",
-      "WALLET",
-      "INTER_APP_AUDIO",
-      "MAPS",
-      "ASSOCIATED_DOMAINS",
-      "PERSONAL_VPN",
-      "APP_GROUPS",
-      "HEALTHKIT",
-      "HOMEKIT",
-      "WIRELESS_ACCESSORY_CONFIGURATION",
-      "APPLE_PAY",
-      "DATA_PROTECTION",
-      "SIRIKIT",
-      "NETWORK_EXTENSIONS",
-      "MULTIPATH",
-      "HOT_SPOT",
-      "NFC_TAG_READING",
-      "CLASSKIT",
-      "AUTOFILL_CREDENTIAL_PROVIDER",
-      "ACCESS_WIFI_INFORMATION"
-      ]
-    },
-    {
-      "type": "CertificateType",
-      "values": [
-        "OS_DEVELOPMENT",
-        "IOS_DISTRIBUTION",
-        "MAC_APP_DISTRIBUTION",
-        "MAC_INSTALLER_DISTRIBUTION",
-        "MAC_APP_DEVELOPMENT",
-        "DEVELOPER_ID_KEXT",
-        "DEVELOPER_ID_APPLICATION"
-      ]
-    },
-    {
-      "type": "BundleIdPlatform",
-      "values": [
-        "IOS", 
-        "MAC_OS"
-      ]
-    },
-    {
-      "type": "UserRole",
-      "values": [
-        "ADMIN",
-        "FINANCE",
-        "TECHNICAL",
-        "SALES",
-        "MARKETING", 
-        "DEVELOPER",
-        "ACCOUNT_HOLDER",
-        "READ_ONLY", 
-        "APP_MANAGER",
-        "ACCESS_TO_REPORTS",
-        "CUSTOMER_REPORTS"
-      ]
-    } 
   ]
 }

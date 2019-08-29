@@ -2,6 +2,8 @@
 
 module AppStoreConnect
   class Schema
+    attr_reader :options
+
     class WebServiceEndpoint
       def initialize(**options)
         @options = options

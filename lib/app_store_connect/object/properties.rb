@@ -1,21 +1,25 @@
 # frozen_string_literal: true
 
-require 'active_support/concern'
+require 'delegate'
 
 module AppStoreConnect
-  module Object
-    module Properties
-      extend ActiveSupport::Concern
+  class Properties < SimpleDelegator
+    def initialize(**options)
+      @options = options
+      @object_schemas_by_name = {}
+      super(options.map do |name, sub_options|
+        @object_schemas_by_name[name] = SCHEMA.object!(
+          type: sub_options[:type]
+        )
 
-      class_methods do
-        def properties
-          @properties ||= {}
-        end
+        [name, Object.new(**@object_schemas_by_name[name].options)]
+      end.to_h)
+    end
 
-        def property(name, options = {})
-          properties[name] = options
-
-          attr_accessor name.to_sym
+    def to_h
+      {}.tap do |hash|
+        @options.each do |name, _options|
+          hash[name] = self[name].value
         end
       end
     end
