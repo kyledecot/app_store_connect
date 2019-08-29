@@ -63,7 +63,7 @@ module AppStoreConnect
     end
 
     def track(web_service_endpoint)
-      return unless @options[:analytics_enabled]
+      return unless @options[:analytics_enabled] == 'true'
 
       @tracker.track(@distinct_id, web_service_endpoint.alias)
     end
