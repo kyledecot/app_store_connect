@@ -7,7 +7,8 @@ require 'app_store_connect/version'
 module AppStoreConnect
   @config = {}
 
-  SCHEMA = Schema.new(File.join(__dir__, './config/schema.json'))
+  SCHEMA = Schema.new(File.join(__dir__, 'config', 'schema.json'))
+  SCHEMA.load!
 
   class << self
     attr_accessor :config

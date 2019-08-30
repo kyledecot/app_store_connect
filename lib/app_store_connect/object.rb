@@ -8,22 +8,13 @@ module AppStoreConnect
   class Object
     extend Forwardable
 
-    attr_reader :properties
+    attr_reader :schema, :properties
 
     def_delegators :@properties, :[], :[]=
 
-    def initialize(**options)
-      @properties = Properties.new(**options.delete(:properties))
-
-      @properties.each do |name, property|
-        # TODO
-      end
-
-      @options = options
-    end
-
-    def property_names(recursive = false)
-      @properties.names(recursive)
+    def initialize(schema:, kwargs: {})
+      @schema = schema
+      @properties = Properties.new(**schema.options.slice(:properties, :kwargs))
     end
 
     def method_missing(method_name, *args)
@@ -32,7 +23,7 @@ module AppStoreConnect
       super
     end
 
-    def respond_to_missing?(method_name)
+    def respond_to_missing?(method_name, _include_private = false)
       @properties.key?(method_name)
     end
 

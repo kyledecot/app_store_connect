@@ -103,7 +103,10 @@ module AppStoreConnect
 
     def http_body(web_service_endpoint, **kwargs)
       schema = SCHEMA.object!(type: web_service_endpoint.http_body_type)
-      object = Object.new(**schema.options, kwargs: kwargs)
+      object = Object.new(schema: schema, kwargs: kwargs)
+
+      require 'pry'
+      binding.pry
 
       object
         .to_h
@@ -119,7 +122,6 @@ module AppStoreConnect
         uri: build_uri(web_service_endpoint, **kwargs),
         headers: headers
       }
-      puts http_body(web_service_endpoint, **kwargs)
       options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_method == :post
 
       Request.new(options)

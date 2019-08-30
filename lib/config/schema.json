@@ -1,12 +1,8 @@
 {
 	"objects": [
 		{
-			"type": "UserInvitationCreateRequest",
-			"properties": {
-				"data": {
-          "type": "UserInvitationCreateRequest.Data"
-				}
-			}
+			"type": "UserInvitationCreateRequest.Data.Attributes",
+			"properties": {}
 		},
 		{
 			"type": "UserInvitationCreateRequest.Data",
@@ -17,8 +13,12 @@
       }
 		},
 		{
-			"type": "UserInvitationCreateRequest.Data.Attributes",
-			"properties": {}
+			"type": "UserInvitationCreateRequest",
+			"properties": {
+				"data": {
+          "type": "UserInvitationCreateRequest.Data"
+				}
+			}
 		}
 	],
    "web_service_endpoints": [
