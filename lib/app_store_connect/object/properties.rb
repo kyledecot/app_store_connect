@@ -3,7 +3,7 @@
 require 'delegate'
 
 module AppStoreConnect
-  class Object 
+  class Object
     class Properties < SimpleDelegator
       def initialize(**options)
         @options = options
@@ -18,7 +18,7 @@ module AppStoreConnect
         return keys unless recursive
 
         keys + values.flat_map { |p| p.property_names(recursive) }
-      end 
+      end
 
       def to_h
         {}.tap do |hash|
@@ -28,5 +28,5 @@ module AppStoreConnect
         end
       end
     end
-  end 
+  end
 end

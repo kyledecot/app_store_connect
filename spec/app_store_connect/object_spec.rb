@@ -1,9 +1,11 @@
-RSpec.describe AppStoreConnect::Object do 
-  describe "#value" do 
+# frozen_string_literal: true
+
+RSpec.describe AppStoreConnect::Object do
+  describe '#value' do
     pending
   end
 
-  describe "to_h" do 
+  describe 'to_h' do
     pending
-  end  
-end 
+  end
+end

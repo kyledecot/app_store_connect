@@ -1,3 +1,5 @@
-RSpec.describe AppStoreConnect::Request do 
+# frozen_string_literal: true
+
+RSpec.describe AppStoreConnect::Request do
   pending
-end 
+end

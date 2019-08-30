@@ -17,14 +17,14 @@ module AppStoreConnect
 
       @properties.each do |name, property|
         # TODO
-      end  
+      end
 
       @options = options
     end
 
     def property_names(recursive = false)
       @properties.names(recursive)
-    end 
+    end
 
     def method_missing(method_name, *args)
       return self[method_name] if @properties.key?(method_name)
