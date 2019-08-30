@@ -14,8 +14,17 @@ module AppStoreConnect
 
     def initialize(**options)
       @properties = Properties.new(**options.delete(:properties))
+
+      @properties.each do |name, property|
+        # TODO
+      end  
+
       @options = options
     end
+
+    def property_names(recursive = false)
+      @properties.names(recursive)
+    end 
 
     def method_missing(method_name, *args)
       return self[method_name] if @properties.key?(method_name)

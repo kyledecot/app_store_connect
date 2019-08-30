@@ -119,7 +119,7 @@ module AppStoreConnect
         uri: build_uri(web_service_endpoint, **kwargs),
         headers: headers
       }
-
+      puts http_body(web_service_endpoint, **kwargs)
       options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_method == :post
 
       Request.new(options)

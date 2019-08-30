@@ -7,15 +7,18 @@ module AppStoreConnect
     class Properties < SimpleDelegator
       def initialize(**options)
         @options = options
-        @object_schemas_by_name = {}
         super(options.map do |name, sub_options|
-          @object_schemas_by_name[name] = SCHEMA.object!(
-            type: sub_options[:type]
-          )
+          schema = SCHEMA.object!(type: sub_options[:type])
 
-          [name, Object.new(**@object_schemas_by_name[name].options)]
+          [name, Object.new(**schema.options)]
         end.to_h)
       end
+
+      def names(recursive = false)
+        return keys unless recursive
+
+        keys + values.flat_map { |p| p.property_names(recursive) }
+      end 
 
       def to_h
         {}.tap do |hash|
