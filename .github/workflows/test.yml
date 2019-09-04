@@ -15,6 +15,9 @@ jobs:
       with:
         version: 2.6.x
     - name: Bundle
-      run: bundle install
+      run: |
+        gem update --system --no-document 
+        gem install bundler --no-document
+        bundle install
     - name: Run RSpec
       run: rspec
