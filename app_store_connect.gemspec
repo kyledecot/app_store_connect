@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'activesupport', '>= 5.1.7'
-  spec.add_runtime_dependency 'jwt', '>= 1.4'
-  spec.add_runtime_dependency 'mixpanel-ruby'
+  spec.add_runtime_dependency 'activesupport', '>= 5.1.7', '<= 5.2.3'
+  spec.add_runtime_dependency 'jwt', '>= 1.4', '<= 2.2.1'
+  spec.add_runtime_dependency 'mixpanel-ruby', '<= 2.2.0'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'factory_bot', '~> 5.0.2'
