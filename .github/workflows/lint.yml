@@ -1,11 +1,11 @@
-name: Test
+name: Lint
 
 on:
   push:
      
 jobs:
   build:
-    name: RSpec
+    name: Rubocop
     runs-on: ubuntu-latest
 
     steps:
@@ -18,5 +18,5 @@ jobs:
       run: |
         gem install bundler
         bundle install --jobs=3 --retry=3
-    - name: Run RSpec
-      run: rspec
+    - name: Run Rubocop
+      run: rubocop
