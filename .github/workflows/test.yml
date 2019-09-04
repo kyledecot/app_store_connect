@@ -24,6 +24,6 @@ jobs:
     - name: Run rspec
       run: |
         rspec
-        ./cc-test-reporter after-build --exit-code $LASTEXITCODE -t simplecov 
+        ./cc-test-reporter after-build --exit-code $? -t simplecov 
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
