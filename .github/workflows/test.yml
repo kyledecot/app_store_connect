@@ -14,5 +14,7 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         version: 2.6.x
+    - name: Bundle
+      run: bundle install
     - name: Run RSpec
       run: rspec
