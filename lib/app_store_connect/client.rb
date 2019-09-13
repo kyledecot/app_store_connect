@@ -37,9 +37,9 @@ module AppStoreConnect
       call(web_service_endpoint, *kwargs)
     end
 
-		def inspect
-			"#<#{self.class.name}:#{self.object_id}>"
-		end
+    def inspect
+      "#<#{self.class.name}:#{object_id}>"
+    end
 
     def web_service_endpoint_aliases
       @web_service_endpoints_by_alias.keys
