@@ -1,4 +1,57 @@
 {
+  "objects": [
+    {
+      "type": "UserInvitationCreateRequest.Data.Attributes",
+      "properties": [
+        {
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "name": "firstName",
+          "type": "string"
+        },
+        {
+          "name": "lastName",
+          "type": "string"
+        },
+        {
+          "name": "provisioningAllowed",
+          "type": "boolean"
+        },
+        {
+          "name": "roles",
+          "type": "UserRole",
+          "array": true
+        }
+      ]
+    },
+    {
+      "type": "UserInvitationCreateRequest.Data",
+      "properties": [
+        {
+          "name": "attributes",
+          "type": "UserInvitationCreateRequest.Data.Attributes",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "value": "userInvitations"
+        } 
+      ]
+    },
+    {
+      "type": "UserInvitationCreateRequest",
+      "properties": [
+        {
+          "name": "data",
+          "type": "UserInvitationCreateRequest.Data",
+          "required": true
+        }
+      ]
+    }
+  ],
    "web_service_endpoints": [
 		{
 			"http_method": "delete",
