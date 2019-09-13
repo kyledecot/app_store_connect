@@ -17,7 +17,8 @@ module AppStoreConnect
         key_id: @options[:key_id],
         issuer_id: @options[:issuer_id]
       )
-      @web_service_endpoints_by_alias ||= AppStoreConnect::SCHEMA
+      @web_service_endpoints_by_alias ||= @options
+                                          .fetch(:schema)
                                           .web_service_endpoints
                                           .map { |s| [s.alias, s] }
                                           .to_h
@@ -37,11 +38,11 @@ module AppStoreConnect
       call(web_service_endpoint, *kwargs)
     end
 
-    private
-
     def web_service_endpoint_aliases
       @web_service_endpoints_by_alias.keys
     end
+
+    private
 
     def call(web_service_endpoint, **kwargs)
       raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post].include?(web_service_endpoint.http_method)
@@ -78,7 +79,8 @@ module AppStoreConnect
 
     def options(**kwargs)
       defaults = {
-        analytics_enabled: true
+        analytics_enabled: true,
+        schema: Schema.new(File.join(__dir__, '../config/schema.json'))
       }
       AppStoreConnect.config.merge(kwargs.merge(env_options.merge(defaults))).tap do |options|
         %i[key_id issuer_id private_key].each do |key|
