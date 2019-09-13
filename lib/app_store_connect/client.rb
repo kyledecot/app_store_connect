@@ -3,8 +3,8 @@
 require 'active_support/all'
 
 require 'app_store_connect/request'
-require 'app_store_connect/authorization'
 require 'app_store_connect/schema'
+require 'app_store_connect/client/authorization'
 require 'app_store_connect/client/options'
 require 'app_store_connect/client/usage'
 
@@ -12,6 +12,7 @@ module AppStoreConnect
   class Client
     def initialize(**kwargs)
       @options = Options.new(kwargs)
+      @usage = Usage.new
 
       @authorization = Authorization.new(
         private_key: @options[:private_key],
@@ -23,7 +24,6 @@ module AppStoreConnect
                                           .web_service_endpoints
                                           .map { |s| [s.alias, s] }
                                           .to_h
-      @usage = Usage.new
     end
 
     def respond_to_missing?(method_name, include_private = false)
