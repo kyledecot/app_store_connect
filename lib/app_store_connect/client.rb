@@ -6,6 +6,7 @@ require 'securerandom'
 
 require 'app_store_connect/request'
 require 'app_store_connect/authorization'
+require 'app_store_connect/schema'
 
 module AppStoreConnect
   class Client

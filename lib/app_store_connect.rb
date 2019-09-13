@@ -5,7 +5,6 @@ require 'app_store_connect/object/type'
 require 'app_store_connect/object/attributes'
 require 'app_store_connect/object/properties'
 require 'app_store_connect/object/data'
-require 'app_store_connect/schema'
 require 'app_store_connect/version'
 
 require 'app_store_connect/bundle_id_create_request'
