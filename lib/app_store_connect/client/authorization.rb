@@ -5,15 +5,17 @@ require 'jwt'
 module AppStoreConnect
   class Client
     class Authorization
+      OPTIONS = %i[key_id issuer_id private_key].freeze
+
       AUDIENCE = 'appstoreconnect-v1'
       ALGORITHM = 'ES256'
 
-      attr_reader :key_id, :issuer_id, :private_key
+      attr_reader(*OPTIONS)
 
-      def initialize(key_id:, issuer_id:, private_key:)
-        @key_id = key_id
-        @issuer_id = issuer_id
-        @private_key = OpenSSL::PKey.read(private_key)
+      def initialize(options)
+        @key_id = options.fetch(:key_id)
+        @issuer_id = options.fetch(:issuer_id)
+        @private_key = OpenSSL::PKey.read(options.fetch(:private_key))
       end
 
       def payload

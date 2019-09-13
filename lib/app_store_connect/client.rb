@@ -12,13 +12,9 @@ module AppStoreConnect
   class Client
     def initialize(**kwargs)
       @options = Options.new(kwargs)
-      @usage = Usage.new
+      @usage = Usage.new(@options.slice(*Usage::OPTIONS))
+      @authorization = Authorization.new(@options.slice(*Authorization::OPTIONS))
 
-      @authorization = Authorization.new(
-        private_key: @options[:private_key],
-        key_id: @options[:key_id],
-        issuer_id: @options[:issuer_id]
-      )
       @web_service_endpoints_by_alias ||= @options
                                           .fetch(:schema)
                                           .web_service_endpoints
@@ -53,7 +49,7 @@ module AppStoreConnect
 
       request = build_request(web_service_endpoint, **kwargs)
 
-      @usage.track if @options[:analytics_enabled]
+      @usage.track
       response = request.execute
 
       JSON.parse(response.body) if response.body
