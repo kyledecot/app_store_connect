@@ -7,6 +7,7 @@ require 'app_store_connect/schema'
 require 'app_store_connect/client/authorization'
 require 'app_store_connect/client/options'
 require 'app_store_connect/client/usage'
+require 'app_store_connect/client/registry'
 
 module AppStoreConnect
   class Client
@@ -14,12 +15,7 @@ module AppStoreConnect
       @options = Options.new(kwargs)
       @usage = Usage.new(@options.slice(*Usage::OPTIONS))
       @authorization = Authorization.new(@options.slice(*Authorization::OPTIONS))
-
-      @web_service_endpoints_by_alias ||= @options
-                                          .fetch(:schema)
-                                          .web_service_endpoints
-                                          .map { |s| [s.alias, s] }
-                                          .to_h
+      @registry = Registry.new(@options.slice(*Registry::OPTIONS))
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -39,7 +35,7 @@ module AppStoreConnect
     end
 
     def web_service_endpoint_aliases
-      @web_service_endpoints_by_alias.keys
+      @registry.keys
     end
 
     private
@@ -62,7 +58,7 @@ module AppStoreConnect
     end
 
     def web_service_endpoint_by(alias_sym)
-      @web_service_endpoints_by_alias[alias_sym]
+      @registry[alias_sym]
     end
 
     def http_body(web_service_endpoint, **kwargs)
