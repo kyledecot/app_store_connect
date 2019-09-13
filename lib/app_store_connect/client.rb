@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'active_support/all'
-require 'mixpanel-ruby'
-require 'securerandom'
 
 require 'app_store_connect/request'
 require 'app_store_connect/authorization'
 require 'app_store_connect/schema'
+require 'app_store_connect/client/usage'
 
 module AppStoreConnect
   class Client
@@ -23,8 +22,7 @@ module AppStoreConnect
                                           .web_service_endpoints
                                           .map { |s| [s.alias, s] }
                                           .to_h
-      @distinct_id = SecureRandom.uuid
-      @tracker = Mixpanel::Tracker.new('1213f2b88b9b10b13d321f4c67a55ca8')
+      @usage = Usage.new
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -39,6 +37,10 @@ module AppStoreConnect
       call(web_service_endpoint, *kwargs)
     end
 
+		def inspect
+			"#<#{self.class.name}:#{self.object_id}>"
+		end
+
     def web_service_endpoint_aliases
       @web_service_endpoints_by_alias.keys
     end
@@ -50,7 +52,7 @@ module AppStoreConnect
 
       request = build_request(web_service_endpoint, **kwargs)
 
-      @tracker.track(@distinct_id, web_service_endpoint.alias) if @options[:analytics_enabled]
+      @usage.track if @options[:analytics_enabled]
       response = request.execute
 
       JSON.parse(response.body) if response.body
