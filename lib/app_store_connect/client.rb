@@ -5,12 +5,13 @@ require 'active_support/all'
 require 'app_store_connect/request'
 require 'app_store_connect/authorization'
 require 'app_store_connect/schema'
+require 'app_store_connect/client/options'
 require 'app_store_connect/client/usage'
 
 module AppStoreConnect
   class Client
     def initialize(**kwargs)
-      @options = options(**kwargs)
+      @options = Options.new(kwargs)
 
       @authorization = Authorization.new(
         private_key: @options[:private_key],
@@ -66,26 +67,6 @@ module AppStoreConnect
 
     def web_service_endpoint_by(alias_sym)
       @web_service_endpoints_by_alias[alias_sym]
-    end
-
-    def env_options
-      {}.tap do |hash|
-        ENV.each do |key, value|
-          match = key.match(/APP_STORE_CONNECT_(?<name>[A-Z_]+)/)
-
-          next unless match
-
-          hash[match[:name].downcase.to_sym] = value
-        end
-      end
-    end
-
-    def options(**kwargs)
-      AppStoreConnect.config.merge(kwargs.merge(env_options)).tap do |options|
-        %i[key_id issuer_id private_key].each do |key|
-          raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
-        end
-      end
     end
 
     def http_body(web_service_endpoint, **kwargs)
