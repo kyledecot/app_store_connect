@@ -12,8 +12,25 @@ module AppStoreConnect
 
       def initialize(kwargs)
         @kwargs = kwargs
-        @config = AppStoreConnect.config.dup
-        @env = {}.tap do |hash|
+        @config = build_config
+        @env = build_env
+        options = @config.merge(kwargs.merge(@env))
+
+        %i[key_id issuer_id private_key].each do |key|
+          raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
+        end
+
+        super(options)
+      end
+
+      private
+
+      def build_config
+        AppStoreConnect.config.dup
+      end
+
+      def build_env
+        {}.tap do |hash|
           ENV.each do |key, value|
             match = key.match(ENV_REGEXP)
 
@@ -22,14 +39,6 @@ module AppStoreConnect
             hash[match[:name].downcase.to_sym] = value
           end
         end
-
-        options = @config.merge(kwargs.merge(@env))
-
-        %i[key_id issuer_id private_key].each do |key|
-          raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
-        end
-
-        super(options)
       end
     end
   end
