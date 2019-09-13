@@ -14,7 +14,10 @@ require 'app_store_connect/user_invitation_create_request'
 require 'app_store_connect/profile_create_request'
 
 module AppStoreConnect
-  @config = {}
+  @config = {
+    analytics_enabled: true,
+    schema: Schema.new(File.join(__dir__, 'config', 'schema.json'))
+  }
 
   class << self
     attr_accessor :config

@@ -81,11 +81,7 @@ module AppStoreConnect
     end
 
     def options(**kwargs)
-      defaults = {
-        analytics_enabled: true,
-        schema: Schema.new(File.join(__dir__, '../config/schema.json'))
-      }
-      AppStoreConnect.config.merge(kwargs.merge(env_options.merge(defaults))).tap do |options|
+      AppStoreConnect.config.merge(kwargs.merge(env_options)).tap do |options|
         %i[key_id issuer_id private_key].each do |key|
           raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
         end
