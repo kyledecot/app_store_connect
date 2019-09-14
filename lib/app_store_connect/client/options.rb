@@ -16,10 +16,6 @@ module AppStoreConnect
         @env = build_env
         options = @config.merge(kwargs.merge(@env))
 
-        %i[key_id issuer_id private_key].each do |key|
-          raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
-        end
-
         super(options)
       end
 
