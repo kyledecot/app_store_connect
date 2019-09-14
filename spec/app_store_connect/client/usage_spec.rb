@@ -4,6 +4,8 @@ RSpec.describe AppStoreConnect::Client::Usage do
   describe '#track' do
     let(:options) { { analytics_enabled: enabled } }
 
+    subject { described_class.new(options) }
+
     context 'when enabled' do
       let(:enabled) { true }
 
@@ -12,7 +14,16 @@ RSpec.describe AppStoreConnect::Client::Usage do
           .to receive(:track)
           .with(String, 'usage')
 
-        described_class.new(options).track
+        subject.track
+      end
+
+      it 'should return true' do
+        allow_any_instance_of(Mixpanel::Tracker)
+          .to receive(:track)
+          .with(String, 'usage')
+          .and_return(true)
+
+        expect(subject.track).to be(true)
       end
     end
 
@@ -23,7 +34,11 @@ RSpec.describe AppStoreConnect::Client::Usage do
         expect_any_instance_of(Mixpanel::Tracker)
           .to_not receive(:track)
 
-        described_class.new(options).track
+        subject.track
+      end
+
+      it 'should return false' do
+        expect(subject.track).to be(false)
       end
     end
   end
