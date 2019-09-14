@@ -30,9 +30,11 @@ module AppStoreConnect
       call(web_service_endpoint, *kwargs)
     end
 
+    # :nocov:
     def inspect
       "#<#{self.class.name}:#{object_id}>"
     end
+    # :nocov:
 
     def web_service_endpoint_aliases
       @registry.keys

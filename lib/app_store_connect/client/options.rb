@@ -7,7 +7,7 @@ module AppStoreConnect
     class Options < SimpleDelegator
       attr_reader :kwargs, :config, :env
 
-      ENV_REGEXP = /APP_STORE_CONNECT_(?<name>[A-Z_]+)/.freeze
+      ENV_REGEXP = /APP_STORE_CONNECT_(?<suffix>[A-Z_]+)/.freeze
       private_constant :ENV_REGEXP
 
       def initialize(kwargs)
@@ -32,7 +32,7 @@ module AppStoreConnect
 
             next unless match
 
-            hash[match[:name].downcase.to_sym] = value
+            hash[match[:suffix].downcase.to_sym] = value
           end
         end
       end
