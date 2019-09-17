@@ -3,26 +3,19 @@
 require 'active_support/all'
 
 require 'app_store_connect/request'
-require 'app_store_connect/authorization'
 require 'app_store_connect/schema'
+require 'app_store_connect/client/authorization'
+require 'app_store_connect/client/options'
 require 'app_store_connect/client/usage'
+require 'app_store_connect/client/registry'
 
 module AppStoreConnect
   class Client
     def initialize(**kwargs)
-      @options = options(**kwargs)
-
-      @authorization = Authorization.new(
-        private_key: @options[:private_key],
-        key_id: @options[:key_id],
-        issuer_id: @options[:issuer_id]
-      )
-      @web_service_endpoints_by_alias ||= @options
-                                          .fetch(:schema)
-                                          .web_service_endpoints
-                                          .map { |s| [s.alias, s] }
-                                          .to_h
-      @usage = Usage.new
+      @options = Options.new(kwargs)
+      @usage = Usage.new(@options.slice(*Usage::OPTIONS))
+      @authorization = Authorization.new(@options.slice(*Authorization::OPTIONS))
+      @registry = Registry.new(@options.slice(*Registry::OPTIONS))
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -37,12 +30,14 @@ module AppStoreConnect
       call(web_service_endpoint, *kwargs)
     end
 
+    # :nocov:
     def inspect
       "#<#{self.class.name}:#{object_id}>"
     end
+    # :nocov:
 
     def web_service_endpoint_aliases
-      @web_service_endpoints_by_alias.keys
+      @registry.keys
     end
 
     private
@@ -52,7 +47,7 @@ module AppStoreConnect
 
       request = build_request(web_service_endpoint, **kwargs)
 
-      @usage.track if @options[:analytics_enabled]
+      @usage.track
       response = request.execute
 
       JSON.parse(response.body) if response.body
@@ -65,31 +60,7 @@ module AppStoreConnect
     end
 
     def web_service_endpoint_by(alias_sym)
-      @web_service_endpoints_by_alias[alias_sym]
-    end
-
-    def env_options
-      {}.tap do |hash|
-        ENV.each do |key, value|
-          match = key.match(/APP_STORE_CONNECT_(?<name>[A-Z_]+)/)
-
-          next unless match
-
-          hash[match[:name].downcase.to_sym] = value
-        end
-      end
-    end
-
-    def options(**kwargs)
-      defaults = {
-        analytics_enabled: true,
-        schema: Schema.new(File.join(__dir__, '../config/schema.json'))
-      }
-      AppStoreConnect.config.merge(kwargs.merge(env_options.merge(defaults))).tap do |options|
-        %i[key_id issuer_id private_key].each do |key|
-          raise ArgumentError, "missing #{key}" unless options.keys.include?(key)
-        end
-      end
+      @registry[alias_sym]
     end
 
     def http_body(web_service_endpoint, **kwargs)

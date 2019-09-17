@@ -1,4 +1,5 @@
 {
+  "objects": [],
    "web_service_endpoints": [
 		{
 			"http_method": "delete",

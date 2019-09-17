@@ -3,15 +3,12 @@
 module AppStoreConnect
   class Schema
     class Type
-      attr_reader :type, :options
+      attr_reader :type, :options, :values
 
-      def initialize(**options)
+      def initialize(options)
         @type = options[:type]
+        @values = options[:values]
         @options = options
-      end
-
-      def values
-        @options[:values]
       end
     end
   end

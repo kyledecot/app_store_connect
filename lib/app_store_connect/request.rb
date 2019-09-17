@@ -3,15 +3,13 @@
 require 'net/http'
 
 module AppStoreConnect
-  attr_reader :uri
-
-  class UnsupportedHTTPMethod < ArgumentError
-    def initialize(http_method)
-      super "Unsupported HTTP Method: #{http_method}"
-    end
-  end
-
   class Request
+    class UnsupportedHTTPMethod < ArgumentError
+      def initialize(http_method)
+        super "Unsupported HTTP Method: #{http_method}"
+      end
+    end
+
     def initialize(**options)
       @uri = options.fetch(:uri)
       @options = options
