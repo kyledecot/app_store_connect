@@ -19,7 +19,7 @@ module AppStoreConnect
         klass = Class.new do |attributes|
           include Object::Properties
 
-          attributes.define_method :initialize do |**kwargs|
+          attributes.send(:define_method,  :initialize) do |**kwargs|
             self.class.properties.each do |name, options|
               raise ArgumentError, "#{name} required" if options[:required] && !kwargs[name]
 
