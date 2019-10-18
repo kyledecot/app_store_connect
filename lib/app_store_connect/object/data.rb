@@ -14,7 +14,7 @@ module AppStoreConnect
           include Object::Attributes
           include Object::Type
 
-          data.define_method :initialize do |**kwargs|
+          data.send(:define_method, :initialize) do |**kwargs|
             instance_variable_set('@relationships', kwargs.delete(:relationships).to_h)
             instance_variable_set('@attributes', data::Attributes.new(kwargs))
           end
