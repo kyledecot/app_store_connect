@@ -16,13 +16,14 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-        
     - name: Configure Bundler
       run: |
+        gem install bundler
+        bundle install --jobs=3 --retry=3
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
-        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n:github: ${GITHUB_PACKAGE_REPOSITORY_AUTH_TOKEN}" > $HOME/.gem/credentials
+        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n:github: Bearer ${GITHUB_PACKAGE_REPOSITORY_AUTH_TOKEN}" > $HOME/.gem/credentials
       env:
         GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
         GITHUB_PACKAGE_REPOSITORY_AUTH_TOKEN: ${{secrets.GITHUB_PACKAGE_REPOSITORY_AUTH_TOKEN}}
@@ -32,10 +33,8 @@ jobs:
         gem build *.gemspec        
 
     - name: Publish to RubyGems
-      run: |
-        gem push *.gem
+      run: bundle exec ./bin/publish --rubygems
         
     - name: Publish to Github Package Repository
-      run: |
-         gem push --key github --host https://rubygems.pkg.github.com/kyledecot *.gem
+      run: bundle exec ./bin/publish --github
          
