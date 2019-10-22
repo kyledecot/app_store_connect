@@ -2,6 +2,7 @@
 
 require 'mixpanel-ruby'
 require 'securerandom'
+require 'app_store_connect/version'
 
 module AppStoreConnect
   class Client
@@ -20,7 +21,7 @@ module AppStoreConnect
       def track
         return false unless @enabled
 
-        @tracker.track(@distinct_id, 'usage')
+        @tracker.track(@distinct_id, 'usage', version: VERSION)
       end
     end
   end
