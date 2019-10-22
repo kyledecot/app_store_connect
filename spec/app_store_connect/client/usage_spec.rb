@@ -12,7 +12,7 @@ RSpec.describe AppStoreConnect::Client::Usage do
       it 'should track usage' do
         expect_any_instance_of(Mixpanel::Tracker)
           .to receive(:track)
-          .with(String, 'usage')
+          .with(String, 'usage', version: AppStoreConnect::VERSION)
 
         subject.track
       end
@@ -20,7 +20,7 @@ RSpec.describe AppStoreConnect::Client::Usage do
       it 'should return true' do
         allow_any_instance_of(Mixpanel::Tracker)
           .to receive(:track)
-          .with(String, 'usage')
+          .with(String, 'usage', version: AppStoreConnect::VERSION)
           .and_return(true)
 
         expect(subject.track).to be(true)
