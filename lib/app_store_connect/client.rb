@@ -8,6 +8,7 @@ require 'app_store_connect/client/authorization'
 require 'app_store_connect/client/options'
 require 'app_store_connect/client/usage'
 require 'app_store_connect/client/registry'
+require 'app_store_connect/client/utils'
 
 module AppStoreConnect
   class Client
@@ -64,12 +65,10 @@ module AppStoreConnect
     end
 
     def http_body(web_service_endpoint, **kwargs)
-      "AppStoreConnect::#{web_service_endpoint.http_body_type}"
+      Utils.encode("AppStoreConnect::#{web_service_endpoint.http_body_type}"
         .constantize
         .new(**kwargs)
-        .to_h
-        .deep_transform_keys { |k| k.to_s.camelize(:lower) }
-        .to_json
+        .to_h)
     end
 
     def build_request(web_service_endpoint, **kwargs)
