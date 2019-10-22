@@ -7,14 +7,21 @@ module AppStoreConnect
     class Options < SimpleDelegator
       attr_reader :kwargs, :config, :env
 
+      DEFAULTS = {
+        analytics_enabled: true,
+        schema: Schema.new(File.join(__dir__, '..', '..', 'config', 'schema.json'))
+      }.freeze
+      private_constant :DEFAULTS
+
       ENV_REGEXP = /APP_STORE_CONNECT_(?<suffix>[A-Z_]+)/.freeze
       private_constant :ENV_REGEXP
 
-      def initialize(kwargs)
+      def initialize(kwargs = {})
         @kwargs = kwargs
         @config = build_config
         @env = build_env
-        options = @config.merge(kwargs.merge(@env))
+
+        options = DEFAULTS.merge(@env.merge(@config.merge(kwargs)))
 
         super(options)
       end
