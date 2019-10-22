@@ -3,6 +3,7 @@ PATH
   specs:
     app_store_connect (0.18.0)
       activesupport
+      inifile (~> 3.0.0)
       jwt (>= 1.4, <= 2.2.1)
       mixpanel-ruby (<= 2.2.0)
 
@@ -44,6 +45,7 @@ GEM
     hashdiff (0.4.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    inifile (3.0.0)
     jaro_winkler (1.5.3)
     json (2.2.0)
     jwt (2.2.1)

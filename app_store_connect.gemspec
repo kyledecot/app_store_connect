@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'activesupport'
+  spec.add_runtime_dependency 'inifile', '~> 3.0.0'
   spec.add_runtime_dependency 'jwt', '>= 1.4', '<= 2.2.1'
   spec.add_runtime_dependency 'mixpanel-ruby', '<= 2.2.0'
 

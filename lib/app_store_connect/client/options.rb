@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'delegate'
+require 'inifile'
 
 module AppStoreConnect
   class Client
@@ -20,13 +21,22 @@ module AppStoreConnect
         @kwargs = kwargs
         @config = build_config
         @env = build_env
+        @inifile = build_inifile
 
-        options = DEFAULTS.merge(@env.merge(@config.merge(kwargs)))
+        options = DEFAULTS.merge(@inifile.merge(@env.merge(@config.merge(kwargs))))
 
         super(options)
       end
 
       private
+
+      def build_inifile
+        filename = File.expand_path(File.join('~', '.app_store_connect', 'credentials'))
+
+        return {} unless File.exist?(filename)
+
+        IniFile.new(filename: filename).to_h['default']&.to_h&.deep_symbolize_keys
+      end
 
       def build_config
         AppStoreConnect.config.dup

@@ -6,6 +6,10 @@ RSpec.describe AppStoreConnect::Client::Options do
 
     subject(:options) { described_class.new(issuer_id: issuer_id) }
 
+    before do
+      allow(File).to receive(:exists?).with(File.expand_path(File.join('~', '.app_store_connect', 'credentials'))).and_return(false)
+    end
+
     it { expect(options).to have_key(:schema) }
 
     context 'with config' do
