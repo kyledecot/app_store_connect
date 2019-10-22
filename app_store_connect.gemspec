@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
   spec.add_development_dependency 'pry', '~> 0.12'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.71.0'
+  spec.add_development_dependency 'rubocop', '~> 0.75.0'
   spec.add_development_dependency 'simplecov', '~> 0.16.1'
   spec.add_development_dependency 'timecop', '~> 0.9.1'
   spec.add_development_dependency 'webmock', '~> 3.6.0'
