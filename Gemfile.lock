@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    app_store_connect (0.17.0)
+    app_store_connect (0.18.0)
       activesupport
       jwt (>= 1.4, <= 2.2.1)
       mixpanel-ruby (<= 2.2.0)
