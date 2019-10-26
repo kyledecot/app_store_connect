@@ -10,6 +10,12 @@ module AppStoreConnect
           .deep_transform_keys(&CAMELIZE)
           .to_json
       end
+
+      def self.decode(string)
+        JSON
+          .parse(string)
+          .deep_transform_keys { |k| k.underscore.to_sym }
+      end
     end
   end
 end
