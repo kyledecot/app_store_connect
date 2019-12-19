@@ -19,6 +19,7 @@ module AppStoreConnect
         def type
           case fetch(:type)
           when 'uri-reference' then URI
+          when 'integer' then Integer
           else
             raise UnsupportedType, fetch(:type)
           end

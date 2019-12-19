@@ -28,8 +28,16 @@ RSpec.describe AppStoreConnect::Schema::Object::Property do
       it { is_expected.to be(URI) }
     end
 
-    context 'when not "uri-reference"' do
-      it { expect { described_class.new(type: 'unsupported-type').type }.to raise_error(described_class::UnsupportedType) }
+    context 'when "integer"' do
+      let(:type) { 'integer' }
+
+      subject { described_class.new(type: 'integer').type }
+
+      it { is_expected.to be(Integer) }
+    end
+
+    context 'when not supported' do
+      it { expect { described_class.new(type: 'foobar').type }.to raise_error(described_class::UnsupportedType) }
     end
   end
 end
