@@ -1,5 +1,15 @@
 {
-  "objects": [],
+  "objects": [
+    {
+      "type": "ResourceLinks",
+      "properties": {
+        "self": {
+          "type": "uri-reference",
+          "required": true
+        }
+      }
+    } 
+  ],
    "web_service_endpoints": [
 		{
 			"http_method": "delete",
