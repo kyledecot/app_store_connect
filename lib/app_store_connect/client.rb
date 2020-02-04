@@ -51,7 +51,7 @@ module AppStoreConnect
       @usage.track
       response = request.execute
 
-      Utils.decode(response.body) if response.body
+      Utils.decode(response.body, response.content_type) if response.body
     end
 
     def build_uri(web_service_endpoint, **kwargs)
