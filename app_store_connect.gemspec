@@ -21,8 +21,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'activesupport'
+  spec.add_runtime_dependency 'aws-sdk-cognitoidentity', '~> 1.18'
+  spec.add_runtime_dependency 'aws-sdk-pinpoint', '~> 1.35'
   spec.add_runtime_dependency 'jwt', '>= 1.4', '<= 2.2.1'
-  spec.add_runtime_dependency 'mixpanel-ruby', '<= 2.2.0'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'factory_bot', '~> 5.0.2'
