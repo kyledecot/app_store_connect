@@ -27,7 +27,7 @@ module AppStoreConnect
       def track
         return false unless @enabled
 
-        fork do 
+        fork do
           timestamp = Time.now.iso8601
 
           pinpoint_client.put_events(
@@ -52,7 +52,7 @@ module AppStoreConnect
               }
             }
           )
-        end 
+        end
       end
 
       private
