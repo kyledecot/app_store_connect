@@ -27,30 +27,32 @@ module AppStoreConnect
       def track
         return false unless @enabled
 
-        timestamp = Time.now.iso8601
+        fork do 
+          timestamp = Time.now.iso8601
 
-        pinpoint_client.put_events(
-          application_id: AWS_PINPOINT_APPLICATION_ID,
-          events_request: {
-            batch_item: {
-              usage: {
-                endpoint: {
-                  channel_type: 'CUSTOM'
-                },
-                events: {
-                  usage: {
-                    event_type: 'usage',
-                    session: {
-                      id: @distinct_id,
-                      start_timestamp: timestamp
-                    },
-                    timestamp: timestamp
+          pinpoint_client.put_events(
+            application_id: AWS_PINPOINT_APPLICATION_ID,
+            events_request: {
+              batch_item: {
+                usage: {
+                  endpoint: {
+                    channel_type: 'CUSTOM'
+                  },
+                  events: {
+                    usage: {
+                      event_type: 'usage',
+                      session: {
+                        id: @distinct_id,
+                        start_timestamp: timestamp
+                      },
+                      timestamp: timestamp
+                    }
                   }
                 }
               }
             }
-          }
-        )
+          )
+        end 
       end
 
       private
