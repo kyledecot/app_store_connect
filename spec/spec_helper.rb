@@ -23,6 +23,10 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     FactoryBot.find_definitions
+
+    WebMock.disable_net_connect!(
+      allow: %r{(latest/meta-data/iam/security-credentials/|https://pinpoint.us-east-1.amazonaws.com/v1/apps/649e0e23f7a249739d954a93d119af45/events|https://cognito-identity.us-east-1.amazonaws.com/|/latest/api/token)$}
+    )
   end
 
   config.before(:each) do

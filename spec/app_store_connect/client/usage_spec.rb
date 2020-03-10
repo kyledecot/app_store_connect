@@ -7,9 +7,9 @@ RSpec.describe AppStoreConnect::Client::Usage do
     subject { described_class.new(options) }
 
     before do
-      stub_request(:put, %r{/latest/api/token$})
-      stub_request(:get, %r{/latest/meta-data/iam/security-credentials/$})
-      stub_request(:post, %r{https://cognito-identity.us-east-1.amazonaws.com/})
+      # stub_request(:put, %r{/latest/api/token$})
+      # stub_request(:get, %r{/latest/meta-data/iam/security-credentials/$})
+      # stub_request(:post, %r{})
     end
 
     context 'when enabled' do
