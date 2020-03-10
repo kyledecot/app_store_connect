@@ -8,7 +8,7 @@ require 'aws-sdk-cognitoidentity'
 module AppStoreConnect
   class Client
     class Usage
-      OPTIONS = %i[analytics_enabled].freeze
+      OPTIONS = %i[usage_enabled].freeze
 
       AWS_REGION = 'us-east-1'
       private_constant :AWS_REGION
@@ -20,7 +20,7 @@ module AppStoreConnect
       private_constant :AWS_COGNITO_IDENTITY_POOL_ID
 
       def initialize(options = {})
-        @enabled = options[:analytics_enabled].to_s == 'true'
+        @enabled = options[:usage_enabled].to_s == 'true'
         @distinct_id = SecureRandom.uuid
       end
 
@@ -53,6 +53,8 @@ module AppStoreConnect
             }
           )
         end
+
+        true
       end
 
       private
