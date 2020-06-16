@@ -140,20 +140,6 @@ jobs:
         release_name: ${{ github.ref }}
         draft: false
         prerelease: false
-    - uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: kyledecot/app_store_connect
-        tags: "latest, ${{ env.APP_STORE_CONNECT_VERSION }}"
-    - uses: docker/build-push-action@v1
-      with:
-        username: ${{ github.actor }}
-        password: ${{secrets.PERSONAL_ACCESS_TOKEN}}
-        repository: kyledecot/app_store_connect/app_store_connect
-        registry: docker.pkg.github.com
-        tags: "latest, ${{ env.APP_STORE_CONNECT_VERSION }}"
-
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:
