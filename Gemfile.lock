@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     app_store_connect (0.20.0)
-      activesupport
+      activesupport (>= 6.0.3.1)
       jwt (>= 1.4, <= 2.2.1)
       mixpanel-ruby (<= 2.2.0)
 
@@ -128,4 +128,4 @@ DEPENDENCIES
   webmock (~> 3.6.0)
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
