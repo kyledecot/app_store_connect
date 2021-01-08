@@ -121,6 +121,12 @@
 			"http_method": "post"
 		},
 		{
+			"alias": "create_bundle_id",
+			"url": "https://api.appstoreconnect.apple.com/v1/bundleIds",
+			"http_body_type": "BundleIdCreateRequest",
+			"http_method": "post"
+		},
+		{
 		"http_method": "get",
 		"url": "https://api.appstoreconnect.apple.com/v1/users",
 		"alias": "users"
