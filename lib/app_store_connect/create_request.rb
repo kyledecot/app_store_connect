@@ -7,6 +7,7 @@ module AppStoreConnect
     end
 
     def initialize(**kwargs)
+      binding.pry
       @data = self.class::Data.new(kwargs)
     end
   end
