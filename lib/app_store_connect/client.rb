@@ -23,12 +23,12 @@ module AppStoreConnect
       web_service_endpoint_aliases.include?(method_name) || super
     end
 
-    def method_missing(method_name, *kwargs)
+    def method_missing(method_name, **kwargs)
       super unless web_service_endpoint_aliases.include?(method_name)
 
       web_service_endpoint = web_service_endpoint_by(method_name)
 
-      call(web_service_endpoint, *kwargs)
+      call(web_service_endpoint, **kwargs)
     end
 
     # :nocov:
@@ -82,7 +82,7 @@ module AppStoreConnect
 
       options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_method == :post
 
-      Request.new(options)
+      Request.new(**options)
     end
 
     def headers
