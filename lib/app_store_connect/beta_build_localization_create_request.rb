@@ -9,7 +9,7 @@ module AppStoreConnect
 
       attributes do
         property :locale, required: true
-        property :whatsNew
+        property :whats_new
       end
     end
   end
