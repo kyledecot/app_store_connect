@@ -132,6 +132,12 @@
 			"http_body_type": "BundleIdCapabilityCreateRequest",
 			"http_method": "post"
 		},
+        {
+            "alias": "create_beta_build_localization",
+            "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations",
+            "http_body_type": "BetaBuildLocalizationCreateRequest",
+            "http_method": "post"
+        },
 		{
 		"http_method": "get",
 		"url": "https://api.appstoreconnect.apple.com/v1/users",
