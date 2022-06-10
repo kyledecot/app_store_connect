@@ -15,16 +15,26 @@ module AppStoreConnect
           include Object::Type
 
           data.send(:define_method, :initialize) do |**kwargs|
+            instance_variable_set('@id', kwargs.delete(:id).to_s)
             instance_variable_set('@relationships', kwargs.delete(:relationships).to_h)
             instance_variable_set('@attributes', data::Attributes.new(kwargs))
           end
 
           def to_h
-            {
-              relationships: @relationships,
+            result = {
               attributes: attributes.to_h,
               type: type
             }
+
+            unless @id.empty?
+              result[:id] = @id
+            end
+
+            unless @relationships.empty?
+              result[:relationships] = @relationships
+            end
+
+            return result
           end
         end
 

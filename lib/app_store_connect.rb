@@ -14,6 +14,7 @@ require 'app_store_connect/device_create_request'
 require 'app_store_connect/user_invitation_create_request'
 require 'app_store_connect/profile_create_request'
 require 'app_store_connect/beta_build_localization_create_request'
+require 'app_store_connect/beta_build_localization_modify_request'
 
 module AppStoreConnect
   @config = {}

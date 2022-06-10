@@ -44,7 +44,9 @@ module AppStoreConnect
     private
 
     def call(web_service_endpoint, **kwargs)
-      raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post].include?(web_service_endpoint.http_method)
+      raise "invalid http method: #{web_service_endpoint.http_method}" unless (
+        %i[get delete post patch].include?(web_service_endpoint.http_method)
+      )
 
       request = build_request(web_service_endpoint, **kwargs)
 
@@ -80,7 +82,9 @@ module AppStoreConnect
         headers: headers
       }
 
-      options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_method == :post
+      options[:http_body] = http_body(web_service_endpoint, **kwargs) if (
+        web_service_endpoint.http_method == :post or web_service_endpoint.http_method == :patch
+      )
 
       Request.new(options)
     end

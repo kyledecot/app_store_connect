@@ -138,6 +138,12 @@
             "http_body_type": "BetaBuildLocalizationCreateRequest",
             "http_method": "post"
         },
+        {
+            "alias": "modify_beta_build_localization",
+            "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}",
+            "http_body_type": "BetaBuildLocalizationModifyRequest",
+            "http_method": "patch"
+        },
 		{
 		"http_method": "get",
 		"url": "https://api.appstoreconnect.apple.com/v1/users",
