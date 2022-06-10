@@ -52,7 +52,7 @@ module AppStoreConnect
 
     def uri
       @options.fetch(:uri).tap do |uri|
-        uri.query = query if http_method == :get or http_method == :patch
+        uri.query = query if http_method == :get
       end
     end
 
