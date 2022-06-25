@@ -27,7 +27,7 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
     - name: Set APP_STORE_CONNECT_VERSION
-      run: echo ::set-env name=APP_STORE_CONNECT_VERSION::$(bundle exec rake version:current)
+      run: echo "APP_STORE_CONNECT_VERSION=$(bundle exec rake version:current)" >> $GITHUB_ENV
     - name: Build
       run: bundle exec rake build
     - name: Upload Gem
@@ -118,7 +118,7 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
     - name: Set APP_STORE_CONNECT_VERSION
-      run: echo ::set-env name=APP_STORE_CONNECT_VERSION::$(bundle exec rake version:current)
+      run: echo "APP_STORE_CONNECT_VERSION=$(bundle exec rake version:current)" >> $GITHUB_ENV
     - uses: actions/download-artifact@v1
       with:
         name: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem
