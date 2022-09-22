@@ -31,7 +31,7 @@ module AppStoreConnect
 
           def to_h
             {}.tap do |hash|
-              self.class.properties.keys.each do |name|
+              self.class.properties.each_key do |name|
                 value = instance_variable_get("@#{name}")
 
                 hash[name] = value unless value.nil?

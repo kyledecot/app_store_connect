@@ -8,7 +8,7 @@ module AppStoreConnect
       OPTIONS = %i[schema].freeze
 
       def initialize(options = {})
-        super(options .fetch(:schema).web_service_endpoints.map { |s| [s.alias, s] }.to_h)
+        super(options.fetch(:schema).web_service_endpoints.map { |s| [s.alias, s] }.to_h)
       end
     end
   end

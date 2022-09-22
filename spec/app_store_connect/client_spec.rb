@@ -7,9 +7,9 @@ RSpec.describe AppStoreConnect::Client do
 
   subject(:client) do
     described_class.new(
-      issuer_id: issuer_id,
-      key_id: key_id,
-      private_key: private_key
+      issuer_id:,
+      key_id:,
+      private_key:
     )
   end
 
@@ -22,7 +22,7 @@ RSpec.describe AppStoreConnect::Client do
   describe '#app' do
     let(:id) { '1234' }
 
-    before { subject.app(id: id) }
+    before { subject.app(id:) }
 
     it_behaves_like :get_request, path: 'apps/1234'
   end
@@ -30,7 +30,7 @@ RSpec.describe AppStoreConnect::Client do
   describe '#builds' do
     let(:id) { '1234' }
 
-    before { subject.app_builds(id: id) }
+    before { subject.app_builds(id:) }
 
     it_behaves_like :get_request, path: 'apps/1234/builds'
   end
@@ -38,7 +38,7 @@ RSpec.describe AppStoreConnect::Client do
   describe '#build' do
     let(:id) { '1234' }
 
-    before { subject.build(id: id) }
+    before { subject.build(id:) }
 
     it_behaves_like :get_request, path: 'builds/1234'
   end

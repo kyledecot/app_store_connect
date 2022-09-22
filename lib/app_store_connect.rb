@@ -22,9 +22,9 @@ module AppStoreConnect
 
     def rel(id, type, array = false)
       if array
-        { data: [{ id: id, type: type }] }.freeze
+        { data: [{ id:, type: }] }.freeze
       else
-        { data: { id: id, type: type } }.freeze
+        { data: { id:, type: } }.freeze
       end
     end
   end
