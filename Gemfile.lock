@@ -116,11 +116,11 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
-  ruby
+  arm64-darwin-21
 
 DEPENDENCIES
   app_store_connect!
-  bundler (~> 2.1.4)
+  bundler (~> 2.3)
   factory_bot (~> 6.2.1)
   guard-rspec (~> 4.7.3)
   pry (~> 0.14.1)
@@ -133,4 +133,4 @@ DEPENDENCIES
   webmock (~> 3.18.1)
 
 BUNDLED WITH
-   2.1.4
+   2.3.22
