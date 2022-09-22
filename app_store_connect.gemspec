@@ -20,19 +20,19 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'activesupport', '>= 6.0.3.1'
+  spec.add_runtime_dependency 'activesupport', '>= 7.0.4'
   spec.add_runtime_dependency 'jwt', '>= 1.4', '<= 2.5.0'
   spec.add_runtime_dependency 'mixpanel-ruby', '<= 2.2.0'
 
-  spec.add_development_dependency 'bundler', '~> 2.0'
-  spec.add_development_dependency 'factory_bot', '~> 5.0.2'
+  spec.add_development_dependency 'bundler', '~> 2.1.4'
+  spec.add_development_dependency 'factory_bot', '~> 6.2.1'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
-  spec.add_development_dependency 'pry', '~> 0.12'
-  spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.75.0'
-  spec.add_development_dependency 'semantic', '~> 1.5'
-  spec.add_development_dependency 'simplecov', '~> 0.16.1'
-  spec.add_development_dependency 'timecop', '~> 0.9.1'
-  spec.add_development_dependency 'webmock', '~> 3.6.0'
+  spec.add_development_dependency 'pry', '~> 0.14.1'
+  spec.add_development_dependency 'rake', '~> 13.0.6'
+  spec.add_development_dependency 'rspec', '~> 3.11.0'
+  spec.add_development_dependency 'rubocop', '~> 1.36.0'
+  spec.add_development_dependency 'semantic', '~> 1.6.1'
+  spec.add_development_dependency 'simplecov', '~> 0.21.2'
+  spec.add_development_dependency 'timecop', '~> 0.9.5'
+  spec.add_development_dependency 'webmock', '~> 3.18.1'
 end
