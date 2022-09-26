@@ -4,7 +4,7 @@ RSpec.describe AppStoreConnect::Client::Options do
   describe '#initialize' do
     let(:issuer_id) { '12345' }
 
-    subject(:options) { described_class.new(issuer_id:) }
+    subject(:options) { described_class.new(issuer_id: issuer_id) }
 
     it { expect(options).to have_key(:schema) }
 

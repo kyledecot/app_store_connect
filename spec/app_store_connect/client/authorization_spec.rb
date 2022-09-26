@@ -7,9 +7,9 @@ RSpec.describe AppStoreConnect::Client::Authorization do
 
   subject(:authorization) do
     described_class.new(
-      issuer_id:,
-      key_id:,
-      private_key:
+      issuer_id: issuer_id,
+      key_id: key_id,
+      private_key: private_key
     )
   end
 

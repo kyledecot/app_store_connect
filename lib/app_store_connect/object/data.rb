@@ -23,7 +23,7 @@ module AppStoreConnect
             {
               relationships: @relationships,
               attributes: attributes.to_h,
-              type:
+              type: type
             }
           end
         end
