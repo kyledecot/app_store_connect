@@ -17,10 +17,10 @@ FactoryBot.define do
 
     initialize_with do
       AppStoreConnect::BundleIdCreateRequest.new(
-        identifier:,
-        seed_id:,
-        platform:,
-        name:
+        identifier: identifier,
+        seed_id: seed_id,
+        platform: platform,
+        name: name
       )
     end
   end

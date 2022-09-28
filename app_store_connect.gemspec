@@ -21,13 +21,13 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 3.1'
+  spec.required_ruby_version = '>= 2.7.0'
 
-  spec.add_runtime_dependency 'activesupport', '>= 7.0.4'
+  spec.add_runtime_dependency 'activesupport', '>= 6.0.0'
   spec.add_runtime_dependency 'jwt', '>= 1.4', '<= 2.5.0'
   spec.add_runtime_dependency 'mixpanel-ruby', '<= 2.2.0'
 
-  spec.add_development_dependency 'bundler', '~> 2.3'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'factory_bot', '~> 6.2.1'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
   spec.add_development_dependency 'pry', '~> 0.14.1'
