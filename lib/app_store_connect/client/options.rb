@@ -13,7 +13,7 @@ module AppStoreConnect
       }.freeze
       private_constant :DEFAULTS
 
-      ENV_REGEXP = /APP_STORE_CONNECT_(?<suffix>[A-Z_]+)/
+      ENV_REGEXP = /APP_STORE_CONNECT_(?<suffix>[A-Z_]+)/.freeze
       private_constant :ENV_REGEXP
 
       def initialize(kwargs = {})
