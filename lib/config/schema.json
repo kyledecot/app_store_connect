@@ -672,17 +672,12 @@
       "url": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/{id}/build",
       "alias": "beta_app_review_submission_build"
     },
-    {
-      "http_method": "get",
-      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/appStoreVersions",
-      "alias": "apps_app_store_versions"
-    },
 
     {
-      "alias": "create_app_store_version",
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions",
       "http_body_type": "AppStoreVersionCreateRequest",
-      "http_method": "post"
+      "http_method": "post",
+      "alias": "create_app_store_version"
     },
     {
       "http_method": "patch",
@@ -701,12 +696,22 @@
       "http_body_type": "AppStoreVersionBuildLinkageRequest",
       "alias": "update_app_store_version_build"
     },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/appStoreVersions",
+      "alias": "apps_app_store_versions"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}",
+      "alias": "app_store_version"
+    },
 
     {
-      "alias": "create_review_submission",
       "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions",
       "http_body_type": "ReviewSubmissionCreateRequest",
-      "http_method": "post"
+      "http_method": "post",
+      "alias": "create_review_submission"
     },
     {
       "http_method": "patch",
@@ -731,10 +736,10 @@
     },
 
     {
-      "alias": "create_review_submission_item",
       "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionsItems",
       "http_body_type": "ReviewSubmissionItemCreateRequest",
-      "http_method": "post"
+      "http_method": "post",
+      "alias": "create_review_submission_item"
     }
   ],
   "types": [
