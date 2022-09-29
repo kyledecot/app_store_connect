@@ -740,6 +740,11 @@
       "http_body_type": "ReviewSubmissionItemCreateRequest",
       "http_method": "post",
       "alias": "create_review_submission_item"
+    },
+    {
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}/items",
+      "http_method": "get",
+      "alias": "review_submissions_items"
     }
   ],
   "types": [
