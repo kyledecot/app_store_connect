@@ -688,12 +688,47 @@
       "http_method": "patch",
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}",
       "http_body_type": "AppStoreVersionUpdateRequest",
-      "alias": "modify_app_store_version"
+      "alias": "update_app_store_version"
     },
     {
       "http_method": "delete",
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}",
       "alias": "delete_app_store_version"
+    },
+
+    {
+      "alias": "create_review_submission",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions",
+      "http_body_type": "ReviewSubmissionCreateRequest",
+      "http_method": "post"
+    },
+    {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}",
+      "http_body_type": "ReviewSubmissionUpdateRequest",
+      "alias": "update_review_submission"
+    },
+    {
+      "http_method": "delete",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}",
+      "alias": "delete_review_submission"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions",
+      "alias": "review_submissions"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}",
+      "alias": "review_submission"
+    },
+
+    {
+      "alias": "create_review_submission_item",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionsItems",
+      "http_body_type": "ReviewSubmissionItemCreateRequest",
+      "http_method": "post"
     }
   ],
   "types": [

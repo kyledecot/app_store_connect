@@ -3,7 +3,7 @@
 require 'app_store_connect/create_request'
 
 module AppStoreConnect
-  class AppStoreVersionCreateRequest < CreateRequest
+  class AppStoreVersionUpdateRequest < CreateRequest
     data do
       type 'appStoreVersions'
 
