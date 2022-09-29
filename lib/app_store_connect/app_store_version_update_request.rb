@@ -5,6 +5,7 @@ require 'app_store_connect/create_request'
 module AppStoreConnect
   class AppStoreVersionUpdateRequest < CreateRequest
     data do
+      id
       type 'appStoreVersions'
 
       attributes do

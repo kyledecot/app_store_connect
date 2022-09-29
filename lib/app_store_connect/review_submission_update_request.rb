@@ -5,6 +5,7 @@ require 'app_store_connect/create_request'
 module AppStoreConnect
   class ReviewSubmissionUpdateRequest < CreateRequest
     data do
+      id
       type 'reviewSubmissions'
 
       attributes do
