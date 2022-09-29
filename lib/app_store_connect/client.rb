@@ -73,11 +73,11 @@ module AppStoreConnect
 
     def build_request(web_service_endpoint, **kwargs)
       options = {
-        kwargs:,
-        web_service_endpoint:,
+        kwargs: kwargs,
+        web_service_endpoint: web_service_endpoint,
         http_method: web_service_endpoint.http_method,
         uri: build_uri(web_service_endpoint, **kwargs),
-        headers:
+        headers: headers
       }
 
       options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_method == :post
