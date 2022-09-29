@@ -695,6 +695,12 @@
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}",
       "alias": "delete_app_store_version"
     },
+    {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}/relationships/build",
+      "http_body_type": "AppStoreVersionBuildLinkageRequest",
+      "alias": "update_app_store_version_build"
+    },
 
     {
       "alias": "create_review_submission",
