@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'activesupport', '>= 6.0.0'
   spec.add_runtime_dependency 'jwt', '>= 1.4', '<= 2.5.0'
-  spec.add_runtime_dependency 'mixpanel-ruby', '<= 2.2.0'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'factory_bot', '~> 6.2.1'

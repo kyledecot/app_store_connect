@@ -6,7 +6,6 @@ require 'app_store_connect/request'
 require 'app_store_connect/schema'
 require 'app_store_connect/client/authorization'
 require 'app_store_connect/client/options'
-require 'app_store_connect/client/usage'
 require 'app_store_connect/client/registry'
 require 'app_store_connect/client/utils'
 
@@ -14,7 +13,6 @@ module AppStoreConnect
   class Client
     def initialize(**kwargs)
       @options = Options.new(kwargs)
-      @usage = Usage.new(@options.slice(*Usage::OPTIONS))
       @authorization = Authorization.new(@options.slice(*Authorization::OPTIONS))
       @registry = Registry.new(@options.slice(*Registry::OPTIONS))
     end
@@ -48,7 +46,6 @@ module AppStoreConnect
 
       request = build_request(web_service_endpoint, **kwargs)
 
-      @usage.track
       response = request.execute
 
       Utils.decode(response.body, response.content_type) if response.body
