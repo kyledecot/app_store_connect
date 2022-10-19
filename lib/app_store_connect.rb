@@ -10,6 +10,8 @@ require 'app_store_connect/version'
 
 require 'app_store_connect/app_store_version_build_linkage_request'
 require 'app_store_connect/app_store_version_create_request'
+require 'app_store_connect/app_store_version_phased_release_create_request'
+require 'app_store_connect/app_store_version_phased_release_update_request'
 require 'app_store_connect/app_store_version_update_request'
 require 'app_store_connect/bundle_id_capability_create_request'
 require 'app_store_connect/bundle_id_create_request'
