@@ -28,7 +28,7 @@ module AppStoreConnect
               type: type
             }
             props[:id] = @id if id?
-            props.compact_blank
+            props.reject { |_k, v| v.blank? }
           end
         end
 
