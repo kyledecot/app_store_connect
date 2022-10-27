@@ -58,6 +58,15 @@ app_store_connect.sales_reports(
 )
 ```
 
+### Fetch All Devices
+
+```ruby
+
+fetchAllDevices = app_store_connect.devices
+puts JSON.pretty_generate(fetchAllDevice)
+
+```
+
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies. Then, run `rake spec` to run the tests. You can also run `rake console` for an interactive prompt that will allow you to experiment.
