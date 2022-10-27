@@ -29,7 +29,7 @@ $ gem install app_store_connect
 AppStoreConnect.config = {
   issuer_id: 'issuer_id',
   key_id: 'key_id',
-  private_key: File.read(File.new("/Path/AuthKey_.p8"))
+  private_key: File.read(File.new("/Path/AuthKey.p8"))
 }
 
 app_store_connect = AppStoreConnect::Client.new
