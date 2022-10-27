@@ -71,17 +71,30 @@ puts JSON.pretty_generate(fetchAllDevice)
 
 ```
 
+### Register a New Device
+
+```ruby
+result = app_store_connect.create_device(
+    name: 'name',
+    platform: 'IOS',
+    udid: 'udid'
+  )
+
+puts JSON.pretty_generate(result)
+```
+
+
 ## Q&A
 
 ### How to understand the `devices, sales_reports, create_bundle_id` keyword seen in the demo?
 
 It's function key from `schema.json` file.
 
-### How to understand `{}` in the demo, and when should use it?
+### How to understand `()` in the demo, and when should use it? eg: `create_bundle_id()`, `sales_reports()`
 
-`{}` is mean: you have mapped to `http_body_type` in file `schema.json`
+`()` is mean: you have mapped to `http_body_type` in file `schema.json`
 
-### How to set this content in `{}`
+### How to set this content in `()`
 
 `http_body_type` have a value type. Based on this value, we can find the definition of the relevant configuration in the source code of ruby.
 
