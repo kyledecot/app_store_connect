@@ -7,21 +7,25 @@ A Ruby interface to the [App Store Connect API](https://developer.apple.com/app-
 
 Add this line to your application's Gemfile:
 
-```ruby
+```Ruby
 gem 'app_store_connect'
 ```
 
 And then execute:
 
-    $ bundle
+```Bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install app_store_connect
+```Bash
+$ gem install app_store_connect
+```
 
 ## Usage
 
-```ruby 
+```ruby
 AppStoreConnect.config = {
   issuer_id: 'issuer_id',
   key_id: 'key_id',
@@ -66,6 +70,20 @@ fetchAllDevices = app_store_connect.devices
 puts JSON.pretty_generate(fetchAllDevice)
 
 ```
+
+## Q&A
+
+### How to understand the `devices, sales_reports, create_bundle_id` keyword seen in the demo?
+
+It's function key from `schema.json` file.
+
+### How to understand `{}` in the demo, and when should use it?
+
+`{}` is mean: you have mapped to `http_body_type` in file `schema.json`
+
+### How to set this content in `{}`
+
+`http_body_type` have a value type. Based on this value, we can find the definition of the relevant configuration in the source code of ruby.
 
 ## Development
 
