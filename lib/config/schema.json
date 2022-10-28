@@ -674,6 +674,13 @@
     },
 
     {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}",
+      "http_body_type": "BuildUpdateRequest",
+      "alias": "update_build"
+    },
+
+    {
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions",
       "http_body_type": "AppStoreVersionCreateRequest",
       "http_method": "post",
@@ -708,6 +715,24 @@
     },
 
     {
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases",
+      "http_body_type": "AppStoreVersionPhasedReleaseCreateRequest",
+      "http_method": "post",
+      "alias": "create_app_store_version_phased_release"
+    },
+    {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases/{id}",
+      "http_body_type": "AppStoreVersionPhasedReleaseUpdateRequest",
+      "alias": "update_app_store_version_phased_release"
+    },
+    {
+      "http_method": "delete",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases/{id}",
+      "alias": "delete_app_store_version_phased_release"
+    },
+
+    {
       "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions",
       "http_body_type": "ReviewSubmissionCreateRequest",
       "http_method": "post",
@@ -736,7 +761,7 @@
     },
 
     {
-      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionsItems",
+      "url": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems",
       "http_body_type": "ReviewSubmissionItemCreateRequest",
       "http_method": "post",
       "alias": "create_review_submission_item"
@@ -801,6 +826,15 @@
         "IOS",
         "MAC_OS",
         "TV_OS"
+      ]
+    },
+    {
+      "type": "PhasedReleaseState",
+      "values": [
+        "INACTIVE",
+        "ACTIVE",
+        "PAUSED",
+        "COMPLETE"
       ]
     },
     {

@@ -83,6 +83,24 @@ result = app_store_connect.create_device(
 puts JSON.pretty_generate(result)
 ```
 
+### Update an App Store Version
+
+```ruby
+app_store_connect.update_app_store_version id: '<app-store-version-id>', version_string: '1.0'
+```
+
+### Link a Build to an App Store Version
+
+```ruby
+app_store_connect.update_app_store_version_build id: '<app-store-version-id>', build_id: '<build-id>'
+```
+
+### Create a Review Submission Item
+
+```ruby
+app_store_connect.create_review_submission_item relationships: {reviewSubmission: {data: {id: '<review-submission-id>', type: 'reviewSubmissions'}},
+                                                                appStoreVersion: {data: {id: '<app-store-version-id>', type: 'appStoreVersions'}}}
+```
 
 ## Q&A
 
