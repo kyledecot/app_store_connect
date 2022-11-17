@@ -715,6 +715,13 @@
     },
 
     {
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionReleaseRequests",
+      "http_body_type": "AppStoreVersionReleaseRequestCreateRequest",
+      "http_method": "post",
+      "alias": "create_app_store_version_release_request"
+    },
+
+    {
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases",
       "http_body_type": "AppStoreVersionPhasedReleaseCreateRequest",
       "http_method": "post",
