@@ -3,6 +3,7 @@
 module AppStoreConnect
   class ModifyRequest
     def self.inherited(klass)
+      super
       klass.include(Object::Data)
     end
 
