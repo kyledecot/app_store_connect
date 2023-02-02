@@ -100,16 +100,13 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     needs: [test, lint]
-    strategy:
-      matrix:
-        ruby_versions: [3.2]
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Ruby ${{ matrix.ruby_versions }}
+    - name: Set up Ruby 3.2
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby_versions }}
+        ruby-version: 3.2
     - uses: actions/cache@v3
       with:
         path: vendor/bundle
