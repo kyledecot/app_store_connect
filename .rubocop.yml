@@ -9,6 +9,10 @@
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 #
+AllCops:
+  NewCops: disable
+  TargetRubyVersion: 2.7
+
 Metrics/MethodLength:
   Enabled: false
 
@@ -18,9 +22,9 @@ Metrics/BlockLength:
 Style/Documentation:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
-Metrics/ClassLength: 
+Metrics/ClassLength:
   Enabled: false
 
