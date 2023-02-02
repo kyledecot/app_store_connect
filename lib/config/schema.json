@@ -341,6 +341,21 @@
     },
     {
       "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}",
+      "alias": "in_app_purchase"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/inAppPurchasesV2",
+      "alias": "app_in_app_purchases"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/pricePoints",
+      "alias": "in_app_purchase_price_points"
+    },
+    {
+      "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/betaGroups",
       "alias": "app_beta_groups"
     },

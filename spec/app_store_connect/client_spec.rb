@@ -35,6 +35,30 @@ RSpec.describe AppStoreConnect::Client do
     it_behaves_like :get_request, path: 'apps/1234/pricePoints'
   end
 
+  describe '#in_app_purchase' do
+    let(:id) { '1234' }
+
+    before { subject.in_app_purchase(id: id) }
+
+    it_behaves_like :get_request, api_version: 'v2', path: 'inAppPurchases/1234'
+  end
+
+  describe '#app_in_app_purchases' do
+    let(:id) { '1234' }
+
+    before { subject.app_in_app_purchases(id: id) }
+
+    it_behaves_like :get_request, path: 'apps/1234/inAppPurchasesV2'
+  end
+
+  describe '#in_app_purchase_price_points' do
+    let(:id) { '1234' }
+
+    before { subject.in_app_purchase_price_points(id: id) }
+
+    it_behaves_like :get_request, api_version: 'v2', path: 'inAppPurchases/1234/pricePoints'
+  end
+
   describe '#builds' do
     let(:id) { '1234' }
 
