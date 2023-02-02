@@ -1,5 +1,6 @@
 # App Store Connect 
-[![Test](https://github.com/kyledecot/app_store_connect/workflows/Default/badge.svg)](https://github.com/kyledecot/app_store_connect/actions) 
+
+[![CI/CD](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml/badge.svg)](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml)
 
 A Ruby interface to the [App Store Connect API](https://developer.apple.com/app-store-connect/api/)
 
