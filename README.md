@@ -1,5 +1,5 @@
 # App Store Connect 
-[![Test](https://github.com/kyledecot/app_store_connect/workflows/Default/badge.svg)](https://github.com/kyledecot/app_store_connect/actions) [![Gem Version](https://badge.fury.io/rb/app_store_connect.svg)](https://badge.fury.io/rb/app_store_connect) [![Maintainability](https://api.codeclimate.com/v1/badges/eb09ffa68f84f8da0b6d/maintainability)](https://codeclimate.com/github/kyledecot/app_store_connect/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/eb09ffa68f84f8da0b6d/test_coverage)](https://codeclimate.com/github/kyledecot/app_store_connect/test_coverage)
+[![Test](https://github.com/kyledecot/app_store_connect/workflows/Default/badge.svg)](https://github.com/kyledecot/app_store_connect/actions) 
 
 A Ruby interface to the [App Store Connect API](https://developer.apple.com/app-store-connect/api/)
 
