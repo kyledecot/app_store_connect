@@ -16,7 +16,6 @@ module AppStoreConnect
           include Object::Id
 
           data.send(:define_method, :initialize) do |**kwargs|
-            instance_variable_set('@id', kwargs.delete(:id).to_s)
             instance_variable_set('@relationships', kwargs.delete(:relationships).to_h)
             instance_variable_set('@attributes', data::Attributes.new(**kwargs))
             instance_variable_set('@id', kwargs[id_arg_name])
