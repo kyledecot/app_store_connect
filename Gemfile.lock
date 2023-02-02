@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    app_store_connect (0.29.0)
+    app_store_connect (0.30.0)
       activesupport (>= 6.0.0)
       jwt (>= 1.4)
 
@@ -133,4 +133,4 @@ DEPENDENCIES
   webmock (~> 3.18.1)
 
 BUNDLED WITH
-   2.3.22
+   2.3.24
