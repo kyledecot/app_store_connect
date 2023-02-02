@@ -27,6 +27,14 @@ RSpec.describe AppStoreConnect::Client do
     it_behaves_like :get_request, path: 'apps/1234'
   end
 
+  describe '#app_price_points' do
+    let(:id) { '1234' }
+
+    before { subject.app_price_points(id: id) }
+
+    it_behaves_like :get_request, path: 'apps/1234/pricePoints'
+  end
+
   describe '#builds' do
     let(:id) { '1234' }
 

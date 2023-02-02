@@ -336,6 +336,11 @@
     },
     {
       "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/pricePoints",
+      "alias": "app_price_points"
+    },
+    {
+      "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/betaGroups",
       "alias": "app_beta_groups"
     },
