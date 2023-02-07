@@ -373,6 +373,11 @@
     },
     {
       "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/inAppPurchaseLocalizations",
+      "alias": "in_app_purchase_localizations"
+    },
+    {
+      "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/betaGroups",
       "alias": "app_beta_groups"
     },
