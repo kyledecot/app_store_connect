@@ -14,6 +14,6 @@ namespace :git do
   end
 
   task :push, [:extra] do |_task, args|
-    system `git push #{args[:extra]}`
+    `git push #{args[:extra]}`
   end
 end
