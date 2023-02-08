@@ -340,6 +340,11 @@
       "alias": "app_price_points"
     },
     {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}",
+      "alias": "in_app_purchase"
+    },
+    {
       "alias": "create_in_app_purchase",
       "http_body_type": "Requests::V2::InAppPurchase::Create",
       "http_method": "post",
@@ -357,9 +362,21 @@
       "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}"
     },
     {
+    {
+      "alias": "review_screenshot_for_in_app_purchase",
       "http_method": "get",
-      "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}",
-      "alias": "in_app_purchase"
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchaseAppStoreReviewScreenshots/{id}"
+    },
+    {
+      "alias": "in_app_purchase_review_screenshot",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/appStoreReviewScreenshot"
+    },
+    {
+      "alias": "create_in_app_purchase_review_screenshot",
+      "http_body_type": "Requests::V1::InAppPurchaseReviewScreenshot::Create",
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchaseAppStoreReviewScreenshots"
     },
     {
       "http_method": "get",

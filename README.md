@@ -131,7 +131,7 @@ app_store_connect.create_review_submission_item(
 )
 ```
 
-## Q&A
+## FAQ
 
 ### How to understand the `devices, sales_reports, create_bundle_id` keyword seen in the demo?
 
@@ -144,6 +144,18 @@ It's function key from `schema.json` file.
 ### How to set this content in `()`
 
 `http_body_type` have a value type. Based on this value, we can find the definition of the relevant configuration in the source code of ruby.
+
+### How to include related resources?
+
+```ruby
+app_store_connect.in_app_purchase(id: 123, include: 'appStoreReviewScreenshot,pricePoints')
+```
+
+### How to filter fields?
+
+```ruby
+app_store_connect.in_app_purchase(id: 123, fields: 'name,productId')
+```
 
 ## Development
 
