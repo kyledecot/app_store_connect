@@ -1,7 +1,8 @@
 
-![App Store Connect](assets/banner.png)
 
 <div align="center">
+  <img src="assets/banner.png" width="217" height="200">
+
   <h1>App Store Connect</h1>
 
 [![CI/CD](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml/badge.svg)](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml)
