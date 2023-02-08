@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <img src="assets/banner.png" width="180" height="180">
+  <img src="assets/banner.png">
 
   <h1>App Store Connect</h1>
 
