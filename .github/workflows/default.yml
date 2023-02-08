@@ -134,10 +134,10 @@ jobs:
         path: /tmp
     - run: mv /tmp/app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem .
     - name: Push Gem to Rubygems
-      run: bundle exec rake release[rubygems]
+      run: bundle exec rake push[rubygems]
       continue-on-error: true
     - name: Push Gem to Github Package Registry
-      run: bundle exec rake release[github]
+      run: bundle exec rake push[github]
       continue-on-error: true
     - name: Create Release
       id: create_release

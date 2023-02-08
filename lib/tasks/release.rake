@@ -2,17 +2,13 @@
 
 require 'app_store_connect/version'
 
-version = AppStoreConnect::VERSION
+desc 'Release'
+task :release do
+  version_increment, = Rake::Task['version:increment'].invoke
+  version = version_increment.call
 
-desc "Release app_store_connect-#{version}.gem"
-task :release, [:key] do |_task, args|
-  args.with_defaults(key: 'rubygems')
-
-  key = args.key.to_sym
-  host = {
-    rubygems: 'https://rubygems.org',
-    github: 'https://rubygems.pkg.github.com/kyledecot'
-  }.fetch(key)
-
-  sh %(gem push --key=#{key} --host=#{host} app_store_connect-#{version}.gem)
+  Rake::Task['bundle:install'].invoke
+  Rake::Task['changelog'].invoke("v#{version}")
+  Rake::Task['git:add'].invoke('-A')
+  Rake::Task['git:commit'].invoke("v#{version}")
 end
