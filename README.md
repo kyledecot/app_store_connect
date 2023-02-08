@@ -1,9 +1,13 @@
-    ![App Store Connect](./assets/banner.png)
 
+![App Store Connect](assets/banner.png)
 
-# App Store Connect 
+<div align="center">
+  <h1>App Store Connect</h1>
 
 [![CI/CD](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml/badge.svg)](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml)
+</div>
+
+
 
 A Ruby interface to the [App Store Connect API](https://developer.apple.com/app-store-connect/api/)
 
