@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/kyledecot/app_store_connect/tree/HEAD)
+## [v0.34.0](https://github.com/kyledecot/app_store_connect/tree/v0.34.0) (2023-02-08)
 
-[Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.33.0...HEAD)
+[Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.33.0...v0.34.0)
 
 **Merged pull requests:**
 
