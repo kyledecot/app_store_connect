@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.35.0](https://github.com/kyledecot/app_store_connect/tree/v0.35.0) (2023-02-08)
+
+[Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.34.0...v0.35.0)
+
 ## [v0.34.0](https://github.com/kyledecot/app_store_connect/tree/v0.34.0) (2023-02-08)
 
 [Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.33.0...v0.34.0)
