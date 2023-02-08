@@ -12,5 +12,6 @@ task :release do
   Rake::Task['git:add'].invoke('-A')
   Rake::Task['git:commit'].invoke("v#{version}")
   Rake::Task['git:tag'].invoke("v#{version}")
-  Rake::Task['git:push'].invoke('--follow-tags')
+  Rake::Task['git:push'].invoke("origin main")
+  Rake::Task['git:push'].invoke("origin v#{version}")
 end

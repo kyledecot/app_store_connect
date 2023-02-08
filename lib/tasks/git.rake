@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 namespace :git do
-  task :add, [:flags] do |_task, args|
-    `git add #{args[:flags]}`
+  task :add, [:extra] do |_task, args|
+    `git add #{args[:extra]}`
   end
 
   task :commit, [:message] do |_task, args|
@@ -13,7 +13,7 @@ namespace :git do
     `git tag #{args[:tag]}`
   end
 
-  task :push, [:flags] do |_task, args|
-    `git push #{args[:flags]}`
+  task :push, [:extra] do |_task, args|
+    system `git push #{args[:extra]}`
   end
 end
