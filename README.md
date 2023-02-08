@@ -3,7 +3,7 @@
 <div align="center">
   <img src="assets/banner.png">
 
-  <h1>App Store Connect</h1>
+  <h1>App Store Connect for Ruby</h1>
 
 [![CI/CD](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml/badge.svg)](https://github.com/kyledecot/app_store_connect/actions/workflows/default.yml)
 </div>
