@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov', '~> 0.21.2'
   spec.add_development_dependency 'timecop', '~> 0.9.5'
   spec.add_development_dependency 'webmock', '~> 3.18.1'
+  spec.add_development_dependency 'github_changelog_generator', '1.16.4'
 end
