@@ -362,6 +362,11 @@
       "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}"
     },
     {
+      "alias": "create_in_app_purchase_submission",
+      "http_body_type": "Requests::V1::InAppPurchaseSubmission::Create",
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchaseSubmissions"
+    },
     {
       "alias": "review_screenshot_for_in_app_purchase",
       "http_method": "get",
