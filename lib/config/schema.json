@@ -389,6 +389,22 @@
       "alias": "in_app_purchase_price_points"
     },
     {
+      "alias": "create_in_app_purchase_price_schedule",
+      "http_body_type": "Requests::V1::InAppPurchasePriceSchedule::Create",
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules"
+    },
+    {
+      "alias": "in_app_purchase_price_schedule",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/{id}"
+    },
+    {
+      "alias": "in_app_purchase_current_price_point",
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/{id}/manualPrices"
+    },
+    {
       "alias": "in_app_purchase_localizations",
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/inAppPurchaseLocalizations"

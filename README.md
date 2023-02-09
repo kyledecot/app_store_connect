@@ -131,6 +131,56 @@ app_store_connect.create_review_submission_item(
 )
 ```
 
+### Create In-App Purchase Price Schedule
+
+```ruby
+
+app_store_connect.create_in_app_purchase_price_schedule(relationships: {
+                                                          manual_prices: {
+                                                            data: [
+                                                              {
+                                                                type: 'inAppPurchasePrices',
+                                                                id: '${price1}'
+                                                              }
+                                                            ]
+                                                          },
+                                                          in_app_purchase: {
+                                                            data: {
+                                                              type: 'inAppPurchases',
+                                                              id: '<in-app-purchase-id>'
+                                                            }
+                                                          }
+                                                        }, included: [
+                                                          {
+                                                            type: 'inAppPurchasePrices',
+                                                            id: '${price1}',
+                                                            attributes:
+                                                              {
+                                                                startDate: nil
+                                                              },
+                                                            relationships:
+                                                              {
+                                                                inAppPurchaseV2:
+                                                                  {
+                                                                    data:
+                                                                      {
+                                                                        type: 'inAppPurchases',
+                                                                        id: '<in-app-purchase-id>'
+                                                                      }
+                                                                  },
+                                                                inAppPurchasePricePoint:
+                                                                  {
+                                                                    data:
+                                                                      {
+                                                                        type: 'inAppPurchasePricePoints',
+                                                                        id: '<price-point-id>'
+                                                                      }
+                                                                  }
+                                                              }
+                                                          }
+                                                        ])
+```
+
 ## FAQ
 
 ### How to understand the `devices, sales_reports, create_bundle_id` keyword seen in the demo?
