@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.37.0](https://github.com/kyledecot/app_store_connect/tree/v0.37.0) (2023-02-14)
+
+[Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.36.0...v0.37.0)
+
+**Merged pull requests:**
+
+- Manage In-App Purchase Localizations and Price Points [\#133](https://github.com/kyledecot/app_store_connect/pull/133) ([tmarkanov](https://github.com/tmarkanov))
+
+## [v0.36.0](https://github.com/kyledecot/app_store_connect/tree/v0.36.0) (2023-02-08)
+
+[Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.35.0...v0.36.0)
+
 ## [v0.35.0](https://github.com/kyledecot/app_store_connect/tree/v0.35.0) (2023-02-08)
 
 [Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.34.0...v0.35.0)

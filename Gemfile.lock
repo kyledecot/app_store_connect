@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    app_store_connect (0.36.0)
+    app_store_connect (0.37.0)
       activesupport (>= 6.0.0)
       jwt (>= 1.4)
 
