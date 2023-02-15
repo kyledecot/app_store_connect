@@ -17,7 +17,8 @@ RSpec.describe AppStoreConnect::BundleIdCreateRequest do
               name: attributes.name,
               platform: attributes.platform
             }
-          }
+          },
+          included: [],
         )
       end
     end
@@ -36,7 +37,8 @@ RSpec.describe AppStoreConnect::BundleIdCreateRequest do
               seed_id: attributes.seed_id,
               platform: attributes.platform
             }
-          }
+          },
+          included: [],
         )
       end
     end

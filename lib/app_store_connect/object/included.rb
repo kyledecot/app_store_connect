@@ -11,12 +11,12 @@ module AppStoreConnect
         attr_reader :included
 
         klass = Class.new do |i|
-          i.send(:define_method, :initialize) do |values|
-            instance_variable_set('@values', [*values])
+          i.send(:define_method, :initialize) do |objects|
+            instance_variable_set('@objects', [*objects])
           end
 
           def to_a
-            @values
+            @objects
           end
         end
 

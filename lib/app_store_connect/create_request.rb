@@ -17,7 +17,7 @@ module AppStoreConnect
     def to_h
       {
         data: data.to_h,
-        included: included.to_a.join(',')
+        included: included.to_a
       }
     end
   end
