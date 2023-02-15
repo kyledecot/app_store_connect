@@ -150,7 +150,7 @@ GEM
       faraday (>= 0.17.3, < 3)
     semantic (1.6.1)
     shellany (0.0.1)
-    simplecov (0.21.2)
+    simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -184,7 +184,7 @@ DEPENDENCIES
   rspec (~> 3.11.0)
   rubocop (~> 1.36.0)
   semantic (~> 1.6.1)
-  simplecov (~> 0.21.2)
+  simplecov (~> 0.22.0)
   timecop (~> 0.9.5)
   webmock (~> 3.18.1)
 
