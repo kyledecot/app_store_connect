@@ -39,7 +39,7 @@ module AppStoreConnect
           @source ||= begin
             require 'erb'
 
-            erb = ERB.new(TEMPLATE, { trim_mode: '%-' })
+            erb = ERB.new(TEMPLATE, trim_mode: '%<>-')
 
             erb.result(binding)
           end
