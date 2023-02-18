@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'jwt', '>= 1.4'
 
   spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'erb', '~> 4.0.2'
   spec.add_development_dependency 'factory_bot', '~> 6.2.1'
   spec.add_development_dependency 'github_changelog_generator', '1.16.4'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
