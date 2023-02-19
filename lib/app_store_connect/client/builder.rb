@@ -18,9 +18,9 @@ module AppStoreConnect
             #
             # @see <%= web_service_endpoint.delete(:see) %>
             #
-            def <%= web_service_endpoint[:alias] -%>(**kwargs)
+            def <%= web_service_endpoint.delete(:alias) -%>(**kwargs)
               web_service_endpoint = Schema::WebServiceEndpoint.new(
-                <%= web_service_endpoint %>
+                <%= web_service_endpoint.sort.to_h %>
               )
 
               call(web_service_endpoint, **kwargs)
@@ -40,29 +40,35 @@ module AppStoreConnect
             "url": 'https://api.appstoreconnect.apple.com/v1/certificates',
             "http_body_type": 'CertificateCreateRequest',
             "see": 'https://developer.apple.com/documentation/appstoreconnectapi'
-          }.symbolize_keys,
+          },
+          {
+            "http_method": 'delete',
+            "url": 'https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps',
+            "alias": 'delete_visible_app',
+            "see": 'https://developer.apple.com/documentation/appstoreconnectapi'
+          },
           {
             "alias": 'create_bundle_id',
             "url": 'https://api.appstoreconnect.apple.com/v1/bundleIds',
             "http_body_type": 'BundleIdCreateRequest',
             "http_method": 'post',
             "see": 'https://developer.apple.com/documentation/appstoreconnectapi/register_a_new_bundle_id'
-          }.symbolize_keys,
+          },
           {
             "alias": 'create_bundle_id_capability',
             "url": 'https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities',
             "http_body_type": 'BundleIdCapabilityCreateRequest',
             "http_method": 'post',
             "see": 'https://developer.apple.com/documentation/appstoreconnectapi'
-          }.symbolize_keys,
+          },
           {
             "alias": 'create_beta_build_localization',
             "url": 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations',
             "http_body_type": 'BetaBuildLocalizationCreateRequest',
             "http_method": 'post',
             "see": 'https://developer.apple.com/documentation/appstoreconnectapi'
-          }.symbolize_keys
-        ]
+          }
+        ].map(&:symbolize_keys)
       end
 
       def write

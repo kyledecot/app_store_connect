@@ -6,11 +6,7 @@
       "url": "https://api.appstoreconnect.apple.com/v1/users/{id}",
       "alias": "delete_user"
     },
-    {
-      "http_method": "delete",
-      "url": "https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps",
-      "alias": "delete_visible_app"
-    },
+
     {
       "http_method": "delete",
       "url": "https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities/{id}",
