@@ -10,7 +10,7 @@ module AppStoreConnect
         end
 
         def initialize(**kwargs)
-          @data = self.class::Data.new(kwargs)
+          @data = self.class::Data.new(**kwargs)
         end
       end
     end

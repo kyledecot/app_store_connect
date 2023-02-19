@@ -8,7 +8,7 @@ module AppStoreConnect
           super
           klass.include(Object::Data)
         end
-    
+
         def initialize(**kwargs)
           @data = self.class::Data.new(**kwargs)
         end
