@@ -3,6 +3,23 @@
 RSpec.describe AppStoreConnect::Request::Builder::Create do
   let(:create_request_builder) { described_class.new(type, properties) }
 
+  describe '.from' do
+    it do
+      schema = AppStoreConnect::Specification::Component::Schema.new(
+        {
+          'type' => 'object',
+          'required' => ['data'],
+          'title' => 'BundleIdCreateRequest',
+          'properties' => { 'data' => { 'properties' => { 'attributes' => { 'properties' => { 'identifier' => { 'type' => 'string' }, 'name' => { 'type' => 'string' }, 'platform' => { '$ref' => '#/components/schemas/BundleIdPlatform' }, 'seedId' => { 'type' => 'string' } }, 'required' => %w[identifier name platform], 'type' => 'object' }, 'type' => { 'enum' => ['bundleIds'], 'type' => 'string' } }, 'required' => %w[attributes type], 'type' => 'object' } }
+        }
+      )
+
+      actual = described_class.from(schema)
+
+      expect(actual).to be_a(described_class)
+    end
+  end
+
   context 'with Review Submissions' do
     let(:type) { 'reviewSubmissions' }
     let(:properties) { %w[platform] }

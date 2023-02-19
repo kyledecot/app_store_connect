@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'net/http'
+require 'app_store_connect/specification/component/schema'
 
 module AppStoreConnect
   class Specification
@@ -12,6 +13,16 @@ module AppStoreConnect
       @hash['paths'].find do |path, _declaration|
         path == "/#{version}/#{type}"
       end&.[](-1)
+    end
+
+    def component_schema(ref)
+      Component::Schema.new(traverse(ref))
+    end
+
+    def traverse(ref)
+      _, *parts = ref.split('/')
+
+      @hash.dig(*parts)
     end
 
     def create_request_schema_ref(version, type)

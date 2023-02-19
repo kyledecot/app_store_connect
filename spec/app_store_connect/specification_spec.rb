@@ -36,6 +36,21 @@ RSpec.describe AppStoreConnect::Specification do
     end
   end
 
+  describe '#component_schema' do
+    it do
+      Tempfile.open(['specification-', '.zip']) do |file|
+        described_class.download(file.path)
+
+        specification = described_class.new(described_class.read(file.path))
+        ref = '#/components/schemas/BundleIdCreateRequest'
+
+        actual = specification.component_schema(ref)
+
+        expect(actual).to be_a(described_class::Component::Schema)
+      end
+    end
+  end
+
   describe '#create_request_schema_ref' do
     it do
       Tempfile.open(['specification-', '.zip']) do |file|
