@@ -4,6 +4,32 @@ require 'net/http'
 
 module AppStoreConnect
   class Specification
+    def initialize(hash)
+      @hash = hash
+    end
+
+    def find(version, type)
+      @hash['paths'].find do |path, _declaration|
+        path == "/#{version}/#{type}"
+      end&.[](-1)
+    end
+
+    def create_request_schema_ref(version, type)
+      declarations = find(version, type)
+      declarations['post']['requestBody']['content']['application/json']['schema']['$ref']
+    end
+
+    def self.read(path)
+      require 'zip'
+
+      Zip::File.open(path) do |zip_file|
+        entry, = zip_file.entries
+        content = entry.get_input_stream(&:read)
+
+        JSON.parse(content)
+      end
+    end
+
     def self.download(path)
       uri = URI('https://developer.apple.com/sample-code/app-store-connect/app-store-connect-openapi-specification.zip')
 
