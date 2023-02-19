@@ -33,6 +33,7 @@ require 'app_store_connect/review_submission_create_request'
 require 'app_store_connect/review_submission_item_create_request'
 require 'app_store_connect/review_submission_update_request'
 require 'app_store_connect/user_invitation_create_request'
+require 'app_store_connect/specification'
 
 module AppStoreConnect
   @config = {}
