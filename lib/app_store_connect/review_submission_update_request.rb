@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require 'app_store_connect/create_request'
-
 module AppStoreConnect
-  class ReviewSubmissionUpdateRequest < CreateRequest
+  class ReviewSubmissionUpdateRequest < Request::Body::Update
     data do
       id
       type 'reviewSubmissions'
