@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'activesupport', '>= 6.0.0'
   spec.add_runtime_dependency 'jwt', '>= 1.4'
+  spec.add_runtime_dependency 'zeitwerk', '>= 2.6.7'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'erb', '~> 4.0.2'
