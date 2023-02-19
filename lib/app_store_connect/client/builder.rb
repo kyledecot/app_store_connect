@@ -67,6 +67,12 @@ module AppStoreConnect
             "http_body_type": 'BetaBuildLocalizationCreateRequest',
             "http_method": 'post',
             "see": 'https://developer.apple.com/documentation/appstoreconnectapi'
+          },
+          {
+            "http_method": 'get',
+            "url": 'https://api.appstoreconnect.apple.com/v1/userInvitations',
+            "alias": 'user_invitations',
+            "see": 'https://developer.apple.com/documentation/appstoreconnectapi'
           }
         ].map(&:symbolize_keys)
       end

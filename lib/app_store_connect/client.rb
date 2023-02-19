@@ -62,5 +62,16 @@ module AppStoreConnect
 
       call(web_service_endpoint, **kwargs)
     end
+
+    #
+    # @see https://developer.apple.com/documentation/appstoreconnectapi
+    #
+    def user_invitations(**kwargs)
+      web_service_endpoint = Schema::WebServiceEndpoint.new(
+        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations' }
+      )
+
+      call(web_service_endpoint, **kwargs)
+    end
   end
 end
