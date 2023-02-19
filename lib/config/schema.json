@@ -143,11 +143,6 @@
     },
     {
       "http_method": "get",
-      "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
-      "alias": "user_invitations"
-    },
-    {
-      "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations/{id}/visibleApps",
       "alias": "user_invitation_visible_apps"
     },
