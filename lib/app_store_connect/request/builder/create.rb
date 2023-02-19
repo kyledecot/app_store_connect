@@ -27,6 +27,13 @@ module AppStoreConnect
 
         attr_reader :name, :type, :properties
 
+        def self.from(schema)
+          type = schema.properties['data']['properties']['type']['enum'][0]
+          properties = schema.properties['data']['properties']['attributes']['properties'].keys
+
+          new(type, properties)
+        end
+
         def initialize(type, properties, version = 'v1')
           @name = type.singularize.classify
           @name = name
