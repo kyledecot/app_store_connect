@@ -3,9 +3,9 @@
 module AppStoreConnect
   class Base
     def initialize(**kwargs)
-      @options = Options.new(kwargs)
-      @authorization = Authorization.new(@options.slice(*Authorization::OPTIONS))
-      @registry = Registry.new(@options.slice(*Registry::OPTIONS))
+      @options = Client::Options.new(kwargs)
+      @authorization = Client::Authorization.new(@options.slice(*Client::Authorization::OPTIONS))
+      @registry = Client::Registry.new(@options.slice(*Client::Registry::OPTIONS))
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -39,7 +39,7 @@ module AppStoreConnect
 
       response = request.execute
 
-      Utils.decode(response.body, response.content_type) if response.body
+      Client::Utils.decode(response.body, response.content_type) if response.body
     end
 
     def build_uri(web_service_endpoint, **kwargs)
@@ -53,7 +53,7 @@ module AppStoreConnect
     end
 
     def http_body(web_service_endpoint, **kwargs)
-      Utils.encode("AppStoreConnect::#{web_service_endpoint.http_body_type}"
+      Client::Utils.encode("AppStoreConnect::#{web_service_endpoint.http_body_type}"
         .constantize
         .new(**kwargs)
         .to_h)

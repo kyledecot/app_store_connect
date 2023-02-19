@@ -97,12 +97,6 @@
       "alias": "delete_beta_build_localizations"
     },
     {
-      "alias": "create_certificate",
-      "http_method": "post",
-      "url": "https://api.appstoreconnect.apple.com/v1/certificates",
-      "http_body_type": "CertificateCreateRequest"
-    },
-    {
       "alias": "create_profile",
       "http_method": "post",
       "url": "https://api.appstoreconnect.apple.com/v1/profiles",
@@ -118,24 +112,6 @@
       "alias": "create_user_invitation",
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
       "http_body_type": "UserInvitationCreateRequest",
-      "http_method": "post"
-    },
-    {
-      "alias": "create_bundle_id",
-      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds",
-      "http_body_type": "BundleIdCreateRequest",
-      "http_method": "post"
-    },
-    {
-      "alias": "create_bundle_id_capability",
-      "url": "https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities",
-      "http_body_type": "BundleIdCapabilityCreateRequest",
-      "http_method": "post"
-    },
-    {
-      "alias": "create_beta_build_localization",
-      "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations",
-      "http_body_type": "BetaBuildLocalizationCreateRequest",
       "http_method": "post"
     },
     {
