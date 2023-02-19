@@ -3,7 +3,7 @@
 module AppStoreConnect
   class Request
     module Body
-      class Update
+      class Create
         def self.inherited(klass)
           super
           klass.include(Object::Data)

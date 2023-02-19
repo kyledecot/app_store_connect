@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'app_store_connect/create_request'
-
 module AppStoreConnect
   module Requests
     module V1
       module InAppPurchaseLocalization
-        class Update < CreateRequest
+        class Update < Request::Body::Create
           data do
             id
             type 'inAppPurchaseLocalizations'
