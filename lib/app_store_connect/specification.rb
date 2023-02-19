@@ -24,7 +24,7 @@ module AppStoreConnect
 
       Zip::File.open(path) do |zip_file|
         entry, = zip_file.entries
-        content = entry.get_input_stream { |io| content = io.read }
+        content = entry.get_input_stream(&:read)
 
         JSON.parse(content)
       end
