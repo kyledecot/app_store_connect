@@ -14,6 +14,11 @@ module AppStoreConnect
       end&.[](-1)
     end
 
+    def create_request_schema_ref(version, type)
+      declarations = find(version, type)
+      declarations['post']['requestBody']['content']['application/json']['schema']['$ref']
+    end
+
     def self.read(path)
       require 'zip'
 
