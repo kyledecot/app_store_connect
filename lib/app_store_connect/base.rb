@@ -5,19 +5,6 @@ module AppStoreConnect
     def initialize(**kwargs)
       @options = Client::Options.new(kwargs)
       @authorization = Client::Authorization.new(@options.slice(*Client::Authorization::OPTIONS))
-      @registry = Client::Registry.new(@options.slice(*Client::Registry::OPTIONS))
-    end
-
-    def respond_to_missing?(method_name, include_private = false)
-      web_service_endpoint_aliases.include?(method_name) || super
-    end
-
-    def method_missing(method_name, **kwargs)
-      super unless web_service_endpoint_aliases.include?(method_name)
-
-      web_service_endpoint = web_service_endpoint_by(method_name)
-
-      call(web_service_endpoint, **kwargs)
     end
 
     # :nocov:
@@ -25,10 +12,6 @@ module AppStoreConnect
       "#<#{self.class.name}:#{object_id}>"
     end
     # :nocov:
-
-    def web_service_endpoint_aliases
-      @registry.keys
-    end
 
     private
 
@@ -46,10 +29,6 @@ module AppStoreConnect
       URI(web_service_endpoint
         .url
         .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) })
-    end
-
-    def web_service_endpoint_by(alias_sym)
-      @registry[alias_sym]
     end
 
     def http_body(web_service_endpoint, **kwargs)
