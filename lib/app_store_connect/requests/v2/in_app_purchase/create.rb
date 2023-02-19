@@ -4,7 +4,7 @@ module AppStoreConnect
   module Requests
     module V2
       module InAppPurchase
-        class Create < Request::Body::Create
+        class Create < Request::Body
           data do
             type 'inAppPurchases'
 

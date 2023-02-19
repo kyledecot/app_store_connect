@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class CertificateCreateRequest < Request::Body::Create
+  class CertificateCreateRequest < Request::Body
     data do
       type 'certificates'
 

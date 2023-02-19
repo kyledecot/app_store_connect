@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class DeviceCreateRequest < Request::Body::Create
+  class DeviceCreateRequest < Request::Body
     data do
       type 'devices'
 

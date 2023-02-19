@@ -4,7 +4,7 @@ module AppStoreConnect
   module Requests
     module V1
       module InAppPurchaseLocalization
-        class Update < Request::Body::Create
+        class Update < Request::Body
           data do
             id
             type 'inAppPurchaseLocalizations'

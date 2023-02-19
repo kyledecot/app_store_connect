@@ -7,7 +7,7 @@ module AppStoreConnect
     module Builder
       class Create
         TEMPLATE = <<~SOURCE
-          class <%= name %>CreateRequest < Request::Body::Create
+          class <%= name %>CreateRequest < Request::Body
             data do
               type '<%= type %>'
 

@@ -40,7 +40,7 @@ RSpec.describe AppStoreConnect::Request::Builder::Create do
       subject { create_request_builder.source }
 
       it { is_expected.to eq(<<~EXPECTED) }
-        class ReviewSubmissionCreateRequest < Request::Body::Create
+        class ReviewSubmissionCreateRequest < Request::Body
           data do
             type 'reviewSubmissions'
 
@@ -73,7 +73,7 @@ RSpec.describe AppStoreConnect::Request::Builder::Create do
       subject { create_request_builder.source }
 
       it { is_expected.to eq(<<~EXPECTED) }
-        class BundleIdCreateRequest < Request::Body::Create
+        class BundleIdCreateRequest < Request::Body
           data do
             type 'bundleIds'
 

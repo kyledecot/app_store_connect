@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class ReviewSubmissionCreateRequest < Request::Body::Create
+  class ReviewSubmissionCreateRequest < Request::Body
     data do
       type 'reviewSubmissions'
 

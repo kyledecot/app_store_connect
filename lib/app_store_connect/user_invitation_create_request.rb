@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class UserInvitationCreateRequest < Request::Body::Create
+  class UserInvitationCreateRequest < Request::Body
     data do
       type 'userInvitations'
 

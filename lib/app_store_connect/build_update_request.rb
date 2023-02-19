@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class BuildUpdateRequest < Request::Body::Update
+  class BuildUpdateRequest < Request::Body
     data do
       id
       type 'builds'

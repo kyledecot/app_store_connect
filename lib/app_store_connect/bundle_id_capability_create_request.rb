@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class BundleIdCapabilityCreateRequest < Request::Body::Create
+  class BundleIdCapabilityCreateRequest < Request::Body
     data do
       type 'bundleIdCapabilities'
 

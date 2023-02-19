@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class AppStoreVersionUpdateRequest < Request::Body::Update
+  class AppStoreVersionUpdateRequest < Request::Body
     data do
       id
       type 'appStoreVersions'

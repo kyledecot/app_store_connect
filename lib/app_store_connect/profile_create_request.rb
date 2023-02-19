@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class ProfileCreateRequest < Request::Body::Create
+  class ProfileCreateRequest < Request::Body
     data do
       type 'profiles'
 

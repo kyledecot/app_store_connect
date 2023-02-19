@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AppStoreConnect
-  class BetaBuildLocalizationCreateRequest < Request::Body::Create
+  class BetaBuildLocalizationCreateRequest < Request::Body
     data do
       type 'betaBuildLocalizations'
 

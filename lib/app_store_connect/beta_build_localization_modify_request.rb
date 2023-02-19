@@ -3,7 +3,7 @@
 require 'app_store_connect/modify_request'
 
 module AppStoreConnect
-  class BetaBuildLocalizationModifyRequest < Request::Body::Update
+  class BetaBuildLocalizationModifyRequest < Request::Body
     data do
       type 'betaBuildLocalizations'
 
