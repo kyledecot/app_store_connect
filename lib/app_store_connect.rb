@@ -4,6 +4,9 @@ require 'zeitwerk'
 require 'active_support/all'
 
 APP_STORE_CONNECT_LOADER = Zeitwerk::Loader.for_gem
+
+APP_STORE_CONNECT_LOADER.inflector.inflect('url' => 'URL')
+
 APP_STORE_CONNECT_LOADER.setup
 
 module AppStoreConnect

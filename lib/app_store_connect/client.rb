@@ -12,1394 +12,1622 @@ module AppStoreConnect
     # @see https://developer.apple.com/documentation/appstoreconnectapi
     #
     def create_certificate(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'CertificateCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/certificates' }
-      )
+      path = '/v1/certificates'
+      url = URL.new(path, **kwargs)
+      body = CertificateCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
     #
     # @see https://developer.apple.com/documentation/appstoreconnectapi
     #
     def delete_visible_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps' }
-      )
+      path = '/v1/users/{id}/relationships/visibleApps'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
     #
     # @see https://developer.apple.com/documentation/appstoreconnectapi/register_a_new_bundle_id
     #
     def create_bundle_id(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'BundleIdCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds' }
-      )
+      path = '/v1/bundleIds'
+      url = URL.new(path, **kwargs)
+      body = BundleIdCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
     #
     # @see https://developer.apple.com/documentation/appstoreconnectapi
     #
     def create_bundle_id_capability(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'BundleIdCapabilityCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities' }
-      )
+      path = '/v1/bundleIdCapabilities'
+      url = URL.new(path, **kwargs)
+      body = BundleIdCapabilityCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
     #
     # @see https://developer.apple.com/documentation/appstoreconnectapi
     #
     def create_beta_build_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'BetaBuildLocalizationCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations' }
-      )
+      path = '/v1/betaBuildLocalizations'
+      url = URL.new(path, **kwargs)
+      body = BetaBuildLocalizationCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
     #
     # @see https://developer.apple.com/documentation/appstoreconnectapi
     #
     def user_invitations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations' }
-      )
+      url = URL.new('/v1/userInvitations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def delete_user(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/users/{id}' }
-      )
+      path = '/v1/users/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_bundle_id_capability(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities/{id}' }
-      )
+      path = '/v1/bundleIdCapabilities/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_user_invitation(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations/{id}' }
-      )
+      path = '/v1/userInvitations/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_certificate(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/certificates/{id}' }
-      )
+      path = '/v1/certificates/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_bundle_id(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds/{id}' }
-      )
+      path = '/v1/bundleIds/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_profile(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}' }
-      )
+      path = '/v1/profiles/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_tester(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}' }
-      )
+      path = '/v1/betaTesters/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_tester_beta(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/betaGroups' }
-      )
+      path = '/v1/betaTesters/{id}/relationships/betaGroups'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_tester_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/builds' }
-      )
+      path = '/v1/betaTesters/{id}/relationships/builds'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_tester_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/apps' }
-      )
+      path = '/v1/betaTesters/{id}/relationships/apps'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_group(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}' }
-      )
+      path = '/v1/betaGroups/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_group_beta_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/betaTesters' }
-      )
+      path = '/v1/betaGroups/{id}/relationships/betaTesters'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_group_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/builds' }
-      )
+      path = '/v1/betaGroups/{id}/relationships/builds'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_app_beta_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/betaTesters' }
-      )
+      path = '/v1/apps/{id}/relationships/betaTesters'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_app_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaAppLocalizations/{id}' }
-      )
+      path = '/v1/betaAppLocalizations/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_build_beta_group(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaGroups' }
-      )
+      path = '/v1/builds/{id}/relationships/betaGroups'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_build_individual_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/individualTesters' }
-      )
+      path = '/v1/builds/{id}/relationships/individualTesters'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def delete_beta_build_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}' }
-      )
+      path = '/v1/betaBuildLocalizations/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def create_profile(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'ProfileCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/profiles' }
-      )
+      path = '/v1/profiles'
+      url = URL.new(path, **kwargs)
+      body = ProfileCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def create_device(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'DeviceCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/devices' }
-      )
+      path = '/v1/devices'
+      url = URL.new(path, **kwargs)
+      body = DeviceCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def create_user_invitation(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'UserInvitationCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations' }
-      )
+      path = '/v1/userInvitations'
+      url = URL.new(path, **kwargs)
+      body = UserInvitationCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def modify_beta_build_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'BetaBuildLocalizationModifyRequest', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}' }
-      )
+      path = '/v1/betaBuildLocalizations/{id}'
+      url = URL.new(path, **kwargs)
+      body = BetaBuildLocalizationModifyRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def users(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/users' }
-      )
+      url = URL.new('/v1/users', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def user(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/users/{id}' }
-      )
+      url = URL.new('/v1/users/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def user_visible_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/users/{id}/visibleApps' }
-      )
+      url = URL.new('/v1/users/{id}/visibleApps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def user_relationships_visible_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps' }
-      )
+      url = URL.new('/v1/users/{id}/relationships/visibleApps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def user_invitation(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations/{id}' }
-      )
+      url = URL.new('/v1/userInvitations/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def user_invitation_visible_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations/{id}/visibleApps' }
-      )
+      url = URL.new('/v1/userInvitations/{id}/visibleApps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def user_invitation_relationships_visible_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/userInvitations/{id}/relationships/visibleApps' }
-      )
+      url = URL.new('/v1/userInvitations/{id}/relationships/visibleApps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def bundle_id(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds/{id}' }
-      )
+      url = URL.new('/v1/bundleIds/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def bundle_ids(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds' }
-      )
+      url = URL.new('/v1/bundleIds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def bundle_id_relationships_profiles(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds/{id}/relationships/profiles' }
-      )
+      url = URL.new('/v1/bundleIds/{id}/relationships/profiles', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def bundle_id_bundle_id_capabilities(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds/{id}/bundleIdCapabilities' }
-      )
+      url = URL.new('/v1/bundleIds/{id}/bundleIdCapabilities', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def bundle_id_profiles(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds/{id}/profiles' }
-      )
+      url = URL.new('/v1/bundleIds/{id}/profiles', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def bundle_id_relationships_bundle_id_capabilities(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds/{id}/relationships/bundleIdCapabilities' }
-      )
+      url = URL.new('/v1/bundleIds/{id}/relationships/bundleIdCapabilities', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def certificates(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/certificates' }
-      )
+      url = URL.new('/v1/certificates', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def certificate(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/certificates/{id}' }
-      )
+      url = URL.new('/v1/certificates/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def devices(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/devices' }
-      )
+      url = URL.new('/v1/devices', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def device(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/devices/{id}' }
-      )
+      url = URL.new('/v1/devices/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def financial_reports(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/financeReports' }
-      )
+      url = URL.new('/v1/financeReports', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def sales_reports(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/salesReports' }
-      )
+      url = URL.new('/v1/salesReports', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profiles(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles' }
-      )
+      url = URL.new('/v1/profiles', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}' }
-      )
+      url = URL.new('/v1/profiles/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile_bundle_id(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}/bundleId' }
-      )
+      url = URL.new('/v1/profiles/{id}/bundleId', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile_relationships_bundle_id(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}/relationships/bundleId' }
-      )
+      url = URL.new('/v1/profiles/{id}/relationships/bundleId', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile_relationships_certificates(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}/relationships/certificates' }
-      )
+      url = URL.new('/v1/profiles/{id}/relationships/certificates', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile_devices(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}/devices' }
-      )
+      url = URL.new('/v1/profiles/{id}/devices', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile_certificates(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}/certificates' }
-      )
+      url = URL.new('/v1/profiles/{id}/certificates', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def profile_relationships_devices(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/profiles/{id}/relationships/devices' }
-      )
+      url = URL.new('/v1/profiles/{id}/relationships/devices', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters' }
-      )
+      url = URL.new('/v1/betaTesters', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}' }
-      )
+      url = URL.new('/v1/betaTesters/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/apps' }
-      )
+      url = URL.new('/v1/betaTesters/{id}/apps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/builds' }
-      )
+      url = URL.new('/v1/betaTesters/{id}/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester_relationships_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/builds' }
-      )
+      url = URL.new('/v1/betaTesters/{id}/relationships/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester_relationships_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/apps' }
-      )
+      url = URL.new('/v1/betaTesters/{id}/relationships/apps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester_beta_groups(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/betaGroups' }
-      )
+      url = URL.new('/v1/betaTesters/{id}/betaGroups', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_tester_relationships_beta_groups(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaTesters/{id}/relationships/betaGroups' }
-      )
+      url = URL.new('/v1/betaTesters/{id}/relationships/betaGroups', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps' }
-      )
+      url = URL.new('/v1/apps', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}' }
-      )
+      url = URL.new('/v1/apps/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_price_points(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/pricePoints' }
-      )
+      url = URL.new('/v1/apps/{id}/pricePoints', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}' }
-      )
+      url = URL.new('/v2/inAppPurchases/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def create_in_app_purchase(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V2::InAppPurchase::Create', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases' }
-      )
+      path = '/v2/inAppPurchases'
+      url = URL.new(path, **kwargs)
+      body = Requests::V2::InAppPurchase::Create.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def update_in_app_purchase(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V2::InAppPurchase::Update', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}' }
-      )
+      path = '/v2/inAppPurchases/{id}'
+      url = URL.new(path, **kwargs)
+      body = Requests::V2::InAppPurchase::Update.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def delete_in_app_purchase(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}' }
-      )
+      path = '/v2/inAppPurchases/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def create_in_app_purchase_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V1::InAppPurchaseSubmission::Create', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseSubmissions' }
-      )
+      path = '/v1/inAppPurchaseSubmissions'
+      url = URL.new(path, **kwargs)
+      body = Requests::V1::InAppPurchaseSubmission::Create.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def review_screenshot_for_in_app_purchase(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseAppStoreReviewScreenshots/{id}' }
-      )
+      url = URL.new('/v1/inAppPurchaseAppStoreReviewScreenshots/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase_review_screenshot(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/appStoreReviewScreenshot' }
-      )
+      url = URL.new('/v2/inAppPurchases/{id}/appStoreReviewScreenshot', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def create_in_app_purchase_review_screenshot(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V1::InAppPurchaseReviewScreenshot::Create', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseAppStoreReviewScreenshots' }
-      )
+      path = '/v1/inAppPurchaseAppStoreReviewScreenshots'
+      url = URL.new(path, **kwargs)
+      body = Requests::V1::InAppPurchaseReviewScreenshot::Create.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def app_in_app_purchases(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/inAppPurchasesV2' }
-      )
+      url = URL.new('/v1/apps/{id}/inAppPurchasesV2', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase_price_points(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/pricePoints' }
-      )
+      url = URL.new('/v2/inAppPurchases/{id}/pricePoints', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def create_in_app_purchase_price_schedule(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V1::InAppPurchasePriceSchedule::Create', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules' }
-      )
+      path = '/v1/inAppPurchasePriceSchedules'
+      url = URL.new(path, **kwargs)
+      body = Requests::V1::InAppPurchasePriceSchedule::Create.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase_price_schedule(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/{id}' }
-      )
+      url = URL.new('/v1/inAppPurchasePriceSchedules/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase_current_price_point(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/{id}/manualPrices' }
-      )
+      url = URL.new('/v1/inAppPurchasePriceSchedules/{id}/manualPrices', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v2/inAppPurchases/{id}/inAppPurchaseLocalizations' }
-      )
+      url = URL.new('/v2/inAppPurchases/{id}/inAppPurchaseLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def in_app_purchase_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseLocalizations/{id}' }
-      )
+      url = URL.new('/v1/inAppPurchaseLocalizations/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def create_in_app_purchase_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V1::InAppPurchaseLocalization::Create', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseLocalizations' }
-      )
+      path = '/v1/inAppPurchaseLocalizations'
+      url = URL.new(path, **kwargs)
+      body = Requests::V1::InAppPurchaseLocalization::Create.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def update_in_app_purchase_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'Requests::V1::InAppPurchaseLocalization::Update', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseLocalizations/{id}' }
-      )
+      path = '/v1/inAppPurchaseLocalizations/{id}'
+      url = URL.new(path, **kwargs)
+      body = Requests::V1::InAppPurchaseLocalization::Update.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def delete_in_app_purchase_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/inAppPurchaseLocalizations/{id}' }
-      )
+      path = '/v1/inAppPurchaseLocalizations/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def app_beta_groups(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/betaGroups' }
-      )
+      url = URL.new('/v1/apps/{id}/betaGroups', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_relationships_beta_groups(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/betaGroups' }
-      )
+      url = URL.new('/v1/apps/{id}/relationships/betaGroups', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/builds' }
-      )
+      url = URL.new('/v1/apps/{id}/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_relationships_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/builds' }
-      )
+      url = URL.new('/v1/apps/{id}/relationships/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_pre_release_versions(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/preReleaseVersions' }
-      )
+      url = URL.new('/v1/apps/{id}/preReleaseVersions', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_relationships_pre_release_versions(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/preReleaseVersions' }
-      )
+      url = URL.new('/v1/apps/{id}/relationships/preReleaseVersions', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_beta_app_review_detail(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/betaAppReviewDetail' }
-      )
+      url = URL.new('/v1/apps/{id}/betaAppReviewDetail', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_beta_license_agreement(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/betaLicenseAgreement' }
-      )
+      url = URL.new('/v1/apps/{id}/betaLicenseAgreement', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_beta_app_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/betaAppLocalizations' }
-      )
+      url = URL.new('/v1/apps/{id}/betaAppLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_relationships_beta_app_review_detail(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/betaAppReviewDetail' }
-      )
+      url = URL.new('/v1/apps/{id}/relationships/betaAppReviewDetail', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_relationships_beta_license_agreement(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/betaLicenseAgreement' }
-      )
+      url = URL.new('/v1/apps/{id}/relationships/betaLicenseAgreement', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_relationships_beta_app_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/relationships/betaAppLocalizations' }
-      )
+      url = URL.new('/v1/apps/{id}/relationships/betaAppLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def pre_release_versions(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/preReleaseVersions' }
-      )
+      url = URL.new('/v1/preReleaseVersions', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def pre_release_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/preReleaseVersions/{id}' }
-      )
+      url = URL.new('/v1/preReleaseVersions/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def pre_release_version_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/preReleaseVersions/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/preReleaseVersions/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def pre_release_version_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/preReleaseVersions/{id}/builds' }
-      )
+      url = URL.new('/v1/preReleaseVersions/{id}/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def pre_release_version_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/preReleaseVersions/{id}/app' }
-      )
+      url = URL.new('/v1/preReleaseVersions/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def pre_release_version_relationships_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/preReleaseVersions/{id}/relationships/builds' }
-      )
+      url = URL.new('/v1/preReleaseVersions/{id}/relationships/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_groups(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups' }
-      )
+      url = URL.new('/v1/betaGroups', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}' }
-      )
+      url = URL.new('/v1/betaGroups/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group_apps(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/app' }
-      )
+      url = URL.new('/v1/betaGroups/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/betaGroups/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group_beta_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/betaTesters' }
-      )
+      url = URL.new('/v1/betaGroups/{id}/betaTesters', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group_relationships_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/builds' }
-      )
+      url = URL.new('/v1/betaGroups/{id}/relationships/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group_relationships_beta_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/relationships/betaTesters' }
-      )
+      url = URL.new('/v1/betaGroups/{id}/relationships/betaTesters', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds' }
-      )
+      url = URL.new('/v1/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}' }
-      )
+      url = URL.new('/v1/builds/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/app' }
-      )
+      url = URL.new('/v1/builds/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_group_builds(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaGroups/{id}/builds' }
-      )
+      url = URL.new('/v1/betaGroups/{id}/builds', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_pre_release_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/preReleaseVersion' }
-      )
+      url = URL.new('/v1/builds/{id}/preReleaseVersion', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_pre_release_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/preReleaseVersion' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/preReleaseVersion', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_individual_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/individualTesters' }
-      )
+      url = URL.new('/v1/builds/{id}/individualTesters', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_beta_app_review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaAppReviewSubmission' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/betaAppReviewSubmission', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_individual_testers(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/individualTesters' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/individualTesters', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_build_beta_detail(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/buildBetaDetail' }
-      )
+      url = URL.new('/v1/builds/{id}/buildBetaDetail', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_build_beta_detail(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/buildBetaDetail' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/buildBetaDetail', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_beta_app_review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/betaAppReviewSubmission' }
-      )
+      url = URL.new('/v1/builds/{id}/betaAppReviewSubmission', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_app_encryption_declaration(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/appEncryptionDeclaration' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/appEncryptionDeclaration', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_beta_build_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/betaBuildLocalizations' }
-      )
+      url = URL.new('/v1/builds/{id}/betaBuildLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_relationships_beta_build_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaBuildLocalizations' }
-      )
+      url = URL.new('/v1/builds/{id}/relationships/betaBuildLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_app_encryption_declaration(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}/appEncryptionDeclaration' }
-      )
+      url = URL.new('/v1/builds/{id}/appEncryptionDeclaration', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_encryption_declarations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/appEncryptionDeclarations' }
-      )
+      url = URL.new('/v1/appEncryptionDeclarations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_encryption_declaration(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/appEncryptionDeclarations/{id}' }
-      )
+      url = URL.new('/v1/appEncryptionDeclarations/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_encryption_declaration_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/appEncryptionDeclarations/{id}/app' }
-      )
+      url = URL.new('/v1/appEncryptionDeclarations/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_encryption_declaration_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/appEncryptionDeclarations/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/appEncryptionDeclarations/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_beta_details(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/buildBetaDetails' }
-      )
+      url = URL.new('/v1/buildBetaDetails', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_beta_detail(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}' }
-      )
+      url = URL.new('/v1/buildBetaDetails/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_beta_detail_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}/build' }
-      )
+      url = URL.new('/v1/buildBetaDetails/{id}/build', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def build_beta_detail_relationships_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}/relationships/build' }
-      )
+      url = URL.new('/v1/buildBetaDetails/{id}/relationships/build', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppLocalizations' }
-      )
+      url = URL.new('/v1/betaAppLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_localization_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppLocalizations/{id}/app' }
-      )
+      url = URL.new('/v1/betaAppLocalizations/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppLocalizations/{id}' }
-      )
+      url = URL.new('/v1/betaAppLocalizations/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_localization_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppLocalizations/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/betaAppLocalizations/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_license_agreements(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaLicenseAgreements' }
-      )
+      url = URL.new('/v1/betaLicenseAgreements', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_license_agreement_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaLicenseAgreements/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/betaLicenseAgreements/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_license_agreement_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaLicenseAgreements/{id}/app' }
-      )
+      url = URL.new('/v1/betaLicenseAgreements/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_license_agreement(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaLicenseAgreements/{id}' }
-      )
+      url = URL.new('/v1/betaLicenseAgreements/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_build_localization_relationships_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}/relationships/build' }
-      )
+      url = URL.new('/v1/betaBuildLocalizations/{id}/relationships/build', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_build_localization_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}/build' }
-      )
+      url = URL.new('/v1/betaBuildLocalizations/{id}/build', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_build_localizations(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations' }
-      )
+      url = URL.new('/v1/betaBuildLocalizations', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_build_localization(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}' }
-      )
+      url = URL.new('/v1/betaBuildLocalizations/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_details(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails' }
-      )
+      url = URL.new('/v1/betaAppReviewDetails', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_detail(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails/{id}' }
-      )
+      url = URL.new('/v1/betaAppReviewDetails/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_detail_relationships_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails/{id}/relationships/app' }
-      )
+      url = URL.new('/v1/betaAppReviewDetails/{id}/relationships/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_detail_app(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails/{id}/app' }
-      )
+      url = URL.new('/v1/betaAppReviewDetails/{id}/app', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_submissions(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions' }
-      )
+      url = URL.new('/v1/betaAppReviewSubmissions', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/{id}' }
-      )
+      url = URL.new('/v1/betaAppReviewSubmissions/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_submission_relationships_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/{id}/relationships/build' }
-      )
+      url = URL.new('/v1/betaAppReviewSubmissions/{id}/relationships/build', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def beta_app_review_submission_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/{id}/build' }
-      )
+      url = URL.new('/v1/betaAppReviewSubmissions/{id}/build', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def update_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'BuildUpdateRequest', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/builds/{id}' }
-      )
+      path = '/v1/builds/{id}'
+      url = URL.new(path, **kwargs)
+      body = BuildUpdateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def create_app_store_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'AppStoreVersionCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersions' }
-      )
+      path = '/v1/appStoreVersions'
+      url = URL.new(path, **kwargs)
+      body = AppStoreVersionCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def update_app_store_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'AppStoreVersionUpdateRequest', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}' }
-      )
+      path = '/v1/appStoreVersions/{id}'
+      url = URL.new(path, **kwargs)
+      body = AppStoreVersionUpdateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def delete_app_store_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}' }
-      )
+      path = '/v1/appStoreVersions/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def update_app_store_version_build(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'AppStoreVersionBuildLinkageRequest', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}/relationships/build' }
-      )
+      path = '/v1/appStoreVersions/{id}/relationships/build'
+      url = URL.new(path, **kwargs)
+      body = AppStoreVersionBuildLinkageRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def apps_app_store_versions(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/apps/{id}/appStoreVersions' }
-      )
+      url = URL.new('/v1/apps/{id}/appStoreVersions', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def app_store_version(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}' }
-      )
+      url = URL.new('/v1/appStoreVersions/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def create_app_store_version_release_request(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'AppStoreVersionReleaseRequestCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersionReleaseRequests' }
-      )
+      path = '/v1/appStoreVersionReleaseRequests'
+      url = URL.new(path, **kwargs)
+      body = AppStoreVersionReleaseRequestCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def create_app_store_version_phased_release(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'AppStoreVersionPhasedReleaseCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases' }
-      )
+      path = '/v1/appStoreVersionPhasedReleases'
+      url = URL.new(path, **kwargs)
+      body = AppStoreVersionPhasedReleaseCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def update_app_store_version_phased_release(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'AppStoreVersionPhasedReleaseUpdateRequest', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases/{id}' }
-      )
+      path = '/v1/appStoreVersionPhasedReleases/{id}'
+      url = URL.new(path, **kwargs)
+      body = AppStoreVersionPhasedReleaseUpdateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def delete_app_store_version_phased_release(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/appStoreVersionPhasedReleases/{id}' }
-      )
+      path = '/v1/appStoreVersionPhasedReleases/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def create_review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'ReviewSubmissionCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissions' }
-      )
+      path = '/v1/reviewSubmissions'
+      url = URL.new(path, **kwargs)
+      body = ReviewSubmissionCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def update_review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'ReviewSubmissionUpdateRequest', http_method: 'patch', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}' }
-      )
+      path = '/v1/reviewSubmissions/{id}'
+      url = URL.new(path, **kwargs)
+      body = ReviewSubmissionUpdateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      patch(url, body)
     end
 
+    #
+    # @see
+    #
     def delete_review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}' }
-      )
+      path = '/v1/reviewSubmissions/{id}'
+      url = URL.new(path, **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      delete(url)
     end
 
+    #
+    # @see
+    #
     def review_submissions(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissions' }
-      )
+      url = URL.new('/v1/reviewSubmissions', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def review_submission(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}' }
-      )
+      url = URL.new('/v1/reviewSubmissions/{id}', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
 
+    #
+    # @see
+    #
     def create_review_submission_item(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_body_type: 'ReviewSubmissionItemCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems' }
-      )
+      path = '/v1/reviewSubmissionItems'
+      url = URL.new(path, **kwargs)
+      body = ReviewSubmissionItemCreateRequest.new(**kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      post(url, body)
     end
 
+    #
+    # @see
+    #
     def review_submissions_items(**kwargs)
-      web_service_endpoint = Schema::WebServiceEndpoint.new(
-        { http_method: 'get', url: 'https://api.appstoreconnect.apple.com/v1/reviewSubmissions/{id}/items' }
-      )
+      url = URL.new('/v1/reviewSubmissions/{id}/items', **kwargs)
 
-      call(web_service_endpoint, **kwargs)
+      get(url)
     end
   end
 end

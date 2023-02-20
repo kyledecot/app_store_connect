@@ -15,41 +15,36 @@ module AppStoreConnect
 
     private
 
-    def call(web_service_endpoint, **kwargs)
-      raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post patch].include?(web_service_endpoint.http_method)
+    def post(url, body, **kwargs)
+      request = Request::Post.new(url, body, **kwargs)
 
-      request = build_request(web_service_endpoint, **kwargs)
+      response = request.execute(headers)
+
+      Client::Utils.decode(response.body, response.content_type)
+    end
+
+    def delete(url, **kwargs)
+      request = Request::Delete.new(url, **kwargs)
+
+      request.execute
+
+      nil
+    end
+
+    def patch(url, body, **kwargs)
+      request = Request::Patch.new(url, body, **kwargs)
 
       response = request.execute
 
-      Client::Utils.decode(response.body, response.content_type) if response.body
+      Client::Utils.decode(response.body, response.content_type)
     end
 
-    def build_uri(web_service_endpoint, **kwargs)
-      URI(web_service_endpoint
-        .url
-        .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) })
-    end
+    def get(path, **kwargs)
+      request = Request::Get.new(path, **kwargs)
 
-    def http_body(web_service_endpoint, **kwargs)
-      Client::Utils.encode("AppStoreConnect::#{web_service_endpoint.http_body_type}"
-        .constantize
-        .new(**kwargs)
-        .to_h)
-    end
+      response = request.execute
 
-    def build_request(web_service_endpoint, **kwargs)
-      options = {
-        kwargs: kwargs,
-        web_service_endpoint: web_service_endpoint,
-        http_method: web_service_endpoint.http_method,
-        uri: build_uri(web_service_endpoint, **kwargs),
-        headers: headers
-      }
-
-      options[:http_body] = http_body(web_service_endpoint, **kwargs) if %i[post patch].include?(web_service_endpoint.http_method)
-
-      Request.new(**options)
+      Client::Utils.decode(response.body, response.content_type)
     end
 
     def headers
