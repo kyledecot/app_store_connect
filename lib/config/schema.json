@@ -356,6 +356,12 @@
       "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchaseAppStoreReviewScreenshots"
     },
     {
+      "alias": "update_in_app_purchase_app_store_review_screenshot",
+      "http_body_type": "Requests::V1::InAppPurchaseReviewScreenshot::Update",
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/inAppPurchaseAppStoreReviewScreenshots/{id}"
+    },
+    {
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/inAppPurchasesV2",
       "alias": "app_in_app_purchases"
