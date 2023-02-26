@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 
 RSpec.describe AppStoreConnect::Request::Body do
-  describe '#to_h' do
-    it do
-      klass = Class.new(described_class) do
-        include AppStoreConnect::Object::Data
+  let(:klass) do
+    Class.new(described_class) do
+      include AppStoreConnect::Object::Data
 
-        data do
-          attributes do
-            property :bar
-          end
+      data do
+        attributes do
+          property :bar
         end
       end
-      instance = klass.new(included: [{ type: :foo }], bar: :baz)
-
-      expect(instance.to_h).to eq({ data: { attributes: { bar: :baz } }, included: [{ type: :foo }] })
     end
+  end
+
+  let(:instance) { klass.new(included: [{ type: :foo }], bar: :baz) }
+
+  subject { instance.to_h }
+
+  describe '#to_h' do
+    it { is_expected.to eq({ data: { attributes: { bar: :baz } } }) }
   end
 end
