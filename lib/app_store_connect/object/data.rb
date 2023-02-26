@@ -33,12 +33,6 @@ module AppStoreConnect
         end
 
         const_set('Data', klass)
-
-        def to_h
-          {
-            data: data.to_h
-          }
-        end
       end
 
       class_methods do
