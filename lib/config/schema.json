@@ -801,6 +801,34 @@
     },
 
     {
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations",
+      "http_body_type": "Requests::V1::AppStoreVersionLocalization::Create",
+      "http_method": "post",
+      "alias": "create_app_store_version_localization"
+    },
+    {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/{id}",
+      "http_body_type": "Requests::V1::AppStoreVersionLocalization::Update",
+      "alias": "update_app_store_version_localization"
+    },
+    {
+      "http_method": "delete",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/{id}",
+      "alias": "delete_app_store_version_localization"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/{id}",
+      "alias": "app_store_version_localization"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}/appStoreVersionLocalizations",
+      "alias": "app_store_version_app_store_version_localizations"
+    },
+
+    {
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionReleaseRequests",
       "http_body_type": "AppStoreVersionReleaseRequestCreateRequest",
       "http_method": "post",
