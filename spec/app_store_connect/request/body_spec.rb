@@ -4,6 +4,7 @@ RSpec.describe AppStoreConnect::Request::Body do
   let(:klass) do
     Class.new(described_class) do
       include AppStoreConnect::Object::Data
+      include AppStoreConnect::Object::Included
 
       data do
         attributes do
@@ -18,6 +19,6 @@ RSpec.describe AppStoreConnect::Request::Body do
   subject { instance.to_h }
 
   describe '#to_h' do
-    it { is_expected.to eq({ data: { attributes: { bar: :baz } } }) }
+    it { is_expected.to eq({ included: [{ type: :foo }], data: { attributes: { bar: :baz } } }) }
   end
 end
