@@ -6,11 +6,7 @@
       "url": "https://api.appstoreconnect.apple.com/v1/users/{id}",
       "alias": "delete_user"
     },
-    {
-      "http_method": "delete",
-      "url": "https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps",
-      "alias": "delete_visible_app"
-    },
+
     {
       "http_method": "delete",
       "url": "https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities/{id}",
@@ -97,12 +93,6 @@
       "alias": "delete_beta_build_localizations"
     },
     {
-      "alias": "create_certificate",
-      "http_method": "post",
-      "url": "https://api.appstoreconnect.apple.com/v1/certificates",
-      "http_body_type": "CertificateCreateRequest"
-    },
-    {
       "alias": "create_profile",
       "http_method": "post",
       "url": "https://api.appstoreconnect.apple.com/v1/profiles",
@@ -118,24 +108,6 @@
       "alias": "create_user_invitation",
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
       "http_body_type": "UserInvitationCreateRequest",
-      "http_method": "post"
-    },
-    {
-      "alias": "create_bundle_id",
-      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds",
-      "http_body_type": "BundleIdCreateRequest",
-      "http_method": "post"
-    },
-    {
-      "alias": "create_bundle_id_capability",
-      "url": "https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities",
-      "http_body_type": "BundleIdCapabilityCreateRequest",
-      "http_method": "post"
-    },
-    {
-      "alias": "create_beta_build_localization",
-      "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations",
-      "http_body_type": "BetaBuildLocalizationCreateRequest",
       "http_method": "post"
     },
     {
@@ -831,6 +803,34 @@
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}",
       "alias": "app_store_version"
+    },
+
+    {
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations",
+      "http_body_type": "Requests::V1::AppStoreVersionLocalization::Create",
+      "http_method": "post",
+      "alias": "create_app_store_version_localization"
+    },
+    {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/{id}",
+      "http_body_type": "Requests::V1::AppStoreVersionLocalization::Update",
+      "alias": "update_app_store_version_localization"
+    },
+    {
+      "http_method": "delete",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/{id}",
+      "alias": "delete_app_store_version_localization"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/{id}",
+      "alias": "app_store_version_localization"
+    },
+    {
+      "http_method": "get",
+      "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions/{id}/appStoreVersionLocalizations",
+      "alias": "app_store_version_app_store_version_localizations"
     },
 
     {

@@ -1,92 +1,66 @@
 # frozen_string_literal: true
 
-require 'active_support/all'
-
-require 'app_store_connect/request'
-require 'app_store_connect/schema'
-require 'app_store_connect/client/authorization'
-require 'app_store_connect/client/options'
-require 'app_store_connect/client/registry'
-require 'app_store_connect/client/utils'
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated.
+#
+# WARNING ABOUT GENERATED CODE
 
 module AppStoreConnect
-  class Client
-    def initialize(**kwargs)
-      @options = Options.new(kwargs)
-      @authorization = Authorization.new(@options.slice(*Authorization::OPTIONS))
-      @registry = Registry.new(@options.slice(*Registry::OPTIONS))
-    end
-
-    def respond_to_missing?(method_name, include_private = false)
-      web_service_endpoint_aliases.include?(method_name) || super
-    end
-
-    def method_missing(method_name, **kwargs)
-      super unless web_service_endpoint_aliases.include?(method_name)
-
-      web_service_endpoint = web_service_endpoint_by(method_name)
+  class Client < Base
+    #
+    # @see https://developer.apple.com/documentation/appstoreconnectapi
+    #
+    def create_certificate(**kwargs)
+      web_service_endpoint = Schema::WebServiceEndpoint.new(
+        { http_body_type: 'CertificateCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/certificates' }
+      )
 
       call(web_service_endpoint, **kwargs)
     end
 
-    # :nocov:
-    def inspect
-      "#<#{self.class.name}:#{object_id}>"
-    end
-    # :nocov:
+    #
+    # @see https://developer.apple.com/documentation/appstoreconnectapi
+    #
+    def delete_visible_app(**kwargs)
+      web_service_endpoint = Schema::WebServiceEndpoint.new(
+        { http_method: 'delete', url: 'https://api.appstoreconnect.apple.com/v1/users/{id}/relationships/visibleApps' }
+      )
 
-    def web_service_endpoint_aliases
-      @registry.keys
-    end
-
-    private
-
-    def call(web_service_endpoint, **kwargs)
-      raise "invalid http method: #{web_service_endpoint.http_method}" unless %i[get delete post patch].include?(web_service_endpoint.http_method)
-
-      request = build_request(web_service_endpoint, **kwargs)
-
-      response = request.execute
-
-      Utils.decode(response.body, response.content_type) if response.body
+      call(web_service_endpoint, **kwargs)
     end
 
-    def build_uri(web_service_endpoint, **kwargs)
-      URI(web_service_endpoint
-        .url
-        .gsub(/(\{(\w+)\})/) { kwargs.fetch(Regexp.last_match(2).to_sym) })
+    #
+    # @see https://developer.apple.com/documentation/appstoreconnectapi/register_a_new_bundle_id
+    #
+    def create_bundle_id(**kwargs)
+      web_service_endpoint = Schema::WebServiceEndpoint.new(
+        { http_body_type: 'BundleIdCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/bundleIds' }
+      )
+
+      call(web_service_endpoint, **kwargs)
     end
 
-    def web_service_endpoint_by(alias_sym)
-      @registry[alias_sym]
+    #
+    # @see https://developer.apple.com/documentation/appstoreconnectapi
+    #
+    def create_bundle_id_capability(**kwargs)
+      web_service_endpoint = Schema::WebServiceEndpoint.new(
+        { http_body_type: 'BundleIdCapabilityCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/bundleIdCapabilities' }
+      )
+
+      call(web_service_endpoint, **kwargs)
     end
 
-    def http_body(web_service_endpoint, **kwargs)
-      Utils.encode("AppStoreConnect::#{web_service_endpoint.http_body_type}"
-        .constantize
-        .new(**kwargs)
-        .to_h)
-    end
+    #
+    # @see https://developer.apple.com/documentation/appstoreconnectapi
+    #
+    def create_beta_build_localization(**kwargs)
+      web_service_endpoint = Schema::WebServiceEndpoint.new(
+        { http_body_type: 'BetaBuildLocalizationCreateRequest', http_method: 'post', url: 'https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations' }
+      )
 
-    def build_request(web_service_endpoint, **kwargs)
-      options = {
-        kwargs: kwargs,
-        web_service_endpoint: web_service_endpoint,
-        http_method: web_service_endpoint.http_method,
-        uri: build_uri(web_service_endpoint, **kwargs),
-        headers: headers
-      }
-
-      options[:http_body] = http_body(web_service_endpoint, **kwargs) if %i[post patch].include?(web_service_endpoint.http_method)
-
-      Request.new(**options)
-    end
-
-    def headers
-      {
-        'Authorization' => "Bearer #{@authorization.token}",
-        'Content-Type' => 'application/json'
-      }
+      call(web_service_endpoint, **kwargs)
     end
   end
 end

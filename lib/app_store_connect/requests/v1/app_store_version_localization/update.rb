@@ -3,15 +3,19 @@
 module AppStoreConnect
   module Requests
     module V1
-      module InAppPurchaseLocalization
+      module AppStoreVersionLocalization
         class Update < Request::Body
           data do
             id
-            type 'inAppPurchaseLocalizations'
+            type 'appStoreVersionLocalizations'
 
             attributes do
               property :description
-              property :name
+              property :keywords
+              property :marketing_url
+              property :promotional_text
+              property :support_url
+              property :whats_new
             end
           end
         end

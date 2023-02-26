@@ -1,40 +1,10 @@
 # frozen_string_literal: true
 
-require 'app_store_connect/client'
-require 'app_store_connect/object/type'
-require 'app_store_connect/object/id'
-require 'app_store_connect/object/attributes'
-require 'app_store_connect/object/properties'
-require 'app_store_connect/object/included'
-require 'app_store_connect/object/data'
-require 'app_store_connect/version'
+require 'zeitwerk'
+require 'active_support/all'
 
-require 'app_store_connect/app_store_version_build_linkage_request'
-require 'app_store_connect/app_store_version_create_request'
-require 'app_store_connect/app_store_version_phased_release_create_request'
-require 'app_store_connect/app_store_version_phased_release_update_request'
-require 'app_store_connect/app_store_version_release_request_create_request'
-require 'app_store_connect/app_store_version_update_request'
-require 'app_store_connect/bundle_id_update_request'
-require 'app_store_connect/build_update_request'
-require 'app_store_connect/bundle_id_capability_create_request'
-require 'app_store_connect/bundle_id_create_request'
-require 'app_store_connect/certificate_create_request'
-require 'app_store_connect/device_create_request'
-require 'app_store_connect/requests/v1/in_app_purchase_localization/create'
-require 'app_store_connect/requests/v1/in_app_purchase_localization/update'
-require 'app_store_connect/requests/v1/in_app_purchase_price_schedule/create'
-require 'app_store_connect/requests/v1/in_app_purchase_review_screenshot/create'
-require 'app_store_connect/requests/v1/in_app_purchase_submission/create'
-require 'app_store_connect/requests/v2/in_app_purchase/create'
-require 'app_store_connect/requests/v2/in_app_purchase/update'
-require 'app_store_connect/profile_create_request'
-require 'app_store_connect/beta_build_localization_create_request'
-require 'app_store_connect/beta_build_localization_modify_request'
-require 'app_store_connect/review_submission_create_request'
-require 'app_store_connect/review_submission_item_create_request'
-require 'app_store_connect/review_submission_update_request'
-require 'app_store_connect/user_invitation_create_request'
+APP_STORE_CONNECT_LOADER = Zeitwerk::Loader.for_gem
+APP_STORE_CONNECT_LOADER.setup
 
 module AppStoreConnect
   @config = {}
