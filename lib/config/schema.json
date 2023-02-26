@@ -765,12 +765,7 @@
       "http_body_type": "BuildUpdateRequest",
       "alias": "update_build"
     },
-    {
-      "http_method": "patch",
-      "url": "https://api.appstoreconnect.apple.com/v1/bundleIds/{id}",
-      "http_body_type": "BundleIdUpdateRequest",
-      "alias": "update_bundle_id"
-    },
+
     {
       "url": "https://api.appstoreconnect.apple.com/v1/appStoreVersions",
       "http_body_type": "AppStoreVersionCreateRequest",
