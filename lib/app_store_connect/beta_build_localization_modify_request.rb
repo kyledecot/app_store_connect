@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'app_store_connect/modify_request'
-
 module AppStoreConnect
   class BetaBuildLocalizationModifyRequest < Request::Body
     data do
