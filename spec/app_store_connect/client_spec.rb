@@ -32,7 +32,7 @@ RSpec.describe AppStoreConnect::Client do
 
     before { subject.app_price_points(id: id) }
 
-    it_behaves_like :get_request, path: 'apps/1234/pricePoints'
+    it_behaves_like :get_request, path: 'apps/1234/appPricePoints'
   end
 
   describe '#in_app_purchase' do

@@ -308,7 +308,7 @@
     },
     {
       "http_method": "get",
-      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/pricePoints",
+      "url": "https://api.appstoreconnect.apple.com/v1/apps/{id}/appPricePoints",
       "alias": "app_price_points"
     },
     {
