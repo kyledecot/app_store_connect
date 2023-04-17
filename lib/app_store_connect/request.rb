@@ -63,7 +63,7 @@ module AppStoreConnect
     def body
       return if http_method == :get
 
-      @options.fetch(:http_body)
+      @options.fetch(:http_body, nil)
     end
 
     def url_parameter_names(web_service_endpoint)
