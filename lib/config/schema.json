@@ -80,7 +80,8 @@
     {
       "http_method": "delete",
       "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaGroups",
-      "alias": "delete_build_beta_group"
+      "http_body_type": "Requests::V1::BuildBetaGroups::Delete",
+      "alias": "delete_build_beta_groups"
     },
     {
       "http_method": "delete",
@@ -109,6 +110,12 @@
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
       "http_body_type": "UserInvitationCreateRequest",
       "http_method": "post"
+    },
+    {
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaGroups",
+      "http_body_type": "Requests::V1::BuildBetaGroups::Create",
+      "alias": "add_build_beta_groups"
     },
     {
       "alias": "modify_beta_build_localization",

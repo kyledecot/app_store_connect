@@ -77,7 +77,7 @@ module AppStoreConnect
       case http_method
       when :get then Net::HTTP::Get
       when :post then Net::HTTP::Post
-      when :delete then Net::HTTP::Delete
+      when :delete then Requests::DeleteWithBody
       when :patch then Net::HTTP::Patch
       else
         raise UnsupportedHTTPMethod, http_method

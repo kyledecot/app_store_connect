@@ -68,7 +68,7 @@ module AppStoreConnect
         headers: headers
       }
 
-      options[:http_body] = http_body(web_service_endpoint, **kwargs) if %i[post patch].include?(web_service_endpoint.http_method)
+      options[:http_body] = http_body(web_service_endpoint, **kwargs) if web_service_endpoint.http_body_type.present?
 
       Request.new(**options)
     end
