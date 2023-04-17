@@ -177,6 +177,21 @@ app_store_connect.create_in_app_purchase_price_schedule(
 )
 ```
 
+### Add or remove access for a Beta Group to a Build
+
+```ruby
+app_store_connect.add_build_beta_groups(
+  id: '<build-id>', 
+  data: [{id: '<beta-group-id>'}]
+)
+
+app_store_connect.delete_build_beta_groups(
+  id: '<build-id>', 
+  data: [{id: '<beta-group-id>'}]
+)
+
+```
+
 ## FAQ
 
 ### How to understand the `devices, sales_reports, create_bundle_id` keyword seen in the demo?
