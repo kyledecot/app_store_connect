@@ -118,6 +118,12 @@
       "alias": "add_build_beta_groups"
     },
     {
+      "alias": "create_beta_build_localization",
+      "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations",
+      "http_body_type": "BetaBuildLocalizationCreateRequest",
+      "http_method": "post"
+    },
+    {
       "alias": "modify_beta_build_localization",
       "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/{id}",
       "http_body_type": "BetaBuildLocalizationModifyRequest",
@@ -662,6 +668,12 @@
       "alias": "build_beta_detail"
     },
     {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}",
+      "http_body_type": "Requests::V1::BuildBetaDetail::Update",
+      "alias": "update_build_beta_detail"
+    },
+    {
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}/build",
       "alias": "build_beta_detail_build"
@@ -755,6 +767,12 @@
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions",
       "alias": "beta_app_review_submissions"
+    },
+    {
+      "url": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions",
+      "http_body_type": "Requests::V1::BetaAppReviewSubmission::Create",
+      "http_method": "post",
+      "alias": "create_beta_app_review_submission"
     },
     {
       "http_method": "get",
