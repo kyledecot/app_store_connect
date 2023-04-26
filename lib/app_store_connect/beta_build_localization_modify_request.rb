@@ -3,6 +3,7 @@
 module AppStoreConnect
   class BetaBuildLocalizationModifyRequest < Request::Body
     data do
+      id
       type 'betaBuildLocalizations'
 
       attributes do
