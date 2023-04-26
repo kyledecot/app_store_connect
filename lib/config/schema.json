@@ -80,7 +80,8 @@
     {
       "http_method": "delete",
       "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaGroups",
-      "alias": "delete_build_beta_group"
+      "http_body_type": "Requests::V1::BuildBetaGroups::Delete",
+      "alias": "delete_build_beta_groups"
     },
     {
       "http_method": "delete",
@@ -108,6 +109,18 @@
       "alias": "create_user_invitation",
       "url": "https://api.appstoreconnect.apple.com/v1/userInvitations",
       "http_body_type": "UserInvitationCreateRequest",
+      "http_method": "post"
+    },
+    {
+      "http_method": "post",
+      "url": "https://api.appstoreconnect.apple.com/v1/builds/{id}/relationships/betaGroups",
+      "http_body_type": "Requests::V1::BuildBetaGroups::Create",
+      "alias": "add_build_beta_groups"
+    },
+    {
+      "alias": "create_beta_build_localization",
+      "url": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations",
+      "http_body_type": "BetaBuildLocalizationCreateRequest",
       "http_method": "post"
     },
     {
@@ -655,6 +668,12 @@
       "alias": "build_beta_detail"
     },
     {
+      "http_method": "patch",
+      "url": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}",
+      "http_body_type": "Requests::V1::BuildBetaDetail::Update",
+      "alias": "update_build_beta_detail"
+    },
+    {
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/{id}/build",
       "alias": "build_beta_detail_build"
@@ -748,6 +767,12 @@
       "http_method": "get",
       "url": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions",
       "alias": "beta_app_review_submissions"
+    },
+    {
+      "url": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions",
+      "http_body_type": "Requests::V1::BetaAppReviewSubmission::Create",
+      "http_method": "post",
+      "alias": "create_beta_app_review_submission"
     },
     {
       "http_method": "get",

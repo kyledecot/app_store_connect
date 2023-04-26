@@ -63,7 +63,7 @@ module AppStoreConnect
     def body
       return if http_method == :get
 
-      @options.fetch(:http_body)
+      @options.fetch(:http_body, nil)
     end
 
     def url_parameter_names(web_service_endpoint)
@@ -77,7 +77,7 @@ module AppStoreConnect
       case http_method
       when :get then Net::HTTP::Get
       when :post then Net::HTTP::Post
-      when :delete then Net::HTTP::Delete
+      when :delete then Requests::DeleteWithBody
       when :patch then Net::HTTP::Patch
       else
         raise UnsupportedHTTPMethod, http_method
