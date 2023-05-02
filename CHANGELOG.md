@@ -1,5 +1,45 @@
 # Changelog
 
+## [v0.38.0](https://github.com/kyledecot/app_store_connect/tree/v0.38.0) (2023-05-02)
+
+[Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.37.0...v0.38.0)
+
+**Closed issues:**
+
+- execution expired \(Net::OpenTimeout\) [\#128](https://github.com/kyledecot/app_store_connect/issues/128)
+
+**Merged pull requests:**
+
+- Bump zeitwerk from 2.6.7 to 2.6.8 [\#166](https://github.com/kyledecot/app_store_connect/pull/166) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rubocop from 1.50.1 to 1.50.2 [\#165](https://github.com/kyledecot/app_store_connect/pull/165) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add ability to add or remove access for beta groups to a build [\#164](https://github.com/kyledecot/app_store_connect/pull/164) ([zormandi](https://github.com/zormandi))
+- Update rubocop requirement from ~\> 1.49.0 to ~\> 1.50.1 [\#163](https://github.com/kyledecot/app_store_connect/pull/163) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update rubocop requirement from ~\> 1.48.0 to ~\> 1.49.0 [\#162](https://github.com/kyledecot/app_store_connect/pull/162) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update deprecated app price points endpoint [\#161](https://github.com/kyledecot/app_store_connect/pull/161) ([tmarkanov](https://github.com/tmarkanov))
+- Bump rubocop from 1.48.0 to 1.48.1 [\#160](https://github.com/kyledecot/app_store_connect/pull/160) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump activesupport from 7.0.4.2 to 7.0.4.3 [\#159](https://github.com/kyledecot/app_store_connect/pull/159) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update rubocop requirement from ~\> 1.47.0 to ~\> 1.48.0 [\#157](https://github.com/kyledecot/app_store_connect/pull/157) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Fix bug in BetaBuildLocalizationModifyRequest [\#156](https://github.com/kyledecot/app_store_connect/pull/156) ([zormandi](https://github.com/zormandi))
+- Update rubocop requirement from ~\> 1.46.0 to ~\> 1.47.0 [\#155](https://github.com/kyledecot/app_store_connect/pull/155) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update rubocop requirement from ~\> 1.45.1 to ~\> 1.46.0 [\#153](https://github.com/kyledecot/app_store_connect/pull/153) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add Spec for Request Body [\#152](https://github.com/kyledecot/app_store_connect/pull/152) ([kyledecot](https://github.com/kyledecot))
+- Add Spec for Object::Properties [\#151](https://github.com/kyledecot/app_store_connect/pull/151) ([kyledecot](https://github.com/kyledecot))
+- Add App Store Version Localization management capability [\#150](https://github.com/kyledecot/app_store_connect/pull/150) ([zormandi](https://github.com/zormandi))
+- Commit In-App Purchase Review Screenshot [\#149](https://github.com/kyledecot/app_store_connect/pull/149) ([gregg-platogo](https://github.com/gregg-platogo))
+- Add Client Builder [\#147](https://github.com/kyledecot/app_store_connect/pull/147) ([kyledecot](https://github.com/kyledecot))
+- Add Request Body \(Create/Update\) [\#146](https://github.com/kyledecot/app_store_connect/pull/146) ([kyledecot](https://github.com/kyledecot))
+- Use zeitwerk for autoloading [\#145](https://github.com/kyledecot/app_store_connect/pull/145) ([kyledecot](https://github.com/kyledecot))
+- Ability to build create request from schema [\#144](https://github.com/kyledecot/app_store_connect/pull/144) ([kyledecot](https://github.com/kyledecot))
+- Add ability to read/file specification [\#143](https://github.com/kyledecot/app_store_connect/pull/143) ([kyledecot](https://github.com/kyledecot))
+- Add ability to download OpenAPI Specification [\#142](https://github.com/kyledecot/app_store_connect/pull/142) ([kyledecot](https://github.com/kyledecot))
+- Add Create Request Builder [\#141](https://github.com/kyledecot/app_store_connect/pull/141) ([kyledecot](https://github.com/kyledecot))
+- Update rubocop requirement from ~\> 1.36.0 to ~\> 1.45.1 [\#140](https://github.com/kyledecot/app_store_connect/pull/140) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump timecop from 0.9.5 to 0.9.6 [\#139](https://github.com/kyledecot/app_store_connect/pull/139) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update simplecov requirement from ~\> 0.21.2 to ~\> 0.22.0 [\#138](https://github.com/kyledecot/app_store_connect/pull/138) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update rspec requirement from ~\> 3.11.0 to ~\> 3.12.0 [\#137](https://github.com/kyledecot/app_store_connect/pull/137) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump pry from 0.14.1 to 0.14.2 [\#136](https://github.com/kyledecot/app_store_connect/pull/136) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Create Included Concern [\#135](https://github.com/kyledecot/app_store_connect/pull/135) ([kyledecot](https://github.com/kyledecot))
+
 ## [v0.37.0](https://github.com/kyledecot/app_store_connect/tree/v0.37.0) (2023-02-14)
 
 [Full Changelog](https://github.com/kyledecot/app_store_connect/compare/v0.36.0...v0.37.0)

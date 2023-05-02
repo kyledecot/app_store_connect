@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    app_store_connect (0.37.0)
+    app_store_connect (0.38.0)
       activesupport (>= 6.0.0)
       jwt (>= 1.4)
       zeitwerk (>= 2.6.7)
@@ -176,6 +176,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-22
   x86_64-darwin-22
   x86_64-linux
 
