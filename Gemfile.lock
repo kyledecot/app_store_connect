@@ -45,7 +45,7 @@ GEM
       rexml
     diff-lcs (1.5.0)
     docile (1.4.0)
-    erb (4.0.2)
+    erb (4.0.3)
       cgi (>= 0.3.3)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
