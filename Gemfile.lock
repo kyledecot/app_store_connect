@@ -9,7 +9,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.1.0)
+    activesupport (7.1.2)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -53,7 +53,7 @@ GEM
       rexml
     diff-lcs (1.5.0)
     docile (1.4.0)
-    drb (2.1.1)
+    drb (2.2.0)
       ruby2_keywords
     erb (4.0.2)
       cgi (>= 0.3.3)
@@ -104,7 +104,7 @@ GEM
     method_source (1.0.0)
     minitest (5.20.0)
     multi_json (1.15.0)
-    mutex_m (0.1.2)
+    mutex_m (0.2.0)
     nenv (0.3.0)
     nio4r (2.5.8)
     notiffany (0.1.3)
