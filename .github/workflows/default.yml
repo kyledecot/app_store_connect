@@ -128,7 +128,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
     - name: Set APP_STORE_CONNECT_VERSION
       run: echo "APP_STORE_CONNECT_VERSION=$(bundle exec rake version:current)" >> $GITHUB_ENV
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4.1.7
       with:
         name: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem
         path: /tmp
