@@ -36,7 +36,7 @@ GEM
       ruby2_keywords
     erb (4.0.2)
       cgi (>= 0.3.3)
-    factory_bot (6.4.2)
+    factory_bot (6.5.0)
       activesupport (>= 5.0.0)
     ffi (1.15.5)
     formatador (1.1.0)
@@ -147,7 +147,7 @@ DEPENDENCIES
   app_store_connect!
   bundler
   erb (~> 4.0.2)
-  factory_bot (~> 6.4.2)
+  factory_bot (~> 6.5.0)
   guard-rspec (~> 4.7.3)
   pry (~> 0.14.1)
   rake (~> 13.1.0)
