@@ -34,7 +34,7 @@ jobs:
     - name: Build
       run: bundle exec rake build
     - name: Upload Gem
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem
         path: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem
