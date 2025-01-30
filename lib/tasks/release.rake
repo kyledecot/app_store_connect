@@ -8,7 +8,6 @@ task :release do
   version = version_increment.call
 
   Rake::Task['bundle:install'].invoke
-  Rake::Task['changelog'].invoke("v#{version}")
   Rake::Task['git:add'].invoke('-A')
   Rake::Task['git:commit'].invoke("v#{version}")
   Rake::Task['git:tag'].invoke("v#{version}")
