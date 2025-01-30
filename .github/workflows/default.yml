@@ -36,7 +36,7 @@ jobs:
     - name: Upload Gem
       uses: actions/upload-artifact@v4
       with:
-        name: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem
+        name: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}-ruby${{ matrix.ruby_versions }}.gem
         path: app_store_connect-${{ env.APP_STORE_CONNECT_VERSION }}.gem
 
   lint:
