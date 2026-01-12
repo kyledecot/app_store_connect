@@ -10,8 +10,6 @@
 
 A Ruby interface to the [App Store Connect API](https://developer.apple.com/app-store-connect/api/)
 
-Subject: Project Status Update: Maintainer Stepping Back
-
 ## 🚧 Project Status: Seeking New Maintainer(s)
 
 This project has been a significant part of my professional life, and I am grateful for the community that has grown around it. Unfortunately, due to ongoing personal constraints, I am no longer able to actively maintain this repository.
