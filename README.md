@@ -1,5 +1,3 @@
-
-
 <div align="center">
   <img src="assets/banner.png">
 
@@ -11,6 +9,44 @@
 
 
 A Ruby interface to the [App Store Connect API](https://developer.apple.com/app-store-connect/api/)
+
+Subject: Project Status Update: Maintainer Stepping Back
+
+## 🚧 Project Status: Seeking New Maintainer(s)
+
+This project has been a significant part of my professional life, and I am grateful for the community that has grown around it. Unfortunately, due to ongoing personal constraints, I am no longer able to actively maintain this repository.
+
+### What this means
+
+* New feature development is paused indefinitely.
+* Issues and pull requests may not receive timely review.
+* Security fixes and dependency updates cannot be guaranteed.
+
+The repository will remain public and available under its existing license, but it should be considered **unmaintained** unless new maintainers step forward.
+
+### Looking for new maintainers
+
+If you or your organization rely on this project and are willing to take on long-term stewardship, I would welcome the opportunity to transition ownership.
+
+Please open an issue with the title:
+
+> `Maintainer Interest: <your name or organization>`
+
+and include:
+
+* Your GitHub profile
+* Relevant experience with Ruby and this project
+* Your expectations and goals for the project
+
+### Thank you
+
+To everyone who has contributed, opened issues, written documentation, or built software on top of this code — thank you. This community has been the most rewarding part of the project.
+
+— Kyle Decot
+
+
+
+
 
 ## Installation
 
