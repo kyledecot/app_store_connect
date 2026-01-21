@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'erb', '~> 4.0.2'
-  spec.add_development_dependency 'factory_bot', '~> 6.4.2'
+  spec.add_development_dependency 'factory_bot', '~> 6.5.0'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
   spec.add_development_dependency 'pry', '~> 0.14.1'
   spec.add_development_dependency 'rake', '~> 13.1.0'
